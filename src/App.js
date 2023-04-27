@@ -27,6 +27,8 @@ function App() {
       <Navbar dark expand="md">
         <NavbarBrand tag={Link} to="/">
           <img src="/logo.png" alt="Logo" width="40" height="40" />
+          {" "}
+          <>Kevin Diesenberg</>
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
