@@ -23,7 +23,7 @@ function App() {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
+    <>
       <Navbar dark expand="md">
         <NavbarBrand tag={Link} to="/">
           <img src="/logo.png" alt="Logo" width="40" height="40" />
@@ -57,7 +57,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </Container>
-    </div>
+    </>
   );
 }
 

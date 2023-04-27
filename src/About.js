@@ -1,11 +1,10 @@
-
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
 
 const ImageComponent = ({ src, alt }) => (
-  <div className="text-center mb-4">
+  <Container className="text-center mb-4">
     <img src={src} alt={alt} className="img-fluid rounded" />
-  </div>
+  </Container>
 );
 
 const Paragraph = ({ children }) => (

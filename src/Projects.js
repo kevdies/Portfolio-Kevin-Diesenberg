@@ -128,7 +128,7 @@ function Projects() {
               <CardBody>
                 <CardTitle>{project.title}</CardTitle>
                 <CardText>{project.description}</CardText>
-                <div className="buttons-container">
+                <CardBody className="buttons-container">
                   <Button
                     className="custom-button"
                     href={project.demoLink}
@@ -143,7 +143,7 @@ function Projects() {
                   >
                     GitHub
                   </Button>
-                </div>
+                </CardBody>
               </CardBody>
             </Card>
           </Col>
