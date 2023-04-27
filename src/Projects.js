@@ -82,11 +82,11 @@ const projects = [
     imgAlt: "HSTRY",
     description: (
       <>
-      <h5>
-        A state controlled form designed to aid medical historians in
-        efficiently compiling medical histories for QME evaluation applicants.
-      </h5>
-       <ul>
+        <h5>
+          A state controlled form designed to aid medical historians in
+          efficiently compiling medical histories for QME evaluation applicants.
+        </h5>
+        <ul>
           <li>
             Created with React, Ruby on Rails, Active Record, Reactstrap, and
             PostgreSQL.
@@ -103,9 +103,9 @@ const projects = [
             components.
           </li>
         </ul>
-        </>
+      </>
     ),
-    demoLink: "#",
+    demoLink: "https://youtu.be/dWumb-_XHhA",
     githubLink: "https://github.com/kevdies/HSTRY",
   },
 ];
