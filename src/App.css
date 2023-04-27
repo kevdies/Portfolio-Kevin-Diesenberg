@@ -1,38 +1,163 @@
-.App {
-  text-align: center;
+:root {
+  --primary-color: #705d89;
+  --secondary-color: #c6bcdb;
+  --accent-color: #848586;
+  --light-color: #dfe0e2;
+  --dark-color: #34373b;
+  --text-color: #000000;
+  --box-shadow-color: rgba(52, 55, 59, 0.2);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar {
+  background-color: var(--primary-color);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.header {
+  background-color: var(--secondary-color);
+  color: var(--dark-color);
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.paragraph {
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  font-family: "Open Sans", sans-serif;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--text-color);
+}
+
+p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Mobile */
+@media screen and (max-width: 576px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.2;
+  }
+
+  .img-fluid {
+    max-width: 80%;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Tablet */
+@media screen and (min-width: 577px) and (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 769px) {
+  /* Add any desktop-specific styles here */
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease;
+  background-color: var(--light-color);
+}
+
+.card:hover {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card-img-top {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.card-body {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.card-text {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: var(--dark-color);
+}
+
+.custom-button {
+  background-color: var(--dark-color);
+  border-color: var(--dark-color);
+  color: var(--light-color);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.custom-button:hover {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--light-color);
+  transform: scale(1.05);
+}
+
+.contact-container {
+  background-color: var(--light-color);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px var(--box-shadow-color);
+}
+
+.contact-link {
+  color: var(--dark-color);
+  transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+  color: var(--primary-color);
+}
+
+.contact-icon {
+  transition: transform 0.3s ease;
+}
+
+.contact-link:hover .contact-icon {
+  transform: translateY(-5px);
+}
+
+.buttons-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  gap: 1rem;
+  flex-wrap: wrap; /* Add this line to wrap buttons on smaller screens */
 }
