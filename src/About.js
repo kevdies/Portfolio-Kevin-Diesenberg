@@ -47,7 +47,7 @@ function About() {
             in Yosemite, Glacier and Yellowstone. I also worked as a Restaurant
             Manager for Panda Veg in Richmond, Virginia.
           </Paragraph>
-          <ImageComponent src="/kevin-pink-shirt.png" alt="Kevin-Emily" />
+          <ImageComponent src="/kevin-deland.png" alt="Kevin-Emily" />
           <Paragraph>
             I obtained my Full Stack Software Engineer certification from
             Flatiron School, February of 2023, where I studied Ruby on Rails and
