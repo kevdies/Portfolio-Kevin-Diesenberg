@@ -15,14 +15,6 @@
   z-index: 1000;
 }
 
-.header {
-  background-color: var(--secondary-color);
-  color: var(--dark-color);
-  padding: 1rem;
-  border-radius: 5px;
-  margin-bottom: 1rem;
-}
-
 .paragraph {
   background-color: var(--light-color);
   color: var(--dark-color);
