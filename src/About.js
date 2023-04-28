@@ -1,5 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const ImageComponent = ({ src, alt }) => (
   <Container className="text-center mb-4">
@@ -17,36 +19,84 @@ function About() {
       <Row>
         <Col xs="12" sm="6" md="6">
           <Paragraph>
-            I am a versatile Full Stack Software Engineer with expertise in
-            object-oriented programming, web development, and database
-            management. My proficiency includes JavaScript, Ruby, React, and
-            Ruby on Rails, and I am skilled in SQL, PostgreSQL, HTML, CSS,
-            Bootstrap, Reactstrap, Render, Git, Agile Methodologies, Test Driven
-            Development, MVC Architecture, API Integration, REST API, User
-            Authentication, and Data Validation.
+            <h5>
+              <strong>
+                I am a versatile Full Stack Software Engineer with expertise in
+                object-oriented programming, web development, and database
+                management.
+              </strong>
+            </h5>
+            <ul style={{ listStyle: "none", paddingLeft: 0 }}>
+              <li>
+                <FontAwesomeIcon icon={faCircleArrowRight} /> JavaScript, Ruby,
+                React, and Ruby on Rails
+              </li>
+              <li>
+                <FontAwesomeIcon icon={faCircleArrowRight} /> SQL, PostgreSQL,
+                HTML, CSS, Bootstrap, Reactstrap, Render, Git, Agile
+                Methodologies, Test Driven Development, MVC Architecture, API
+                Integration, REST API, User Authentication, and Data Validation.
+              </li>
+            </ul>
           </Paragraph>
           <ImageComponent src="/kevin-artichoke.png" alt="Kevin-Artichoke" />
           <Paragraph>
-            Aside from my passion for Full Stack Software Engineering, I have
-            several hobbies that keep me active and energized. I love spending
-            time outdoors and engaging in activities such as skydiving, road
-            biking, mountain biking, hiking, backpacking, bike packing, and
-            camping. My experience in the entertainment, outdoor, and skydiving
-            industries has given me exceptional leadership and organizational
-            skills.
+            <h5>
+              <strong>
+                Aside from my passion for Full Stack Software Engineering, I
+                have several hobbies that keep me active and energized.
+              </strong>
+            </h5>
+            <ul style={{ listStyle: "none", paddingLeft: 0 }}>
+              <li>
+                <FontAwesomeIcon icon={faCircleArrowRight} /> Skydiving
+              </li>
+              <li>
+                <FontAwesomeIcon icon={faCircleArrowRight} /> Paramotoring
+              </li>
+              <li>
+                <FontAwesomeIcon icon={faCircleArrowRight} /> Camping
+              </li>
+              <li>
+                <FontAwesomeIcon icon={faCircleArrowRight} /> Hiking,
+                Backpacking
+              </li>
+              <li>
+                <FontAwesomeIcon icon={faCircleArrowRight} /> Road Biking,
+                Mountain Biking, Bike packing
+              </li>
+            </ul>
           </Paragraph>
         </Col>
         <Col xs="12" sm="6" md="6">
           <ImageComponent src="/portfolio-picture.png" alt="Lake-Huron" />
           <Paragraph>
-            Before becoming a Full Stack Software Engineer, I worked as a
-            Skydiving Instructor at the Midwest Freefall Parachute Center in
-            Romeo, Michigan, as a Rigger and Stagehand for the International
-            Allegiance of Theatrical Stage Employees in Washington D.C., and as
-            a Backcountry Water Treatment Operator for the National Park Service
-            in Yosemite, Glacier, and Yellowstone. I also worked as a Restaurant
-            Manager for Panda Veg in Richmond, Virginia.
+            <h5>
+              <strong>Before becoming a Full Stack Software Engineer</strong>
+            </h5>
+            <ul style={{ listStyle: "none", paddingLeft: 0 }}>
+              <li>
+                <FontAwesomeIcon icon={faCircleArrowRight} /> I worked as a
+                Skydiving Instructor at the Midwest Freefall Parachute Center in
+                Romeo, Michigan.
+              </li>
+              <li>
+                <FontAwesomeIcon icon={faCircleArrowRight} /> I worked as a
+                Rigger and Stagehand for the International Alliance of
+                Theatrical Stage Employees in Washington D.C.
+              </li>
+              <li>
+                <FontAwesomeIcon icon={faCircleArrowRight} /> I worked as a
+                Backcountry Water Treatment Operator for the National Park
+                Service in Yosemite, Glacier, and Yellowstone.
+              </li>
+              <li>
+                <FontAwesomeIcon icon={faCircleArrowRight} /> I worked as a
+                Restaurant Manager for Panda Veg in Richmond, Virginia.
+              </li>
+            </ul>
           </Paragraph>
+
           <ImageComponent src="/kevin-deland.png" alt="Kevin-Emily" />
           <Paragraph>
             I obtained my Full Stack Software Engineer certification from
