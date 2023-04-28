@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import {
   faTwitter,
   faLinkedin,
@@ -9,8 +10,6 @@ import {
   faMedium,
   faFacebook,
 } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-
 
 const contactLinks = [
   {
@@ -39,8 +38,8 @@ const contactLinks = [
   },
   {
     href: "https://twitter.com/KevinDiesenberg",
-  icon: faTwitter,
-  }
+    icon: faTwitter,
+  },
 ];
 
 function Contact() {

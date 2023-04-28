@@ -30,7 +30,7 @@ function About() {
             Aside from my passion for Full Stack Software Engineering, I have
             several hobbies that keep me active and energized. I love spending
             time outdoors and engaging in activities such as skydiving, road
-            biking, mountain biking, hiking, backpacking, bikepacking, and
+            biking, mountain biking, hiking, backpacking, bike packing, and
             camping. My experience in the entertainment, outdoor, and skydiving
             industries has given me exceptional leadership and organizational
             skills.
@@ -41,17 +41,17 @@ function About() {
           <Paragraph>
             Before becoming a Full Stack Software Engineer, I worked as a
             Skydiving Instructor at the Midwest Freefall Parachute Center in
-            Romeo, Michigan, a Rigger and Stagehand for the International
+            Romeo, Michigan, as a Rigger and Stagehand for the International
             Allegiance of Theatrical Stage Employees in Washington D.C., and as
             a Backcountry Water Treatment Operator for the National Park Service
-            in Yosemite, Glacier and Yellowstone. I also worked as a Restaurant
+            in Yosemite, Glacier, and Yellowstone. I also worked as a Restaurant
             Manager for Panda Veg in Richmond, Virginia.
           </Paragraph>
           <ImageComponent src="/kevin-deland.png" alt="Kevin-Emily" />
           <Paragraph>
             I obtained my Full Stack Software Engineer certification from
-            Flatiron School, February of 2023, where I studied Ruby on Rails and
-            JavaScript. My hobbies allow me to maintain a healthy work-life
+            Flatiron School, in February of 2023, where I studied Ruby on Rails
+            and JavaScript. My hobbies allow me to maintain a healthy work-life
             balance, stay active, and connect with nature. I believe that a
             well-rounded lifestyle is essential to being a successful Full Stack
             Software Engineer, and my hobbies provide me with the energy and
