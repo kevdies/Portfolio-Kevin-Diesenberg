@@ -17,7 +17,7 @@ const ListItem = ({ children }) => (
   <li style={{ listStyle: "none", paddingLeft: 0 }}>
     <FontAwesomeIcon
       icon={faCircleArrowRight}
-      style={{ color: "var(--primary-color)" }}
+      style={{ color: "var(--primary-color)", marginRight: "10px" }}
     />{" "}
     {children}
   </li>
@@ -33,23 +33,16 @@ function About() {
           <Paragraph>
             <h5>
               <strong>
-                I am a versatile Full Stack Software Engineer with expertise in
-                object-oriented programming, web development, and database
-                management. My skills include:
+                Full Stack Software Engineer with expertise in object-oriented
+                programming, web development, and database management.
               </strong>
             </h5>
             <List>
               <ListItem>JavaScript, Ruby, React, and Ruby on Rails</ListItem>
               <ListItem>SQL, MySQL, and PostgreSQL</ListItem>
               <ListItem>HTML, CSS, Bootstrap, and Reactstrap</ListItem>
-              <ListItem>
-                Render, Git, Agile Methodologies, Test Driven Development, MVC
-                Architecture, API Integration, REST API
-              </ListItem>
-              <ListItem>
-                <strong>Security and Validation:</strong> User Authentication,
-                and Data Validation
-              </ListItem>
+              <ListItem>REST API</ListItem>
+              <ListItem>User Authentication and Data Validation</ListItem>
             </List>
           </Paragraph>
 
@@ -57,16 +50,17 @@ function About() {
           <Paragraph>
             <h5>
               <strong>
-                Aside from my passion for Software Engineering, I
-                have several hobbies that keep me active and energized.
+                I earned my Software Engineer certification from Flatiron School
+                thanks to a combination of strengths including:
               </strong>
             </h5>
             <List>
-              <ListItem>Skydiving</ListItem>
-              <ListItem>Paramotoring</ListItem>
-              <ListItem>Camping</ListItem>
-              <ListItem>Hiking, Backpacking</ListItem>
-              <ListItem>Road Biking, Mountain Biking, Bike packing</ListItem>
+              <ListItem>
+                Attention to detail in high-consequence environments
+              </ListItem>
+              <ListItem>Simplifying complex ideas</ListItem>
+              <ListItem>Working with people from diverse backgrounds</ListItem>
+              <ListItem>Commitment to continuous learning and growth</ListItem>
             </List>
           </Paragraph>
         </Col>
@@ -74,53 +68,45 @@ function About() {
           <ImageComponent src="/portfolio-picture.png" alt="Lake-Huron" />
           <Paragraph>
             <h5>
-              <strong>Before becoming a Software Engineer</strong>
-            </h5>
-            <List>
-              <ListItem>
-                I worked as a Skydiving Instructor at the Midwest Freefall
-                Parachute Center in Romeo, Michigan.
-              </ListItem>
-              <ListItem>
-                I worked as a Rigger and Stagehand for the International
-                Alliance of Theatrical Stage Employees in Washington D.C.
-              </ListItem>
-              <ListItem>
-                I worked as a Backcountry Water Treatment Operator for the
-                National Park Service in Yosemite, Glacier, and Yellowstone.
-              </ListItem>
-              <ListItem>
-                I worked as a Restaurant Manager for Panda Veg in Richmond,
-                Virginia.
-              </ListItem>
-            </List>
-          </Paragraph>
-
-          <ImageComponent src="/kevin-deland.png" alt="Kevin-Emily" />
-          <Paragraph>
-            <h5>
               <strong>
-                I successfully earned my Software Engineer
-                certification from Flatiron School in February of 2023, thanks
-                to a combination of strengths such as:
+                I have always worked in what I love. Before becoming a Software
+                Engineer, I worked as a
               </strong>
             </h5>
             <List>
               <ListItem>
-                Strong problem-solving skills and analytical thinking
+                Skydiving Instructor at the Midwest Freefall Parachute Center
               </ListItem>
               <ListItem>
-                Effective time management and ability to meet deadlines
+                Rigger and Stagehand for the International Alliance of
+                Theatrical Stage Employees
               </ListItem>
               <ListItem>
-                Excellent communication and collaboration skills
+                Backcountry Water Treatment Operator for the National Park
+                Service
               </ListItem>
-              <ListItem>
-                Highly adaptable and quick to learn new technologies
-              </ListItem>
-              <ListItem>Commitment to continuous learning and growth</ListItem>
+              <ListItem>Restaurant Manager for a vegan restaurant</ListItem>
             </List>
           </Paragraph>
+          <Paragraph>
+            <h5>
+              <strong>
+                Aside from my passion for Software Engineering, I have several
+                hobbies that keep me active and energized.
+              </strong>
+            </h5>
+            <List>
+              <ListItem>Skydiving</ListItem>
+              <ListItem>Paramotoring</ListItem>
+              <ListItem>Camping</ListItem>
+              <ListItem>Hiking and Backpacking</ListItem>
+              <ListItem>
+                Road Biking, Mountain Biking, and Bike packing
+              </ListItem>
+            </List>
+          </Paragraph>
+
+          <ImageComponent src="/kevin-deland.png" alt="Kevin-Deland" />
         </Col>
       </Row>
     </Container>
@@ -128,5 +114,3 @@ function About() {
 }
 
 export default About;
-
-
