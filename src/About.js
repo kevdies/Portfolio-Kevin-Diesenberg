@@ -46,7 +46,7 @@ function About() {
             </List>
           </Paragraph>
 
-          <ImageComponent src="/kevin-artichoke.png" alt="Kevin-Artichoke" />
+          <ImageComponent src="/kevin-artichoke.jpg" alt="Kevin-Artichoke" />
           <Paragraph>
             <h5>
               <strong>
@@ -65,7 +65,7 @@ function About() {
           </Paragraph>
         </Col>
         <Col xs="12" sm="6" md="6">
-          <ImageComponent src="/portfolio-picture.png" alt="Lake-Huron" />
+          <ImageComponent src="/portfolio-picture.jpg" alt="Lake-Huron" />
           <Paragraph>
             <h5>
               <strong>
@@ -106,7 +106,7 @@ function About() {
             </List>
           </Paragraph>
 
-          <ImageComponent src="/kevin-deland.png" alt="Kevin-Deland" />
+          <ImageComponent src="/kevin-deland.jpg" alt="Kevin-Deland" />
         </Col>
       </Row>
     </Container>
