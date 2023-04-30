@@ -75,7 +75,7 @@ function About() {
             </h5>
             <List>
               <ListItem>
-                Skydiving Instructor at Midwest Freefall Parachute Center
+                Skydiving Instructor at Midwest Freefall Skydiving
               </ListItem>
               <ListItem>
                 Rigger and Stagehand for the International Alliance of
