@@ -10,6 +10,8 @@ import {
   NavItem,
   NavLink,
 } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
 
 import About from "./About";
 import Projects from "./Projects";
@@ -26,8 +28,7 @@ function App() {
     <>
       <Navbar dark expand="md">
         <NavbarBrand tag={Link} to="/">
-          <img src="/logo.png" alt="Logo" width="40" height="40" />
-          {" "}
+          <img src="/logo.png" alt="Logo" width="40" height="40" />{" "}
           <>Kevin Diesenberg</>
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
@@ -46,6 +47,12 @@ function App() {
             <NavItem>
               <NavLink tag={Link} to="/contact" onClick={toggle}>
                 Contact
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="Kevin_Diesenberg_Resume.pdf" download>
+                Resume{" "}
+                <FontAwesomeIcon icon={faDownload} />
               </NavLink>
             </NavItem>
           </Nav>
