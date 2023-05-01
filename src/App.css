@@ -6,6 +6,10 @@
   --dark-color: #34373b;
   --text-color: #000000;
   --box-shadow-color: rgba(52, 55, 59, 0.2);
+  --font-size-h1: 2.5rem;
+  --font-size-p: 1.2rem;
+  --font-size-card-title: 1.5rem;
+  --font-size-card-text: 1.2rem;
 }
 
 .navbar {
@@ -25,13 +29,13 @@
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: var(--font-size-h1);
   margin-bottom: 2rem;
   color: var(--text-color);
 }
 
 p {
-  font-size: 1.2rem;
+  font-size: var(--font-size-p);
   line-height: 1.5;
   color: var(--text-color);
 }
@@ -98,13 +102,13 @@ img {
 }
 
 .card-title {
-  font-size: 1.5rem;
+  font-size: var(--font-size-card-title);
   margin-bottom: 1rem;
   color: var(--primary-color);
 }
 
 .card-text {
-  font-size: 1.2rem;
+  font-size: var(--font-size-card-text);
   line-height: 1.5;
   color: var(--dark-color);
 }
