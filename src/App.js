@@ -51,8 +51,7 @@ function App() {
             </NavItem>
             <NavItem>
               <NavLink href="Kevin_Diesenberg_Resume.pdf" download>
-                Resume{" "}
-                <FontAwesomeIcon icon={faDownload} />
+                Resume <FontAwesomeIcon icon={faDownload} />
               </NavLink>
             </NavItem>
           </Nav>
