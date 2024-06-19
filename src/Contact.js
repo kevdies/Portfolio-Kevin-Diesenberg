@@ -3,7 +3,6 @@ import { Container, Row, Col } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import {
-  faTwitter,
   faLinkedin,
   faGithub,
   faInstagram,
@@ -36,15 +35,23 @@ const contactLinks = [
     href: "https://kevindiesenberg.medium.com/",
     icon: faMedium,
   },
-  {
-    href: "https://twitter.com/KevinDiesenberg",
-    icon: faTwitter,
-  },
 ];
 
 function Contact() {
   return (
-    <Container className="text-center my-5 contact-container">
+    <Container
+      className="text-center contact-container"
+      style={{
+        marginTop: "1rem", 
+        marginBottom: "1rem", 
+        padding: "2rem",
+        borderRadius: "15px",
+        border: "5px solid",
+        borderImage: "linear-gradient(to right, var(--primary-color), var(--accent-color)) 1",
+        boxShadow: "0 4px 8px var(--box-shadow-color)",
+        background: "var(--light-color)",
+      }}
+    >
       <h2 className="header">Let's Connect</h2>
       <h4 className="subheader mb-4">Find me on these platforms</h4>
 
@@ -71,3 +78,4 @@ function Contact() {
 }
 
 export default Contact;
+

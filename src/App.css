@@ -2,14 +2,21 @@
   --primary-color: #705d89;
   --secondary-color: #c6bcdb;
   --accent-color: #848586;
-  --light-color: #dfe0e2;
+  --light-color: #ffffff;
   --dark-color: #34373b;
   --text-color: #000000;
   --box-shadow-color: rgba(52, 55, 59, 0.2);
-  --font-size-h1: 2.5rem;
-  --font-size-p: .5rem;
-  --font-size-card-title: 1.5rem;
-  --font-size-card-text: 1.2rem;
+  --font-size-h1: 1.75rem; /* Larger size */
+  --font-size-p: 1.125rem; /* Larger size */
+  --font-size-card-title: 1.5rem; 
+  --font-size-card-text: 1.125rem; 
+}
+
+.app-background {
+  background-color: var(--light-color);
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
 }
 
 .navbar {
@@ -26,15 +33,16 @@
   border-radius: 5px;
   margin-bottom: 1rem;
   font-family: "Open Sans", sans-serif;
+  font-size: var(--font-size-p); 
 }
 
-h1 {
+h1, .common-heading {
   font-size: var(--font-size-h1);
   margin-bottom: 2rem;
   color: var(--text-color);
 }
 
-p {
+p, .common-paragraph, .list-item-text {
   font-size: var(--font-size-p);
   line-height: 1.5;
   color: var(--text-color);
@@ -47,12 +55,12 @@ img {
 
 /* Mobile */
 @media screen and (max-width: 576px) {
-  h1 {
-    font-size: 1.5rem;
+  h1, .common-heading {
+    font-size: 1.5rem; /* Larger size */
   }
 
-  p {
-    font-size: 0.9rem;
+  p, .common-paragraph, .list-item-text {
+    font-size: 1rem; /* Larger size */
     line-height: 1.2;
   }
 
@@ -63,13 +71,13 @@ img {
 
 /* Tablet */
 @media screen and (min-width: 577px) and (max-width: 768px) {
-  h1 {
-    font-size: 2rem;
+  h1, .common-heading {
+    font-size: 2rem; /* Larger size */
     margin-bottom: 1rem;
   }
 
-  p {
-    font-size: 1rem;
+  p, .common-paragraph, .list-item-text {
+    font-size: 1.125rem; /* Larger size */
     margin-bottom: 1rem;
   }
 }
@@ -80,25 +88,26 @@ img {
 }
 
 .card {
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.3s ease;
+  border: 2px solid var(--primary-color);
+  border-radius: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   background-color: var(--light-color);
 }
 
 .card:hover {
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-10px);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .card-img-top {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-top-left-radius: 13px;
+  border-top-right-radius: 13px;
 }
 
 .card-body {
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 13px;
+  border-bottom-right-radius: 13px;
 }
 
 .card-title {
@@ -127,11 +136,12 @@ img {
   transform: scale(1.05);
 }
 
-.contact-container {
+.contact-container, .project-container {
   background-color: var(--light-color);
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0px 0px 10px var(--box-shadow-color);
+  margin-top: 1rem; 
 }
 
 .contact-link {
@@ -155,5 +165,29 @@ img {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  flex-wrap: wrap; /* Add this line to wrap buttons on smaller screens */
+  flex-wrap: wrap; 
+}
+
+.project-container {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* ModalStyles.css */
+.custom-modal .modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.custom-modal-header {
+  background-color: var(--primary-color);
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.custom-modal-body {
+  padding: 2rem;
+  background-color: var(--light-color);
 }

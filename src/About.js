@@ -10,11 +10,11 @@ const ImageComponent = ({ src, alt }) => (
 );
 
 const Paragraph = ({ children }) => (
-  <p className="lead paragraph">{children}</p>
+  <p className="paragraph">{children}</p>
 );
 
 const ListItem = ({ children }) => (
-  <li style={{ listStyle: "none", paddingLeft: 0 }}>
+  <li className="list-item-text" style={{ listStyle: "none", paddingLeft: 0 }}>
     <FontAwesomeIcon
       icon={faCircleArrowRight}
       style={{ color: "var(--primary-color)", marginRight: "10px" }}
@@ -27,11 +27,21 @@ const List = ({ children }) => <ul>{children}</ul>;
 
 function About() {
   return (
-    <Container className="my-5">
+    <Container
+      className="project-container"
+      style={{
+        padding: "2rem",
+        borderRadius: "15px",
+        border: "5px solid",
+        borderImage: "linear-gradient(to right, var(--primary-color), var(--accent-color)) 1",
+        boxShadow: "0 4px 8px var(--box-shadow-color)",
+        background: "var(--light-color)",
+      }}
+    >
       <Row>
         <Col xs="12" sm="6" md="6">
           <Paragraph>
-            <h5>
+            <h5 className="common-heading">
               <strong>
                 Full Stack Software Engineer with expertise in object-oriented
                 programming, web development, and database management.
@@ -48,7 +58,7 @@ function About() {
 
           <ImageComponent src="/kevin-artichoke.jpg" alt="Kevin-Artichoke" />
           <Paragraph>
-            <h5>
+            <h5 className="common-heading">
               <strong>
                 I earned my Software Engineer certification from Flatiron School
                 thanks to a combination of strengths including:
@@ -67,7 +77,7 @@ function About() {
         <Col xs="12" sm="6" md="6">
           <ImageComponent src="/portfolio-picture.jpg" alt="Lake-Huron" />
           <Paragraph>
-            <h5>
+            <h5 className="common-heading">
               <strong>
                 I have always worked in what I love. Before becoming a Software
                 Engineer, I worked as a
@@ -89,7 +99,7 @@ function About() {
             </List>
           </Paragraph>
           <Paragraph>
-            <h5>
+            <h5 className="common-heading">
               <strong>
                 Aside from my passion for Software Engineering, I have several
                 hobbies that keep me active and energized.

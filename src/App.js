@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, Routes, Route } from "react-router-dom";
 import {
   Container,
@@ -9,9 +9,12 @@ import {
   Nav,
   NavItem,
   NavLink,
+  Modal,
+  ModalHeader,
+  ModalBody,
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faEye } from "@fortawesome/free-solid-svg-icons";
 
 import About from "./About";
 import Projects from "./Projects";
@@ -21,8 +24,12 @@ import "./App.css";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
+  const [modal, setModal] = useState(false);
 
-  const toggle = () => setIsOpen(!isOpen);
+  const toggleNavbar = () => setIsOpen(!isOpen);
+  const toggleModal = () => setModal(!modal);
+
+  const pdfUrl = `/Kevin_Diesenberg_Resume.pdf?${new Date().getTime()}`;
 
   return (
     <>
@@ -31,27 +38,32 @@ function App() {
           <img src="/logo.png" alt="Logo" width="40" height="40" />{" "}
           <>Kevin Diesenberg</>
         </NavbarBrand>
-        <NavbarToggler onClick={toggle} />
+        <NavbarToggler onClick={toggleNavbar} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink tag={Link} to="/" onClick={toggle}>
+              <NavLink tag={Link} to="/">
                 About
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/projects" onClick={toggle}>
+              <NavLink tag={Link} to="/projects">
                 Projects
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/contact" onClick={toggle}>
+              <NavLink tag={Link} to="/contact">
                 Contact
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="Kevin_Diesenberg_Resume.pdf" download>
-                Resume <FontAwesomeIcon icon={faDownload} />
+              <NavLink href="#" onClick={toggleModal}>
+                <FontAwesomeIcon icon={faEye} /> Resume
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href={pdfUrl} download>
+                <FontAwesomeIcon icon={faDownload} /> Resume
               </NavLink>
             </NavItem>
           </Nav>
@@ -65,6 +77,19 @@ function App() {
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </Container>
+
+      <Modal isOpen={modal} toggle={toggleModal} size="lg" className="custom-modal">
+        <ModalHeader toggle={toggleModal} className="custom-modal-header">
+          Resume
+        </ModalHeader>
+        <ModalBody className="custom-modal-body">
+          <iframe
+            src={pdfUrl}
+            title="Kevin Diesenberg Resume"
+            style={{ width: '100%', height: '500px', border: 'none' }}
+          ></iframe>
+        </ModalBody>
+      </Modal>
     </>
   );
 }
