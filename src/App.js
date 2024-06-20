@@ -83,11 +83,13 @@ function App() {
           Resume
         </ModalHeader>
         <ModalBody className="custom-modal-body">
-          <iframe
-            src={pdfUrl}
-            title="Kevin Diesenberg Resume"
-            style={{ width: '100%', height: '500px', border: 'none' }}
-          ></iframe>
+          <div className="responsive-iframe-container">
+            <iframe
+              src={pdfUrl}
+              title="Kevin Diesenberg Resume"
+              className="responsive-iframe"
+            ></iframe>
+          </div>
         </ModalBody>
       </Modal>
     </>
