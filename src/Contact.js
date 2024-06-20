@@ -16,19 +16,19 @@ const contactLinks = [
     icon: faEnvelope,
   },
   {
-    href: "https://www.linkedin.com/in/kevindiesenberg",
+    href: "https://www.linkedin.com/in/kevindiesenberg/",
     icon: faLinkedin,
   },
   {
-    href: "https://github.com/kevdies",
+    href: "https://github.com/kevdies/",
     icon: faGithub,
   },
   {
-    href: "https://instagram.com/kevdies?igshid=YmMyMTA2M2Y=",
+    href: "https://instagram.com/kevdies/",
     icon: faInstagram,
   },
   {
-    href: "https://www.facebook.com/kevin.diesenberg?mibextid=LQQJ4d",
+    href: "https://www.facebook.com/kevin.diesenberg/",
     icon: faFacebook,
   },
   {

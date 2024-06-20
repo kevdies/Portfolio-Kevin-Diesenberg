@@ -75,7 +75,7 @@ function About() {
           </Paragraph>
         </Col>
         <Col xs="12" sm="6" md="6">
-          <ImageComponent src="/portfolio-picture.jpg" alt="Lake-Huron" />
+          <ImageComponent src="/Kev-Henry-Artichoke" alt="Kevin and his dogs on Lake Huron" />
           <Paragraph>
             <h5 className="common-heading">
               <strong>
