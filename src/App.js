@@ -27,14 +27,8 @@ function App() {
   const [modal, setModal] = useState(false);
   const location = useLocation();
 
-  const toggleNavbar = useCallback(
-    () => setIsOpen((prevIsOpen) => !prevIsOpen),
-    []
-  );
-  const toggleModal = useCallback(
-    () => setModal((prevModal) => !prevModal),
-    []
-  );
+  const toggleNavbar = useCallback(() => setIsOpen((prev) => !prev), []);
+  const toggleModal = useCallback(() => setModal((prev) => !prev), []);
 
   const pdfUrl = useMemo(
     () => `/Kevin_Diesenberg_Resume.pdf?${new Date().getTime()}`,
@@ -42,10 +36,8 @@ function App() {
   );
 
   useEffect(() => {
-    if (isOpen) {
-      setIsOpen(false);
-    }
-  }, [location]);
+    if (isOpen) setIsOpen(false);
+  }, [location, isOpen]);
 
   const navLinks = useMemo(
     () => [
@@ -56,29 +48,23 @@ function App() {
     []
   );
 
-  const renderNavLinks = useMemo(
-    () =>
-      navLinks.map((link, index) => (
-        <NavItem key={index}>
-          <NavLink tag={Link} to={link.to}>
-            {link.label}
-          </NavLink>
-        </NavItem>
-      )),
-    [navLinks]
-  );
-
   return (
     <>
       <Navbar dark expand="md">
         <NavbarBrand tag={Link} to="/">
-          <img src="/logo.png" alt="Logo" width="40" height="40" />{" "}
-          <>Kevin Diesenberg</>
+          <img src="/logo.png" alt="Logo" width="40" height="40" /> Kevin
+          Diesenberg
         </NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
-            {renderNavLinks}
+            {navLinks.map((link, index) => (
+              <NavItem key={index}>
+                <NavLink tag={Link} to={link.to}>
+                  {link.label}
+                </NavLink>
+              </NavItem>
+            ))}
             <NavItem>
               <NavLink href="#" onClick={toggleModal}>
                 <FontAwesomeIcon icon={faEye} /> Resume
@@ -116,6 +102,7 @@ function App() {
               src={pdfUrl}
               title="Kevin Diesenberg Resume"
               className="responsive-iframe"
+              style={{ width: "100%", height: "500px", border: "none" }}
             ></iframe>
           </div>
         </ModalBody>
