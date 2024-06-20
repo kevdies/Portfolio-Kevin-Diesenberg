@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useEffect } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { Link, Routes, Route, useLocation } from "react-router-dom";
 import {
   Container,
@@ -35,9 +35,14 @@ function App() {
     []
   );
 
-  useEffect(() => {
-    if (isOpen) setIsOpen(false);
-  }, [location, isOpen]);
+  const handleNavLinkClick = useCallback(
+    (path) => {
+      if (location.pathname !== path) {
+        setIsOpen(false);
+      }
+    },
+    [location.pathname]
+  );
 
   const navLinks = useMemo(
     () => [
@@ -60,7 +65,11 @@ function App() {
           <Nav className="ml-auto" navbar>
             {navLinks.map((link, index) => (
               <NavItem key={index}>
-                <NavLink tag={Link} to={link.to}>
+                <NavLink
+                  tag={Link}
+                  to={link.to}
+                  onClick={() => handleNavLinkClick(link.to)}
+                >
                   {link.label}
                 </NavLink>
               </NavItem>
