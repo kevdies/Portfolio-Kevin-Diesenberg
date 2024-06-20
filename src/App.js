@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useCallback } from "react";
-import { Link, Routes, Route } from "react-router-dom";
+import React, { useState, useMemo, useCallback, useEffect } from "react";
+import { Link, Routes, Route, useLocation } from "react-router-dom";
 import {
   Container,
   Navbar,
@@ -25,27 +25,48 @@ import "./App.css";
 function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [modal, setModal] = useState(false);
+  const location = useLocation();
 
-  const toggleNavbar = useCallback(() => setIsOpen((prevIsOpen) => !prevIsOpen), []);
-  const toggleModal = useCallback(() => setModal((prevModal) => !prevModal), []);
+  const toggleNavbar = useCallback(
+    () => setIsOpen((prevIsOpen) => !prevIsOpen),
+    []
+  );
+  const toggleModal = useCallback(
+    () => setModal((prevModal) => !prevModal),
+    []
+  );
 
-  const pdfUrl = useMemo(() => `/Kevin_Diesenberg_Resume.pdf?${new Date().getTime()}`, []);
+  const pdfUrl = useMemo(
+    () => `/Kevin_Diesenberg_Resume.pdf?${new Date().getTime()}`,
+    []
+  );
 
-  const navLinks = useMemo(() => [
-    { to: "/", label: "About" },
-    { to: "/projects", label: "Projects" },
-    { to: "/contact", label: "Contact" }
-  ], []);
+  useEffect(() => {
+    if (isOpen) {
+      setIsOpen(false);
+    }
+  }, [location]);
 
-  const renderNavLinks = useMemo(() => (
-    navLinks.map((link, index) => (
-      <NavItem key={index}>
-        <NavLink tag={Link} to={link.to} onClick={toggleNavbar}>
-          {link.label}
-        </NavLink>
-      </NavItem>
-    ))
-  ), [navLinks, toggleNavbar]);
+  const navLinks = useMemo(
+    () => [
+      { to: "/", label: "About" },
+      { to: "/projects", label: "Projects" },
+      { to: "/contact", label: "Contact" },
+    ],
+    []
+  );
+
+  const renderNavLinks = useMemo(
+    () =>
+      navLinks.map((link, index) => (
+        <NavItem key={index}>
+          <NavLink tag={Link} to={link.to}>
+            {link.label}
+          </NavLink>
+        </NavItem>
+      )),
+    [navLinks]
+  );
 
   return (
     <>
@@ -80,7 +101,12 @@ function App() {
         </Routes>
       </Container>
 
-      <Modal isOpen={modal} toggle={toggleModal} size="lg" className="custom-modal">
+      <Modal
+        isOpen={modal}
+        toggle={toggleModal}
+        size="lg"
+        className="custom-modal"
+      >
         <ModalHeader toggle={toggleModal} className="custom-modal-header">
           Resume
         </ModalHeader>
