@@ -180,22 +180,10 @@ img {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.custom-modal-header {
-  background-color: var(--primary-color);
-  color: white;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-.custom-modal-body {
-  padding: 2rem;
-  background-color: var(--light-color);
-}
-
 .responsive-iframe-container {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  padding-bottom: 56.25%; 
   height: 0;
   overflow: hidden;
 }

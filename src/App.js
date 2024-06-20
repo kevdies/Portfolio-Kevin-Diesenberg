@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { Link, Routes, Route } from "react-router-dom";
 import {
   Container,
@@ -26,10 +26,26 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [modal, setModal] = useState(false);
 
-  const toggleNavbar = () => setIsOpen(!isOpen);
-  const toggleModal = () => setModal(!modal);
+  const toggleNavbar = useCallback(() => setIsOpen((prevIsOpen) => !prevIsOpen), []);
+  const toggleModal = useCallback(() => setModal((prevModal) => !prevModal), []);
 
-  const pdfUrl = `/Kevin_Diesenberg_Resume.pdf?${new Date().getTime()}`;
+  const pdfUrl = useMemo(() => `/Kevin_Diesenberg_Resume.pdf?${new Date().getTime()}`, []);
+
+  const navLinks = useMemo(() => [
+    { to: "/", label: "About" },
+    { to: "/projects", label: "Projects" },
+    { to: "/contact", label: "Contact" }
+  ], []);
+
+  const renderNavLinks = useMemo(() => (
+    navLinks.map((link, index) => (
+      <NavItem key={index}>
+        <NavLink tag={Link} to={link.to} onClick={toggleNavbar}>
+          {link.label}
+        </NavLink>
+      </NavItem>
+    ))
+  ), [navLinks, toggleNavbar]);
 
   return (
     <>
@@ -41,21 +57,7 @@ function App() {
         <NavbarToggler onClick={toggleNavbar} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
-            <NavItem>
-              <NavLink tag={Link} to="/">
-                About
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink tag={Link} to="/projects">
-                Projects
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink tag={Link} to="/contact">
-                Contact
-              </NavLink>
-            </NavItem>
+            {renderNavLinks}
             <NavItem>
               <NavLink href="#" onClick={toggleModal}>
                 <FontAwesomeIcon icon={faEye} /> Resume
