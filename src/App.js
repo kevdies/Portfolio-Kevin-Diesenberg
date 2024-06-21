@@ -88,7 +88,7 @@ function App() {
         </Collapse>
       </Navbar>
 
-      <Container fluid>
+      <Container fluid className="main-content">
         <Routes>
           <Route path="/" element={<About />} />
           <Route path="/projects" element={<Projects />} />

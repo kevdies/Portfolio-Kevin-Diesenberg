@@ -1,5 +1,14 @@
 import React from "react";
-import { Container, Row, Col, Card, CardImg, CardBody, CardTitle, CardText } from "reactstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  CardImg,
+  CardBody,
+  CardTitle,
+  CardText,
+} from "reactstrap";
 
 const projects = [
   {
@@ -105,12 +114,13 @@ function Projects() {
     <Container
       className="project-container"
       style={{
-        marginTop: "1rem", 
+        marginTop: "1rem",
         marginBottom: "1rem",
         padding: "2rem",
         borderRadius: "15px",
         border: "5px solid",
-        borderImage: "linear-gradient(to right, var(--primary-color), var(--accent-color)) 1",
+        borderImage:
+          "linear-gradient(to right, var(--primary-color), var(--accent-color)) 1",
         boxShadow: "0 4px 8px var(--box-shadow-color)",
         background: "var(--light-color)",
       }}

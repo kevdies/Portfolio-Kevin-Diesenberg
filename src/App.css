@@ -8,8 +8,8 @@
   --box-shadow-color: rgba(52, 55, 59, 0.2);
   --font-size-h1: 1.75rem; /* Larger size */
   --font-size-p: 1.125rem; /* Larger size */
-  --font-size-card-title: 1.5rem; 
-  --font-size-card-text: 1.125rem; 
+  --font-size-card-title: 1.5rem;
+  --font-size-card-text: 1.125rem;
 }
 
 .app-background {
@@ -33,16 +33,19 @@
   border-radius: 5px;
   margin-bottom: 1rem;
   font-family: "Open Sans", sans-serif;
-  font-size: var(--font-size-p); 
+  font-size: var(--font-size-p);
 }
 
-h1, .common-heading {
+h1,
+.common-heading {
   font-size: var(--font-size-h1);
   margin-bottom: 2rem;
   color: var(--text-color);
 }
 
-p, .common-paragraph, .list-item-text {
+p,
+.common-paragraph,
+.list-item-text {
   font-size: var(--font-size-p);
   line-height: 1.5;
   color: var(--text-color);
@@ -55,11 +58,14 @@ img {
 
 /* Mobile */
 @media screen and (max-width: 576px) {
-  h1, .common-heading {
+  h1,
+  .common-heading {
     font-size: 1.5rem; /* Larger size */
   }
 
-  p, .common-paragraph, .list-item-text {
+  p,
+  .common-paragraph,
+  .list-item-text {
     font-size: 1rem; /* Larger size */
     line-height: 1.2;
   }
@@ -71,12 +77,15 @@ img {
 
 /* Tablet */
 @media screen and (min-width: 577px) and (max-width: 768px) {
-  h1, .common-heading {
+  h1,
+  .common-heading {
     font-size: 2rem; /* Larger size */
     margin-bottom: 1rem;
   }
 
-  p, .common-paragraph, .list-item-text {
+  p,
+  .common-paragraph,
+  .list-item-text {
     font-size: 1.125rem; /* Larger size */
     margin-bottom: 1rem;
   }
@@ -91,13 +100,12 @@ img {
   border: 2px solid var(--primary-color);
   border-radius: 15px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
   background-color: var(--light-color);
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .card-img-top {
@@ -136,12 +144,13 @@ img {
   transform: scale(1.05);
 }
 
-.contact-container, .project-container {
+.contact-container,
+.project-container {
   background-color: var(--light-color);
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0px 0px 10px var(--box-shadow-color);
-  margin-top: 1rem; 
+  margin-top: 1rem;
 }
 
 .contact-link {
@@ -165,12 +174,26 @@ img {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
 }
 
 .project-container {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 576px) {
+  .card {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media screen and (min-width: 577px) {
+  .card {
+    width: 100%;
+    height: auto;
+  }
 }
 
 /* ModalStyles.css */
@@ -183,7 +206,7 @@ img {
 .responsive-iframe-container {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%; 
+  padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
 }
