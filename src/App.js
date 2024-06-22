@@ -57,8 +57,17 @@ function App() {
     <>
       <Navbar dark expand="md">
         <NavbarBrand tag={Link} to="/">
-          <img src="/logo.png" alt="Logo" width="40" height="40" /> Kevin
-          Diesenberg
+          <img
+            src="/logo.png"
+            alt="Logo"
+            width="50"
+            height="50"
+            style={{
+              borderRadius: "5px",
+              marginRight: "10px",
+            }}
+          />
+          Kevin Diesenberg
         </NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} />
         <Collapse isOpen={isOpen} navbar>
@@ -88,7 +97,7 @@ function App() {
         </Collapse>
       </Navbar>
 
-      <Container fluid className="main-content">
+      <Container fluid>
         <Routes>
           <Route path="/" element={<About />} />
           <Route path="/projects" element={<Projects />} />

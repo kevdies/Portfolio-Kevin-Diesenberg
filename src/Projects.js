@@ -6,7 +6,6 @@ import {
   Card,
   CardImg,
   CardBody,
-  CardTitle,
   CardText,
 } from "reactstrap";
 
@@ -131,7 +130,6 @@ function Projects() {
             <Card className="mb-4">
               <CardImg top src={project.imgSrc} alt={project.imgAlt} />
               <CardBody>
-                <CardTitle>{project.title}</CardTitle>
                 <CardText>{project.description}</CardText>
                 <div className="buttons-container">
                   <a

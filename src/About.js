@@ -6,7 +6,6 @@ import {
   Card,
   CardImg,
   CardBody,
-  CardTitle,
   CardText,
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,8 +14,8 @@ import { faCircleArrowRight } from "@fortawesome/free-solid-svg-icons";
 const sections = [
   {
     title: "About Me",
-    imgSrc: "/kevin-artichoke.jpg",
-    imgAlt: "Kevin-Artichoke",
+    imgSrc: "/kev-henry-artichoke.png",
+    imgAlt: "Kevin and his dogs on Lake Huron",
     description: (
       <>
         <h5 className="common-heading">
@@ -67,8 +66,8 @@ const sections = [
   },
   {
     title: "My Journey",
-    imgSrc: "/kev-henry-artichoke.png",
-    imgAlt: "Kevin and his dogs on Lake Huron",
+    imgSrc: "/kevin-artichoke.jpg",
+    imgAlt: "Kevin-Artichoke",
     description: (
       <>
         <h5 className="common-heading">
@@ -112,8 +111,8 @@ const sections = [
   },
   {
     title: "Experience",
-    imgSrc: "/kevin-deland.jpg",
-    imgAlt: "Kevin-Deland",
+    imgSrc: "/kevin-henry-lake-huron.jpg",
+    imgAlt: "Kevin on Lake Huron",
     description: (
       <>
         <h5 className="common-heading">
@@ -165,8 +164,8 @@ const sections = [
   },
   {
     title: "Hobbies",
-    imgSrc: "/kevin-henry-lake-huron.jpg",
-    imgAlt: "Kevin on Lake Huron with Henry",
+    imgSrc: "/kevin-deland.jpg",
+    imgAlt: "Kevin-Deland",
     description: (
       <>
         <h5 className="common-heading">
@@ -219,27 +218,13 @@ const sections = [
 
 function About() {
   return (
-    <Container
-      className="about-container"
-      style={{
-        marginTop: "1rem",
-        marginBottom: "1rem",
-        padding: "2rem",
-        borderRadius: "15px",
-        border: "5px solid",
-        borderImage:
-          "linear-gradient(to right, var(--primary-color), var(--accent-color)) 1",
-        boxShadow: "0 4px 8px var(--box-shadow-color)",
-        background: "var(--light-color)",
-      }}
-    >
+    <Container className="about-container">
       <Row>
         {sections.map((section) => (
-          <Col xs="12" sm="6" md="6" key={section.title}>
-            <Card className="mb-4">
+          <Col xs="12" sm="6" md="6" key={section.title} className="mb-4">
+            <Card style={{ height: "100%" }}>
               <CardImg top src={section.imgSrc} alt={section.imgAlt} />
               <CardBody>
-                <CardTitle>{section.title}</CardTitle>
                 <CardText>{section.description}</CardText>
               </CardBody>
             </Card>
