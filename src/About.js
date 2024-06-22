@@ -125,13 +125,6 @@ const sections = [
               icon={faCircleArrowRight}
               style={{ color: "var(--primary-color)", marginRight: "10px" }}
             />
-            Skydiving Instructor at Midwest Freefall Skydiving
-          </div>
-          <div className="list-item-text">
-            <FontAwesomeIcon
-              icon={faCircleArrowRight}
-              style={{ color: "var(--primary-color)", marginRight: "10px" }}
-            />
             Rigger and Stagehand for the International Alliance of Theatrical
             Stage Employees
           </div>
