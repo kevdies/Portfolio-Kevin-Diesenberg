@@ -14,8 +14,8 @@ import {
   ModalBody,
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDownload, faEye } from "@fortawesome/free-solid-svg-icons";
-
+import { faDownload } from "@fortawesome/free-solid-svg-icons/faDownload";
+import { faEye } from "@fortawesome/free-solid-svg-icons/faEye";
 import About from "./About";
 import Projects from "./Projects";
 import Contact from "./Contact";

@@ -1,14 +1,12 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import {
-  faLinkedin,
-  faGithub,
-  faInstagram,
-  faMedium,
-  faFacebook,
-} from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons/faEnvelope";
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
+import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons/faInstagram";
+import { faMedium } from "@fortawesome/free-brands-svg-icons/faMedium";
+import { faFacebook } from "@fortawesome/free-brands-svg-icons/faFacebook";
 
 const contactLinks = [
   {
