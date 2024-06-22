@@ -120,7 +120,7 @@ function App() {
               src={pdfUrl}
               title="Kevin Diesenberg Resume"
               className="responsive-iframe"
-              style={{ width: "100%", height: "500px", border: "none" }}
+              style={{ width: "100%", height: "100%", border: "none" }}
             ></iframe>
           </div>
         </ModalBody>
