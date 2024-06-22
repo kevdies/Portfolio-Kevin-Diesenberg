@@ -20,8 +20,9 @@ const sections = [
       <>
         <h5 className="common-heading">
           <strong>
-            Full Stack Software Engineer with expertise in object-oriented
-            programming, web development, and database management.
+            Full Stack Software Engineer at Graham Media Group with expertise in
+            object-oriented programming, web development, and database
+            management.
           </strong>
         </h5>
         <div className="common-paragraph">
@@ -30,7 +31,7 @@ const sections = [
               icon={faCircleArrowRight}
               style={{ color: "var(--primary-color)", marginRight: "10px" }}
             />
-            JavaScript, Ruby, React, and Ruby on Rails
+            JavaScript, TypeScript, Ruby, React, and Ruby on Rails
           </div>
           <div className="list-item-text">
             <FontAwesomeIcon
@@ -116,19 +117,9 @@ const sections = [
     description: (
       <>
         <h5 className="common-heading">
-          <strong>
-            I have always worked in what I love. Before becoming a Software
-            Engineer, I worked as a:
-          </strong>
+          <strong>Before becoming a Software Engineer, I worked as a:</strong>
         </h5>
         <div className="common-paragraph">
-          <div className="list-item-text">
-            <FontAwesomeIcon
-              icon={faCircleArrowRight}
-              style={{ color: "var(--primary-color)", marginRight: "10px" }}
-            />
-            Web Developer and Software Engineer at Graham Media Group
-          </div>
           <div className="list-item-text">
             <FontAwesomeIcon
               icon={faCircleArrowRight}
@@ -151,13 +142,6 @@ const sections = [
             />
             Backcountry Water Treatment Operator for the National Park Service
           </div>
-          <div className="list-item-text">
-            <FontAwesomeIcon
-              icon={faCircleArrowRight}
-              style={{ color: "var(--primary-color)", marginRight: "10px" }}
-            />
-            Restaurant Manager for a vegan restaurant
-          </div>
         </div>
       </>
     ),
@@ -170,8 +154,7 @@ const sections = [
       <>
         <h5 className="common-heading">
           <strong>
-            Aside from my passion for Software Engineering, I have several
-            hobbies that keep me active and energized:
+            I have several hobbies that keep me active and energized:
           </strong>
         </h5>
         <div className="common-paragraph">
@@ -208,7 +191,7 @@ const sections = [
               icon={faCircleArrowRight}
               style={{ color: "var(--primary-color)", marginRight: "10px" }}
             />
-            Road Biking, Mountain Biking, and Bike packing
+            Road Biking and Mountain Biking
           </div>
         </div>
       </>
