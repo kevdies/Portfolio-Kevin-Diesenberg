@@ -65,7 +65,7 @@ function Projects() {
           <Col xs="12" sm="6" md="4" className="mb-4" key={project.title}>
             <Card style={{ height: "100%" }}>
               <CardImg top src={project.imgSrc} alt={project.imgAlt} />
-              <CardBody>
+              <CardBody style={{ paddingBottom: "8px" }}>
                 <CardTitle tag="h5" fontSize="1.25rem" fontWeight="700">
                   {project.title}
                 </CardTitle>
