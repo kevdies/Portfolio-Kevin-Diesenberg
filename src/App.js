@@ -112,7 +112,7 @@ function App() {
         className="custom-modal"
       >
         <ModalHeader toggle={toggleModal} className="custom-modal-header">
-          Resume
+          Resume: Kevin Diesenberg
         </ModalHeader>
         <ModalBody className="custom-modal-body">
           <div className="responsive-iframe-container">

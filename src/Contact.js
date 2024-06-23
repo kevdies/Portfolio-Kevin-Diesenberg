@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Button } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons/faEnvelope";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
@@ -51,26 +51,21 @@ function Contact() {
         background: "var(--light-color)",
       }}
     >
-      <h2 className="header">Connect with Me</h2>
-      <h4 className="subheader mb-4">
-        Follow and reach out on these platforms
-      </h4>
-
-      <Row className="justify-content-center buttons-container">
+      <Row>
         {contactLinks.map(({ href, icon }, index) => (
-          <Col key={index} xs="6" sm="4" md="4" lg="2" className="mb-4">
-            <a
+          <Col key={index} xs="6" sm="4" md="4" lg="2" className="mb-2">
+            <Button
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="contact-link d-inline-block"
+              className="custom-button contact-link"
             >
               <FontAwesomeIcon
                 icon={icon}
                 size="3x"
                 className="mx-3 contact-icon"
               />
-            </a>
+            </Button>
           </Col>
         ))}
       </Row>

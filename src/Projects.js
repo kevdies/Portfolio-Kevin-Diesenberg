@@ -7,102 +7,52 @@ import {
   CardImg,
   CardBody,
   CardText,
+  CardTitle,
+  Button,
+  ListGroup,
+  ListGroupItem,
 } from "reactstrap";
 
 const projects = [
   {
-    title: "Aweful Skydiving",
+    title:
+      "A skill-focused event platform for skydivers built with React, Ruby on Rails, and PostgreSQL.",
     imgSrc: "/AWE logo.png",
     imgAlt: "Aweful Skydiving",
-    description: (
-      <>
-        <h5 className="common-heading">
-          A skill-focused event platform for skydivers built with React, Ruby on
-          Rails, and PostgreSQL.
-        </h5>
-        <ul className="common-paragraph">
-          <li className="list-item-text">
-            Created with React, Ruby on Rails, Active Record, Active Storage,
-            Reactstrap, Bootstrap, and PostgreSQL.
-          </li>
-          <li className="list-item-text">
-            Implemented user authentication and authorization using bcrypt.
-          </li>
-          <li className="list-item-text">
-            Utilized Active Record for efficient database queries and
-            management.
-          </li>
-          <li className="list-item-text">
-            Developed a responsive User Interface using Bootstrap and
-            Reactstrap.
-          </li>
-        </ul>
-      </>
-    ),
+    description: [
+      "Created with React, Ruby on Rails, Active Record, Active Storage, Reactstrap, Bootstrap, and PostgreSQL.",
+      "Implemented user authentication and authorization using bcrypt.",
+      "Utilized Active Record for efficient database queries and management.",
+      "Developed a responsive User Interface using Bootstrap and Reactstrap.",
+    ],
     demoLink: "https://youtu.be/7JUL1CPlHqg",
     githubLink: "https://github.com/kevdies/aweful",
   },
   {
-    title: "Trail Share",
+    title:
+      "A social networking platform for hikers to share and discover trail information, track miles hiked, and earn badges.",
     imgSrc: "/TrailShareLogo.png",
     imgAlt: "Trail-Share",
-    description: (
-      <>
-        <h5 className="common-heading">
-          A social networking platform for hikers to share and discover trail
-          information, track miles hiked, and earn badges.
-        </h5>
-        <ul className="common-paragraph">
-          <li className="list-item-text">
-            Created with React, Ruby on Rails, Active Record, Bootstrap, and
-            PostgreSQL.
-          </li>
-          <li className="list-item-text">
-            Utilized RESTful API design principles to build efficient back-end
-            services.
-          </li>
-          <li className="list-item-text">
-            Implemented user authentication and authorization using bcrypt.
-          </li>
-          <li className="list-item-text">
-            Developed a responsive User Interface with Bootstrap and CSS-styled
-            components.
-          </li>
-        </ul>
-      </>
-    ),
+    description: [
+      "Created with React, Ruby on Rails, Active Record, Bootstrap, and PostgreSQL.",
+      "Utilized RESTful API design principles to build efficient back-end services.",
+      "Implemented user authentication and authorization using bcrypt.",
+      "Developed a responsive User Interface with Bootstrap and CSS-styled components.",
+    ],
     demoLink: "https://youtu.be/seImhfcp8X8",
     githubLink: "https://github.com/drclements/trail-share",
   },
   {
-    title: "HSTRY",
+    title:
+      "A state controlled form designed to aid medical historians in efficiently compiling medical histories for QME evaluation applicants.",
     imgSrc: "/HSTRY-logo.png",
     imgAlt: "HSTRY",
-    description: (
-      <>
-        <h5 className="common-heading">
-          A state controlled form designed to aid medical historians in
-          efficiently compiling medical histories for QME evaluation applicants.
-        </h5>
-        <ul className="common-paragraph">
-          <li className="list-item-text">
-            Created with React, Ruby on Rails, Active Record, Reactstrap, and
-            PostgreSQL.
-          </li>
-          <li className="list-item-text">
-            Utilized RESTful API design principles to build efficient back-end
-            services.
-          </li>
-          <li className="list-item-text">
-            Implemented user authentication and authorization using bcrypt.
-          </li>
-          <li className="list-item-text">
-            Developed a responsive User Interface with Reactstrap and CSS-styled
-            components.
-          </li>
-        </ul>
-      </>
-    ),
+    description: [
+      "Created with React, Ruby on Rails, Active Record, Reactstrap, and PostgreSQL.",
+      "Utilized RESTful API design principles to build efficient back-end services.",
+      "Implemented user authentication and authorization using bcrypt.",
+      "Developed a responsive User Interface with Reactstrap and CSS-styled components.",
+    ],
     demoLink: "https://youtu.be/dWumb-_XHhA",
     githubLink: "https://github.com/kevdies/HSTRY",
   },
@@ -130,25 +80,32 @@ function Projects() {
             <Card className="mb-4">
               <CardImg top src={project.imgSrc} alt={project.imgAlt} />
               <CardBody>
-                <CardText>{project.description}</CardText>
-                <div className="buttons-container">
-                  <a
-                    className="custom-button btn"
+                <CardTitle tag="h5" fontSize="1.25rem" fontWeight="700">
+                  {project.title}
+                </CardTitle>
+                <ListGroup>
+                  {project.description.map((desc, index) => (
+                    <ListGroupItem key={index}>{desc}</ListGroupItem>
+                  ))}
+                </ListGroup>
+                <Container className="buttons-container">
+                  <Button
+                    className="custom-button"
                     href={project.demoLink}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     Demo
-                  </a>{" "}
-                  <a
-                    className="custom-button btn"
+                  </Button>
+                  <Button
+                    className="custom-button"
                     href={project.githubLink}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     GitHub
-                  </a>
-                </div>
+                  </Button>
+                </Container>
               </CardBody>
             </Card>
           </Col>
