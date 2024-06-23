@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   Container,
   Row,
@@ -6,17 +6,16 @@ import {
   Card,
   CardImg,
   CardBody,
-  CardText,
   CardTitle,
   Button,
   ListGroup,
   ListGroupItem,
 } from "reactstrap";
+import ContactButtonGroup from "./ContactButtonGroup";
 
 const projects = [
   {
-    title:
-      "A skill-focused event platform for skydivers built with React, Ruby on Rails, and PostgreSQL.",
+    title: "A platform where skydivers can sign up for skill-focused events.",
     imgSrc: "/AWE logo.png",
     imgAlt: "Aweful Skydiving",
     description: [
@@ -60,24 +59,11 @@ const projects = [
 
 function Projects() {
   return (
-    <Container
-      className="project-container"
-      style={{
-        marginTop: "1rem",
-        marginBottom: "1rem",
-        padding: "2rem",
-        borderRadius: "15px",
-        border: "5px solid",
-        borderImage:
-          "linear-gradient(to right, var(--primary-color), var(--accent-color)) 1",
-        boxShadow: "0 4px 8px var(--box-shadow-color)",
-        background: "var(--light-color)",
-      }}
-    >
+    <Container className="project-container">
       <Row>
         {projects.map((project) => (
-          <Col xs="12" sm="6" md="4" key={project.title}>
-            <Card className="mb-4">
+          <Col xs="12" sm="6" md="4" className="mb-4" key={project.title}>
+            <Card style={{ height: "100%" }}>
               <CardImg top src={project.imgSrc} alt={project.imgAlt} />
               <CardBody>
                 <CardTitle tag="h5" fontSize="1.25rem" fontWeight="700">
@@ -111,6 +97,11 @@ function Projects() {
           </Col>
         ))}
       </Row>
+      <Card>
+        <CardBody>
+          <ContactButtonGroup />
+        </CardBody>
+      </Card>
     </Container>
   );
 }

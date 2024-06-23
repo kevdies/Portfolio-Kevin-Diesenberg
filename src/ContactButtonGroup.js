@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Button } from "reactstrap";
+import { Button, ButtonGroup, Container } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons/faEnvelope";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
@@ -35,42 +35,39 @@ const contactLinks = [
   },
 ];
 
-function Contact() {
+function ContactButtonGroup() {
   return (
     <Container
-      className="text-center contact-container"
       style={{
-        marginTop: "1rem",
-        marginBottom: "1rem",
-        padding: "2rem",
-        borderRadius: "15px",
-        border: "5px solid",
-        borderImage:
-          "linear-gradient(to right, var(--primary-color), var(--accent-color)) 1",
-        boxShadow: "0 4px 8px var(--box-shadow-color)",
-        background: "var(--light-color)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
+        padding: "0px",
       }}
     >
-      <Row>
+      <ButtonGroup
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
         {contactLinks.map(({ href, icon }, index) => (
-          <Col key={index} xs="6" sm="4" md="4" lg="2" className="mb-2">
-            <Button
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="custom-button contact-link"
-            >
-              <FontAwesomeIcon
-                icon={icon}
-                size="3x"
-                className="mx-3 contact-icon"
-              />
-            </Button>
-          </Col>
+          <Button
+            className="custom-button"
+            key={index}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon icon={icon} size="2x" />
+          </Button>
         ))}
-      </Row>
+      </ButtonGroup>
     </Container>
   );
 }
 
-export default Contact;
+export default ContactButtonGroup;

@@ -27,53 +27,9 @@
   z-index: 1000;
 }
 
-.paragraph {
-  background-color: var(--light-color);
-  color: var(--dark-color);
-  padding: 1rem;
-  border-radius: 5px;
-  margin-bottom: 1rem;
-  font-family: "Open Sans", sans-serif;
-  font-size: var(--font-size-p);
-  line-height: var(--line-height-p);
-}
-
-h1,
-.common-heading {
-  font-size: var(--font-size-h1);
-  margin-bottom: 2rem;
-  color: var(--text-color);
-}
-
 img {
   max-width: 100%;
   height: auto;
-}
-
-/* Mobile */
-@media screen and (max-width: 576px) {
-  h1,
-  .common-heading {
-    font-size: 1.5rem; /* Smaller size for mobile */
-  }
-
-  .img-fluid {
-    max-width: 80%;
-  }
-}
-
-/* Tablet */
-@media screen and (min-width: 577px) and (max-width: 768px) {
-  h1,
-  .common-heading {
-    font-size: 2rem; /* Adjusted size for tablet */
-    margin-bottom: 1rem;
-  }
-}
-
-/* Desktop */
-@media screen and (min-width: 769px) {
-  /* Add any desktop-specific styles here */
 }
 
 .card {
@@ -118,7 +74,6 @@ img {
   transform: scale(1.05);
 }
 
-.contact-container,
 .project-container,
 .about-container {
   background-color: var(--light-color);
@@ -136,52 +91,13 @@ img {
     1;
 }
 
-.contact-link {
-  background-color: var(--dark-color);
-  border-color: var(--dark-color);
-  color: var(--light-color);
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  padding: 1rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.contact-link:hover {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
-  color: var(--light-color);
-  transform: scale(1.05);
-}
-
-.contact-icon {
-  transition: transform 0.3s ease;
-}
-
-.contact-link:hover .contact-icon {
-  transform: translateY(-5px);
-}
-
 .buttons-container {
   display: flex;
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
   padding: 8px;
-}
-
-@media screen and (max-width: 576px) {
-  .card {
-    width: 100%;
-    height: auto;
-  }
-}
-
-@media screen and (min-width: 577px) {
-  .card {
-    width: 100%;
-    height: auto;
-  }
+  padding-bottom: 0%;
 }
 
 /* ModalStyles.css */

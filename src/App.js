@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useState, useMemo, useCallback, useRef } from "react";
 import { Link, Routes, Route, useLocation } from "react-router-dom";
 import {
   Container,
@@ -18,7 +18,6 @@ import { faDownload } from "@fortawesome/free-solid-svg-icons/faDownload";
 import { faEye } from "@fortawesome/free-solid-svg-icons/faEye";
 import About from "./About";
 import Projects from "./Projects";
-import Contact from "./Contact";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -48,24 +47,20 @@ function App() {
     () => [
       { to: "/", label: "About" },
       { to: "/projects", label: "Projects" },
-      { to: "/contact", label: "Contact" },
     ],
     []
   );
 
   return (
     <>
-      <Navbar dark expand="md">
+      <Navbar dark expand="md" className="navbar">
         <NavbarBrand tag={Link} to="/">
           <img
             src="/logo.png"
             alt="Logo"
             width="50"
             height="50"
-            style={{
-              borderRadius: "5px",
-              marginRight: "10px",
-            }}
+            style={{ marginRight: "16px" }}
           />
           Kevin Diesenberg
         </NavbarBrand>
@@ -101,7 +96,6 @@ function App() {
         <Routes>
           <Route path="/" element={<About />} />
           <Route path="/projects" element={<Projects />} />
-          <Route path="/contact" element={<Contact />} />
         </Routes>
       </Container>
 
@@ -120,7 +114,6 @@ function App() {
               src={pdfUrl}
               title="Kevin Diesenberg Resume"
               className="responsive-iframe"
-              style={{ width: "100%", height: "100%", border: "none" }}
             ></iframe>
           </div>
         </ModalBody>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   Container,
   Row,
@@ -6,13 +6,13 @@ import {
   Card,
   CardImg,
   CardBody,
-  CardText,
   CardTitle,
   ListGroup,
   ListGroupItem,
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleArrowRight } from "@fortawesome/free-solid-svg-icons/faCircleArrowRight";
+import ContactButtonGroup from "./ContactButtonGroup";
 
 const sections = [
   {
@@ -68,7 +68,7 @@ function About() {
     <Container className="about-container">
       <Row>
         {sections.map((section) => (
-          <Col xs="12" sm="6" md="6" key={section.title} className="mb-4">
+          <Col xs="12" sm="6" md="6" className="mb-4" key={section.title}>
             <Card style={{ height: "100%" }}>
               <CardImg top src={section.imgSrc} alt={section.imgAlt} />
               <CardBody>
@@ -94,6 +94,11 @@ function About() {
           </Col>
         ))}
       </Row>
+      <Card>
+        <CardBody>
+          <ContactButtonGroup />
+        </CardBody>
+      </Card>
     </Container>
   );
 }
