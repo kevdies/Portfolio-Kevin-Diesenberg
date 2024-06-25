@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useState, useMemo, useCallback, useRef } from "react";
 import { Link, Routes, Route, useLocation } from "react-router-dom";
 import {
   Container,
@@ -24,7 +24,9 @@ import "./App.css";
 function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [modal, setModal] = useState(false);
+  const [shake, setShake] = useState(false);
   const location = useLocation();
+  const contactRef = useRef(null);
 
   const toggleNavbar = useCallback(() => setIsOpen((prev) => !prev), []);
   const toggleModal = useCallback(() => setModal((prev) => !prev), []);
@@ -50,6 +52,13 @@ function App() {
     ],
     []
   );
+
+  const scrollToContact = () => {
+    if (contactRef.current) {
+      contactRef.current.scrollIntoView({ behavior: "smooth" });
+      setShake(true);
+    }
+  };
 
   return (
     <>
@@ -88,17 +97,38 @@ function App() {
                 <FontAwesomeIcon icon={faDownload} /> Resume
               </NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink href="#" onClick={scrollToContact}>
+                Contact
+              </NavLink>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>
-
       <Container fluid>
         <Routes>
-          <Route path="/" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
+          <Route
+            path="/"
+            element={
+              <About
+                contactRef={contactRef}
+                shake={shake}
+                setShake={setShake}
+              />
+            }
+          />
+          <Route
+            path="/projects"
+            element={
+              <Projects
+                contactRef={contactRef}
+                shake={shake}
+                setShake={setShake}
+              />
+            }
+          />
         </Routes>
       </Container>
-
       <Modal
         isOpen={modal}
         toggle={toggleModal}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Container,
   Row,
@@ -57,7 +57,16 @@ const projects = [
   },
 ];
 
-function Projects() {
+function Projects({ contactRef, shake, setShake }) {
+  useEffect(() => {
+    if (shake) {
+      const timer = setTimeout(() => {
+        setShake(false);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [shake, setShake]);
+
   return (
     <Container className="project-container">
       <Row>
@@ -97,11 +106,13 @@ function Projects() {
           </Col>
         ))}
       </Row>
-      <Card>
-        <CardBody>
-          <ContactButtonGroup />
-        </CardBody>
-      </Card>
+      <div ref={contactRef}>
+        <Card>
+          <CardBody>
+            <ContactButtonGroup shake={shake} />
+          </CardBody>
+        </Card>
+      </div>
     </Container>
   );
 }

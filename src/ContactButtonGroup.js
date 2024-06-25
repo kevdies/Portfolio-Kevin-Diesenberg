@@ -35,7 +35,7 @@ const contactLinks = [
   },
 ];
 
-function ContactButtonGroup() {
+function ContactButtonGroup({ shake }) {
   return (
     <Container
       style={{
@@ -47,6 +47,7 @@ function ContactButtonGroup() {
       }}
     >
       <ButtonGroup
+        className={shake ? "shake" : ""}
         style={{
           display: "flex",
           justifyContent: "center",
