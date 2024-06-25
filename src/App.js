@@ -29,7 +29,10 @@ function App() {
   const contactRef = useRef(null);
 
   const toggleNavbar = useCallback(() => setIsOpen((prev) => !prev), []);
-  const toggleModal = useCallback(() => setModal((prev) => !prev), []);
+  const toggleModal = useCallback(() => {
+    setModal((prev) => !prev);
+    setTimeout(() => setIsOpen(false), 1000);
+  }, []);
 
   const pdfUrl = useMemo(
     () => `/Kevin_Diesenberg_Resume.pdf?${new Date().getTime()}`,
@@ -45,6 +48,10 @@ function App() {
     [location.pathname]
   );
 
+  const handleDownloadClick = useCallback(() => {
+    setTimeout(() => setIsOpen(false), 1000);
+  }, []);
+
   const navLinks = useMemo(
     () => [
       { to: "/", label: "About" },
@@ -57,6 +64,7 @@ function App() {
     if (contactRef.current) {
       contactRef.current.scrollIntoView({ behavior: "smooth" });
       setShake(true);
+      setIsOpen(false);
     }
   };
 
@@ -93,7 +101,7 @@ function App() {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href={pdfUrl} download>
+              <NavLink href={pdfUrl} download onClick={handleDownloadClick}>
                 <FontAwesomeIcon icon={faDownload} /> Resume
               </NavLink>
             </NavItem>
