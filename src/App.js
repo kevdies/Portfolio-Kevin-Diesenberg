@@ -12,6 +12,10 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons/faDownload";
@@ -27,12 +31,15 @@ function App() {
   const [shake, setShake] = useState(false);
   const location = useLocation();
   const contactRef = useRef(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleNavbar = useCallback(() => setIsOpen((prev) => !prev), []);
   const toggleModal = useCallback(() => {
     setModal((prev) => !prev);
     setTimeout(() => setIsOpen(false), 1000);
   }, []);
+
+  const toggleDropdown = () => setDropdownOpen((prevState) => !prevState);
 
   const pdfUrl = useMemo(
     () => `/Kevin_Diesenberg_Resume.pdf?${new Date().getTime()}`,
@@ -95,16 +102,23 @@ function App() {
                 </NavLink>
               </NavItem>
             ))}
-            <NavItem>
-              <NavLink href="#" onClick={toggleModal}>
+            <Dropdown nav isOpen={dropdownOpen} toggle={toggleDropdown}>
+              <DropdownToggle nav caret>
                 <FontAwesomeIcon icon={faEye} /> Resume
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href={pdfUrl} download onClick={handleDownloadClick}>
-                <FontAwesomeIcon icon={faDownload} /> Resume
-              </NavLink>
-            </NavItem>
+              </DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem href="#" onClick={toggleModal}>
+                  <FontAwesomeIcon icon={faEye} /> View Resume
+                </DropdownItem>
+                <DropdownItem
+                  href={pdfUrl}
+                  download
+                  onClick={handleDownloadClick}
+                >
+                  <FontAwesomeIcon icon={faDownload} /> Download Resume
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
             <NavItem>
               <NavLink href="#" onClick={scrollToContact}>
                 Contact
