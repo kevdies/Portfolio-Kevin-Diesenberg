@@ -104,7 +104,7 @@ function App() {
             ))}
             <Dropdown nav isOpen={dropdownOpen} toggle={toggleDropdown}>
               <DropdownToggle nav caret>
-                <FontAwesomeIcon icon={faEye} /> Resume
+                Resume
               </DropdownToggle>
               <DropdownMenu>
                 <DropdownItem href="#" onClick={toggleModal}>
