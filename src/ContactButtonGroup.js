@@ -12,26 +12,32 @@ const contactLinks = [
   {
     href: "mailto:kdiesenb@gmail.com",
     icon: faEnvelope,
+    label: "Email Kevin Diesenberg",
   },
   {
     href: "https://www.linkedin.com/in/kevindiesenberg/",
     icon: faLinkedin,
+    label: "Kevin Diesenberg on LinkedIn",
   },
   {
     href: "https://github.com/kevdies/",
     icon: faGithub,
+    label: "Kevin Diesenberg on GitHub",
   },
   {
     href: "https://instagram.com/kevdies/",
     icon: faInstagram,
+    label: "Kevin Diesenberg on Instagram",
   },
   {
     href: "https://www.facebook.com/kevin.diesenberg/",
     icon: faFacebook,
+    label: "Kevin Diesenberg on Facebook",
   },
   {
     href: "https://kevindiesenberg.medium.com/",
     icon: faMedium,
+    label: "Kevin Diesenberg on Medium",
   },
 ];
 
@@ -55,13 +61,14 @@ function ContactButtonGroup({ shake }) {
           width: "100%",
         }}
       >
-        {contactLinks.map(({ href, icon }, index) => (
+        {contactLinks.map(({ href, icon, label }, index) => (
           <Button
             className="custom-button"
             key={index}
             href={href}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={label}
           >
             <FontAwesomeIcon icon={icon} size="2x" />
           </Button>

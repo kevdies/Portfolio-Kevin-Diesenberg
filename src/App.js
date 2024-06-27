@@ -76,8 +76,8 @@ function App() {
   };
 
   return (
-    <>
-      <Navbar dark expand="md" className="navbar">
+    <Container fluid style={{ padding: "0px" }}>
+      <Navbar dark expand="md" fixed="top" className="navbar">
         <NavbarBrand tag={Link} to="/">
           <img
             src="/logo.png"
@@ -170,7 +170,7 @@ function App() {
           </div>
         </ModalBody>
       </Modal>
-    </>
+    </Container>
   );
 }
 

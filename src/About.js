@@ -17,7 +17,7 @@ import ContactButtonGroup from "./ContactButtonGroup";
 const sections = [
   {
     title: "Full Stack Software Engineer",
-    imgSrc: "/kev-henry-artichoke.png",
+    imgSrc: "/kev-henry-artichoke.jpeg",
     imgAlt: "Kevin and his dogs on Lake Huron",
     description: [
       "Full Stack Software Engineer at Graham Media Group with expertise in object-oriented programming, web development, and database management.",

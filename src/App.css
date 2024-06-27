@@ -1,10 +1,10 @@
 :root {
-  --primary-color: #705d89;
+  --primary-color: #4b3a64; /* Darker shade for better contrast */
   --secondary-color: #c6bcdb;
   --accent-color: #848586;
-  --light-color: #ffffff;
-  --dark-color: #34373b;
-  --text-color: #000000;
+  --light-color: #ffffff; /* Keep white for contrast */
+  --dark-color: #1d1f21; /* Darker shade */
+  --text-color: #f0f0f0; /* Light color for contrast on dark background */
   --box-shadow-color: rgba(52, 55, 59, 0.2);
   --font-size-h1: 1.75rem;
   --font-size-p: 1.125rem;
@@ -17,7 +17,16 @@
   background-color: var(--primary-color);
   position: sticky;
   top: 0;
-  z-index: 1000;
+}
+
+.navbar .nav-link,
+.navbar .dropdown-toggle {
+  color: var(--text-color);
+}
+
+.navbar .nav-link:hover,
+.navbar .dropdown-toggle:hover {
+  color: var(--secondary-color);
 }
 
 img {
@@ -50,7 +59,7 @@ img {
 .card-title {
   font-size: var(--font-size-card-title);
   font-weight: 700;
-  color: var(--text-color);
+  color: var(--dark-color); /* Ensure card title text is dark */
 }
 
 .custom-button {
@@ -70,17 +79,10 @@ img {
 .project-container,
 .about-container {
   padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px var(--box-shadow-color);
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  border: 5px solid;
-  border-image: linear-gradient(
-      to right,
-      var(--primary-color),
-      var(--accent-color)
-    )
-    1;
+  background-color: var(
+    --light-color
+  ); /* Ensure background is light for readability */
+  color: var(--dark-color); /* Ensure text color contrasts with background */
 }
 
 .buttons-container {
@@ -89,7 +91,6 @@ img {
   gap: 1rem;
   flex-wrap: wrap;
   padding: 8px;
-  padding-bottom: 0%;
 }
 
 /* ModalStyles.css */
@@ -117,7 +118,7 @@ img {
 
 .custom-modal-header {
   background-color: var(--primary-color);
-  color: white;
+  color: var(--text-color);
 }
 
 .custom-modal-body {
