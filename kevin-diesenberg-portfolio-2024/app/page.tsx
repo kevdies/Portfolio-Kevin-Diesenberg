@@ -423,7 +423,7 @@ export default function Portfolio() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-20" ref={sectionRefs.about}>
+        <section id="about" className="py-10" ref={sectionRefs.about}>
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-8 text-center text-[#5D5268]">
               About Me
@@ -462,7 +462,7 @@ export default function Portfolio() {
         {/* Skills Section */}
         <section
           id="skills"
-          className="bg-[#E6E3E9] py-20"
+          className="bg-[#E6E3E9] py-10"
           ref={sectionRefs.skills}
         >
           <div className="container mx-auto px-4">
@@ -481,11 +481,19 @@ export default function Portfolio() {
                 <h3 className="text-xl font-semibold mb-2 text-[#8E7CA6]">
                   Strengths
                 </h3>
-                <ul className="list-disc list-inside text-[#5D5268]">
-                  <li>Attention to detail in high-consequence environments</li>
-                  <li>Simplifying complex ideas</li>
-                  <li>Working with people from diverse backgrounds</li>
-                  <li>Commitment to continuous learning and growth</li>
+                <ul className="list-none flex flex-col gap-3 text-[#5D5268] p-4">
+                  <li className="bg-gray-100 rounded-lg px-4 py-2 shadow-sm">
+                    Attention to detail in high-consequence environments
+                  </li>
+                  <li className="bg-gray-100 rounded-lg px-4 py-2 shadow-sm">
+                    Simplifying complex ideas
+                  </li>
+                  <li className="bg-gray-100 rounded-lg px-4 py-2 shadow-sm">
+                    Working with people from diverse backgrounds
+                  </li>
+                  <li className="bg-gray-100 rounded-lg px-4 py-2 shadow-sm">
+                    Commitment to continuous learning and growth
+                  </li>
                 </ul>
               </Card>
               <Card className="p-6 bg-white">
@@ -494,7 +502,10 @@ export default function Portfolio() {
                 </h3>
                 <Accordion type="single" collapsible className="w-full">
                   {technicalSkills.map((skillSet, index) => (
-                    <AccordionItem key={index} value={`item-${index}`}>
+                    <AccordionItem
+                      key={skillSet.category}
+                      value={`item-${index}`}
+                    >
                       <AccordionTrigger
                         className={`${skillSet.color} rounded-lg p-2 hover:no-underline`}
                       >
@@ -520,9 +531,14 @@ export default function Portfolio() {
                         </div>
                       </AccordionTrigger>
                       <AccordionContent>
-                        <ul className="list-disc list-inside text-[#5D5268] pl-4 mt-2">
+                        <ul className="list-none flex flex-wrap items-center gap-6 text-[#5D5268] p-4">
                           {skillSet.skills.map((skill, skillIndex) => (
-                            <li key={skillIndex}>{skill}</li>
+                            <li
+                              className="line-decor bg-gray-100 rounded-lg px-3 py-1 shadow-sm"
+                              key={skillIndex}
+                            >
+                              {skill}
+                            </li>
                           ))}
                         </ul>
                       </AccordionContent>
@@ -537,7 +553,7 @@ export default function Portfolio() {
         {/* Professional Projects Section */}
         <section
           id="professional-projects"
-          className="bg-[#E6E3E9] py-20"
+          className="bg-[#E6E3E9] py-10"
           ref={sectionRefs.professionalProjects}
         >
           <div className="container mx-auto px-4">
@@ -597,7 +613,7 @@ export default function Portfolio() {
         </section>
 
         {/* Bootcamp Projects Section */}
-        <section id="projects" className="py-20">
+        <section id="projects" className="py-10">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-8 text-center text-[#5D5268]">
               Bootcamp Projects
@@ -660,50 +676,10 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* Resume Section */}
-        <section id="resume" className="py-20" ref={sectionRefs.resume}>
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold mb-8 text-center text-[#5D5268]">
-              Resume
-            </h2>
-            <div className="flex justify-center space-x-4">
-              <Button
-                className="bg-[#D1C4E9] text-[#5D5268] hover:bg-[#B39DDB]"
-                asChild
-              >
-                <a
-                  href="/Kevin_Diesenberg_Resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FontAwesomeIcon icon={faEye} className="mr-2 h-4 w-4" />
-                  View Resume
-                </a>
-              </Button>
-              <Button
-                className="bg-[#D1C4E9] text-[#5D5268] hover:bg-[#B39DDB]"
-                asChild
-              >
-                <a href="/Kevin_Diesenberg_Resume.pdf" download>
-                  <FontAwesomeIcon icon={faDownload} className="mr-2 h-4 w-4" />
-                  Download Resume
-                </a>
-              </Button>
-              <Button
-                className="bg-[#D1C4E9] text-[#5D5268] hover:bg-[#B39DDB]"
-                onClick={shareResume}
-              >
-                <FontAwesomeIcon icon={faShare} className="mr-2 h-4 w-4" />
-                Share Resume
-              </Button>
-            </div>
-          </div>
-        </section>
-
         {/* Experience Section */}
         <section
           id="experience"
-          className="bg-[#E6E3E9] py-20"
+          className="bg-[#E6E3E9] py-10"
           ref={sectionRefs.experience}
         >
           <div className="container mx-auto px-4">
@@ -759,10 +735,50 @@ export default function Portfolio() {
           </div>
         </section>
 
+        {/* Resume Section */}
+        <section id="resume" className="py-10" ref={sectionRefs.resume}>
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-8 text-center text-[#5D5268]">
+              Resume
+            </h2>
+            <div className="flex justify-center space-x-4">
+              <Button
+                className="bg-[#D1C4E9] text-[#5D5268] hover:bg-[#B39DDB]"
+                asChild
+              >
+                <a
+                  href="/Kevin_Diesenberg_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FontAwesomeIcon icon={faEye} className="mr-2 h-4 w-4" />
+                  View Resume
+                </a>
+              </Button>
+              <Button
+                className="bg-[#D1C4E9] text-[#5D5268] hover:bg-[#B39DDB]"
+                asChild
+              >
+                <a href="/Kevin_Diesenberg_Resume.pdf" download>
+                  <FontAwesomeIcon icon={faDownload} className="mr-2 h-4 w-4" />
+                  Download Resume
+                </a>
+              </Button>
+              <Button
+                className="bg-[#D1C4E9] text-[#5D5268] hover:bg-[#B39DDB]"
+                onClick={shareResume}
+              >
+                <FontAwesomeIcon icon={faShare} className="mr-2 h-4 w-4" />
+                Share Resume
+              </Button>
+            </div>
+          </div>
+        </section>
+
         {/* Hobbies Section */}
         <section
           id="hobbies"
-          className="bg-[#E6E3E9] py-20"
+          className="bg-[#E6E3E9] py-10"
           ref={sectionRefs.hobbies}
         >
           <div className="container mx-auto px-4">
@@ -810,7 +826,7 @@ export default function Portfolio() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-20" ref={sectionRefs.contact}>
+        <section id="contact" className="py-10" ref={sectionRefs.contact}>
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-8 text-center text-[#5D5268]">
               Get in Touch
