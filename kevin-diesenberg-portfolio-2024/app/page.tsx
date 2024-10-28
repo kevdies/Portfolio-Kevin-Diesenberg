@@ -513,7 +513,7 @@ export default function Portfolio() {
                           <span className="text-[#8E7CA6]">
                             {skillSet.category}
                           </span>
-                          <div className="flex gap-2">
+                          <div className="flex gap-2 px-3">
                             {skillSet.icons.map((Icon, iconIndex) => (
                               <span key={iconIndex}>
                                 {typeof Icon === "object" &&
@@ -752,7 +752,7 @@ export default function Portfolio() {
                   rel="noopener noreferrer"
                 >
                   <FontAwesomeIcon icon={faEye} className="mr-2 h-4 w-4" />
-                  View Resume
+                  View
                 </a>
               </Button>
               <Button
@@ -761,7 +761,7 @@ export default function Portfolio() {
               >
                 <a href="/Kevin_Diesenberg_Resume.pdf" download>
                   <FontAwesomeIcon icon={faDownload} className="mr-2 h-4 w-4" />
-                  Download Resume
+                  Download
                 </a>
               </Button>
               <Button
@@ -769,7 +769,7 @@ export default function Portfolio() {
                 onClick={shareResume}
               >
                 <FontAwesomeIcon icon={faShare} className="mr-2 h-4 w-4" />
-                Share Resume
+                Share
               </Button>
             </div>
           </div>
