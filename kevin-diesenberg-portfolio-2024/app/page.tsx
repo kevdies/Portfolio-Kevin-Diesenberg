@@ -31,6 +31,7 @@ import {
   faHourglassHalf,
   faWrench,
   faLaptopCode,
+  faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faGithub,
@@ -75,6 +76,11 @@ import "react-toastify/dist/ReactToastify.css";
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [heartCount, setHeartCount] = useState(0);
+
+  const handleHeartClick = () => {
+    setHeartCount(heartCount + 1);
+  };
 
   const sectionRefs = {
     about: useRef<HTMLElement>(null),
@@ -851,10 +857,7 @@ export default function Portfolio() {
 
       <footer className="bg-[#8E7CA6] text-white py-8">
         <div className="container mx-auto px-4 text-center">
-          <p>
-            {new Date().getFullYear()} Kevin Diesenberg | All coffee is
-            reserved.
-          </p>
+          <p>{new Date().getFullYear()} Kevin Diesenberg</p>
           <div className="mt-4 flex justify-center space-x-4">
             <Button className="bg-[#D1C4E9] text-[#5D5268] hover:bg-[#B39DDB]">
               <FontAwesomeIcon icon={faEnvelope} className="mr-2 h-4 w-4" />
@@ -868,6 +871,24 @@ export default function Portfolio() {
                 <FontAwesomeIcon icon={faDownload} className="mr-2 h-4 w-4" />
                 Download Resume
               </a>
+            </Button>
+
+            {/* Waving Hand Button */}
+            <Button
+              onClick={handleHeartClick}
+              className="relative bg-[#D1C4E9] text-[#5D5268] hover:bg-[#B39DDB] justify-center"
+            >
+              <FontAwesomeIcon icon={faHeart} className="h-4 w-4" />
+
+              {heartCount > 0 && (
+                <span
+                  className={`absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-600 text-white rounded-full h-5 flex items-center justify-center text-xs ${
+                    heartCount < 100 ? "w-5" : "px-2"
+                  }`}
+                >
+                  {heartCount > 999 ? "999+" : heartCount}
+                </span>
+              )}
             </Button>
           </div>
         </div>
