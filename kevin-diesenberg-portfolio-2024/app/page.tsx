@@ -476,7 +476,7 @@ export default function Portfolio() {
                   alt="Kevin with his dog"
                   width={300}
                   height={200}
-                  className="rounded-lg mb-4 object-cover"
+                  className="rounded-lg mb-4 object-cover mx-auto"
                 />
                 <h3 className="text-xl font-semibold mb-2 text-[#8E7CA6]">
                   Strengths
@@ -707,7 +707,7 @@ export default function Portfolio() {
                   alt="Kevin on Lake Huron"
                   width={400}
                   height={300}
-                  className="rounded-lg shadow-lg object-cover"
+                  className="rounded-lg shadow-lg object-cover mx-auto"
                 />
               </div>
               <div className="w-full md:w-1/2">
@@ -792,7 +792,7 @@ export default function Portfolio() {
                   alt="Kevin-Deland"
                   width={400}
                   height={300}
-                  className="rounded-lg shadow-lg object-cover"
+                  className="rounded-lg shadow-lg object-cover mx-auto"
                 />
               </Card>
               <Card className="p-6 bg-white">

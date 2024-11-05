@@ -36,7 +36,7 @@ const AccordionTrigger = React.forwardRef<
       {children}
       <FontAwesomeIcon
         icon={faChevronDown}
-        className="h-4 w-4 shrink-0 transition-transform duration-200"
+        className="h-4 w-4 shrink-0 transition-transform duration-200 text-[#5D5268]"
       />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
