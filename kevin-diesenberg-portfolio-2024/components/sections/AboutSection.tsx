@@ -3,7 +3,7 @@
 import React from "react";
 import Section from "../ui/Section";
 import Image from "next/image";
-import kevHenryArti from "../../assets/images/kev-henry-artichoke.webp";
+import kevHenryArti from "../../../assets/images/kev-henry-artichoke.webp";
 
 export interface AboutSectionProps {
   id?: string;
