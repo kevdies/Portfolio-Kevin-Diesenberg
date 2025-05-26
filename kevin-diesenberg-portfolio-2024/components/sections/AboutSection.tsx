@@ -3,7 +3,7 @@
 import React from "react";
 import Section from "../ui/Section";
 import Image from "next/image";
-import kevHenryArti from "../../assets/images/kev-henry-artichoke.webp";
+import kevHenryArti from "@/assets/images/kev-henry-artichoke.webp";
 
 export interface AboutSectionProps {
   id?: string;
@@ -35,7 +35,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ id = "about" }) => {
           <div className="relative rounded-lg overflow-hidden shadow-lg">
             <Image
               src={kevHenryArti}
-              alt="Kevin standing in a field of artichokes"
+              alt="Kevin and his dogs on Lake Huron"
               placeholder="blur"
               className="w-full h-auto object-cover"
             />
