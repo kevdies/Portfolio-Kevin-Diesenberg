@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Icon from "../ui/Icon";
-import { useSectionScroll } from "../../..//hooks/useSectionScroll";
-import { cn } from "../../../lib/utils";
+import { useSectionScroll } from "../../hooks/useSectionScroll";
+import { cn } from "../../utils/utils";
 
 const navItems = [
   { id: "about", label: "About" },

@@ -5,7 +5,7 @@ import Section from "../ui/Section";
 import { Card, CardHeader, CardContent } from "../ui/Card";
 import Button from "../ui/Button";
 import Icon from "../ui/Icon";
-import { shareResume, RESUME_PATH } from "../../../utils/share";
+import { shareResume, RESUME_PATH } from "../../utils/share";
 
 const socialLinks = [
   {

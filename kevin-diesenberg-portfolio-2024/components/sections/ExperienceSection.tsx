@@ -3,7 +3,7 @@
 import React from "react";
 import Section from "../ui/Section";
 import { Card } from "../ui/Card";
-import { cn } from "../../../lib/utils";
+import { cn } from "../../utils/utils";
 
 export interface ExperienceSectionProps {
   id?: string;

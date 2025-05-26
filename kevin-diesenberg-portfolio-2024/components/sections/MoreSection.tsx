@@ -6,12 +6,12 @@ import Section from "../ui/Section";
 import { Card } from "../ui/Card";
 import Button from "../ui/Button";
 import Icon from "../ui/Icon";
-import { cn } from "../../../lib/utils";
-import type { Project } from "../../../types";
+import { cn } from "../../utils/utils";
+import type { Project } from "../../types";
 
-import awefulLogo from "/assets/images/aweful-logo.png";
-import trailShareLogo from "/assets/images/trail-share-logo.png";
-import HSTRYLogo from "/assets/images/HSTRY-logo.png";
+import awefulLogo from "../../assets/images/aweful-logo.png";
+import trailShareLogo from "../../assets/images/trail-share-logo.png";
+import HSTRYLogo from "../../assets/images/HSTRY-logo.png";
 
 export interface MoreSectionProps {
   id?: string;

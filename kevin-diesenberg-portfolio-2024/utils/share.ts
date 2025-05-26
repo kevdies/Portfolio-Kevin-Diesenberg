@@ -1,4 +1,3 @@
-// utils/share.ts
 export const RESUME_PATH = "/Kevin_Diesenberg_Resume.pdf";
 
 export async function shareResume(): Promise<void> {
@@ -22,13 +21,17 @@ export async function shareResume(): Promise<void> {
     alert(
       "Nice! The resume link’s now in your clipboard—paste it wherever you like."
     );
-  } catch (err: any) {
-    // user cancelled the share dialog
-    if (err.name === "AbortError") return;
+  } catch (err: unknown) {
+    // if it’s an AbortError from the share dialog, bail quietly
+    if (err instanceof Error && err.name === "AbortError") {
+      return;
+    }
 
-    // genuine error
+    // otherwise we’ve got some genuine problem
+    const message = err instanceof Error ? err.message : "an unexpected error";
+
     alert(
-      "Oops! Something went wrong sharing this resume. Please try again in a moment."
+      `Oops! Something went wrong sharing this resume (${message}). Please try again in a moment.`
     );
   }
 }
