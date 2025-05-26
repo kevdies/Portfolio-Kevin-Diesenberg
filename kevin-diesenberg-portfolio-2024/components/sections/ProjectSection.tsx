@@ -6,8 +6,12 @@ import Section from "../ui/Section";
 import { Card } from "../ui/Card";
 import Button from "../ui/Button";
 import Icon from "../ui/Icon";
-import { cn } from "../../../lib/utils";
-import type { Project } from "../../../types";
+import { cn } from "../../utils/utils";
+import type { Project } from "../../types";
+
+import brgLeaderboard from "../../assets/images/Blue_Ridge_Games_Leaderboard.png";
+import pinUploadModal from "../../assets/images/Pin_Upload_Success_Modal_Mobile.png";
+import newsLetterSignUpCard from "../../assets/images/Newsletter_Sign_Up_Card.png";
 
 // Extend Project to include multiple URLs
 interface LeaderboardUrl {
@@ -17,10 +21,6 @@ interface LeaderboardUrl {
 interface ProjectWithUrls extends Project {
   liveUrls?: LeaderboardUrl[];
 }
-
-import brgLeaderboard from "/assets/images/Blue_Ridge_Games_Leaderboard.png";
-import pinUploadModal from "/assets/images/Pin_Upload_Success_Modal_Mobile.png";
-import newsLetterSignUpCard from "/assets/images/Newsletter_Sign_Up_Card.png";
 
 export interface ProjectSectionProps {
   id?: string;
