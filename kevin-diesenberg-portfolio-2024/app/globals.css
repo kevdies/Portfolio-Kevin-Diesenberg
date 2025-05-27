@@ -22,13 +22,14 @@
   --color-border: rgba(255, 255, 255, 0.05);
   --color-border-hover: rgba(167, 139, 250, 0.2);
 
-  /* Consistent spacing scale */
+  /* Improved spacing scale - more granular */
   --spacing-xs: 0.5rem; /* 8px */
   --spacing-sm: 1rem; /* 16px */
   --spacing-md: 1.5rem; /* 24px */
   --spacing-lg: 2rem; /* 32px */
   --spacing-xl: 3rem; /* 48px */
-  --spacing-2xl: 5rem; /* 80px */
+  --spacing-2xl: 4rem; /* 64px - reduced from 80px */
+  --spacing-3xl: 6rem; /* 96px - for larger gaps if needed */
 
   /* Border radius */
   --radius-sm: 0.5rem; /* 8px */
@@ -40,6 +41,39 @@
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
   --shadow-glow: 0 20px 40px rgba(167, 139, 250, 0.15);
+
+  /* Typography System */
+  /* Font families */
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  --font-heading: "Poppins", var(--font-sans);
+
+  /* Font sizes with consistent scale */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2xl: 1.5rem; /* 24px */
+  --text-3xl: 1.875rem; /* 30px */
+  --text-4xl: 2.25rem; /* 36px */
+  --text-5xl: 3rem; /* 48px */
+
+  /* Line heights */
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+
+  /* Font weights */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* Enhanced text hierarchy */
+  --color-text-emphasis: #f9fafb;
+  --color-text-subtle: #6b7280;
 }
 
 html {
@@ -50,11 +84,45 @@ body {
   margin: 0;
   background: var(--color-background);
   color: var(--color-text);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
-  line-height: 1.6;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography Base Styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-tight);
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 5vw + 1rem, 3.5rem);
+  font-weight: var(--font-bold);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(1.875rem, 4vw + 0.75rem, 2.5rem);
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+}
+
+p {
+  margin: 0;
+  line-height: var(--leading-relaxed);
 }
 
 /* Custom utility classes */
@@ -84,20 +152,80 @@ body {
     -webkit-backdrop-filter: blur(10px);
   }
 
-  /* Consistent section padding */
+  /* Updated section padding - reduced spacing */
   .section-padding {
-    padding-top: var(--spacing-2xl);
+    padding-top: var(--spacing-2xl); /* 64px instead of 80px */
     padding-bottom: var(--spacing-2xl);
   }
 
-  /* Card hover effect */
+  /* Alternative section padding options */
+  .section-padding-sm {
+    padding-top: var(--spacing-xl); /* 48px */
+    padding-bottom: var(--spacing-xl);
+  }
+
+  .section-padding-lg {
+    padding-top: var(--spacing-3xl); /* 96px */
+    padding-bottom: var(--spacing-3xl);
+  }
+
+  /* Card hover effect - more subtle */
   .card-hover {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .card-hover:hover {
-    transform: translateY(-4px);
+    transform: translateY(-2px); /* Reduced for subtlety */
     border-color: var(--color-border-hover);
     box-shadow: var(--shadow-glow);
+  }
+
+  /* Enhanced focus states */
+  .card-hover:focus-within {
+    border-color: var(--color-border-hover);
+    box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.1);
+  }
+
+  /* Typography utilities */
+  .text-heading {
+    font-family: var(--font-heading);
+  }
+
+  .text-body {
+    font-family: var(--font-sans);
+  }
+
+  .text-emphasis {
+    color: var(--color-text-emphasis);
+    font-weight: var(--font-medium);
+  }
+
+  .text-subtle {
+    color: var(--color-text-subtle);
+    font-size: 0.875rem;
+  }
+
+  /* Section separator utility */
+  .section-separator {
+    width: 3rem;
+    height: 2px;
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-start) 0%,
+      var(--color-primary-end) 100%
+    );
+    margin: 0 auto var(--spacing-lg);
+    opacity: 0.6;
+    border-radius: 1px;
+  }
+
+  /* Better focus management */
+  .focus-ring {
+    transition: all 0.2s ease;
+  }
+
+  .focus-ring:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
   }
 }

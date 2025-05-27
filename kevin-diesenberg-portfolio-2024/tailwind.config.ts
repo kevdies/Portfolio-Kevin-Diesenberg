@@ -1,5 +1,6 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import type { Config } from "tailwindcss";
+
+const config: Config = {
   content: [
     "app/**/*.{ts,tsx}",
     "components/**/*.{ts,tsx}",
@@ -30,6 +31,7 @@ module.exports = {
         lg: "var(--spacing-lg)",
         xl: "var(--spacing-xl)",
         "2xl": "var(--spacing-2xl)",
+        "3xl": "var(--spacing-3xl)",
       },
       borderRadius: {
         sm: "var(--radius-sm)",
@@ -47,27 +49,50 @@ module.exports = {
           "linear-gradient(135deg, var(--color-primary-start) 0%, var(--color-primary-end) 100%)",
       },
 
-      // <<< TYPOGRAPHY >>>
+      // Typography using CSS variables
       fontFamily: {
-        // body text will resolve to var(--font-sans)
-        sans: ["var(--font-sans)", "ui-sans-serif", "system-ui"],
-        // headings will resolve to var(--font-heading)
-        heading: ["var(--font-heading)", "ui-sans-serif", "system-ui"],
+        sans: ["var(--font-sans)"],
+        heading: ["var(--font-heading)"],
       },
 
       fontSize: {
-        base: ["clamp(1rem, 1.5vw + 0.75rem, 1.125rem)", { lineHeight: "1.6" }],
+        xs: "var(--text-xs)",
+        sm: "var(--text-sm)",
+        base: "var(--text-base)",
+        lg: "var(--text-lg)",
+        xl: "var(--text-xl)",
+        "2xl": "var(--text-2xl)",
+        "3xl": "var(--text-3xl)",
+        "4xl": "var(--text-4xl)",
+        "5xl": "var(--text-5xl)",
+        // Keep the responsive clamp sizes for specific use cases
         h1: [
           "clamp(2.25rem, 5vw + 1rem, 3.5rem)",
-          { lineHeight: "1.2", letterSpacing: "-0.02em" },
+          { lineHeight: "var(--leading-tight)", letterSpacing: "-0.02em" },
         ],
         h2: [
-          "clamp(2rem, 4vw + 0.75rem, 2.5rem)",
-          { lineHeight: "1.3", letterSpacing: "-0.02em" },
+          "clamp(1.875rem, 4vw + 0.75rem, 2.5rem)",
+          { lineHeight: "var(--leading-tight)", letterSpacing: "-0.02em" },
         ],
-        h3: ["1.75rem", { lineHeight: "1.3", letterSpacing: "0" }],
+        h3: ["var(--text-xl)", { lineHeight: "var(--leading-snug)" }],
+      },
+
+      lineHeight: {
+        tight: "var(--leading-tight)",
+        snug: "var(--leading-snug)",
+        normal: "var(--leading-normal)",
+        relaxed: "var(--leading-relaxed)",
+      },
+
+      fontWeight: {
+        normal: "var(--font-normal)",
+        medium: "var(--font-medium)",
+        semibold: "var(--font-semibold)",
+        bold: "var(--font-bold)",
       },
     },
   },
   plugins: [],
 };
+
+export default config;
