@@ -68,7 +68,7 @@ const hobbies = [
 
 const MoreSection: React.FC<MoreSectionProps> = ({ id = "more" }) => {
   return (
-    <Section id={id} title="More Projects & Hobbies">
+    <Section id={id} title="">
       <div className="space-y-xl">
         {/* Bootcamp Projects */}
         <div>

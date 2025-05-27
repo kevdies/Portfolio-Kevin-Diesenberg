@@ -6,6 +6,7 @@ interface SectionProps {
   title?: string;
   children: React.ReactNode;
   className?: string;
+  spacing?: "sm" | "default" | "lg";
 }
 
 const Section: React.FC<SectionProps> = ({
@@ -13,29 +14,27 @@ const Section: React.FC<SectionProps> = ({
   title,
   children,
   className,
+  spacing = "default",
 }) => {
+  const spacingClasses = {
+    sm: "section-padding-sm",
+    default: "section-padding",
+    lg: "section-padding-lg",
+  };
+
   return (
     <section
       id={id}
       className={cn(
-        // Consistent vertical padding
-        "section-padding",
-        // Horizontal padding
+        spacingClasses[spacing],
         "px-md",
-        // Single background color throughout
         "bg-background",
         className
       )}
     >
       <div className="container mx-auto max-w-7xl">
         {title && (
-          <h2
-            className={cn(
-              "text-4xl font-bold mb-xl text-center",
-              // Gradient text for titles
-              "gradient-text"
-            )}
-          >
+          <h2 className="text-h2 font-heading font-semibold mb-xl text-center gradient-text">
             {title}
           </h2>
         )}
