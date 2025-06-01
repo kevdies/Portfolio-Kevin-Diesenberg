@@ -20,12 +20,14 @@ export interface MoreSectionProps {
 interface ProjectWithDemo extends Project {
   demo?: string;
   github: string;
+  imageOrientation?: "landscape" | "portrait" | "square";
 }
 
 const bootcampProjects: ProjectWithDemo[] = [
   {
     name: "Aweful Skydiving",
     image: awefulLogo,
+    imageOrientation: "landscape", // Future-proofing
     alt: "Aweful Skydiving logo",
     description:
       "Event signup platform for skydivers (React, Rails, PostgreSQL).",
@@ -40,6 +42,7 @@ const bootcampProjects: ProjectWithDemo[] = [
   {
     name: "Trail Share",
     image: trailShareLogo,
+    imageOrientation: "landscape", // Future-proofing
     alt: "Trail Share logo",
     description: "Social network for hikers (React, Rails, PostgreSQL).",
     features: ["RESTful API design", "Auth via bcrypt", "Bootstrap styling"],
@@ -49,6 +52,7 @@ const bootcampProjects: ProjectWithDemo[] = [
   {
     name: "HSTRY",
     image: HSTRYLogo,
+    imageOrientation: "landscape", // Future-proofing
     alt: "HSTRY logo",
     description: "Medical history form aid (React, Rails, PostgreSQL).",
     features: ["Controlled forms", "Accessible markup", "Reactstrap UI"],
@@ -66,50 +70,77 @@ const hobbies = [
   "Mountain Biking",
 ];
 
+const getImageClasses = (orientation?: string) => {
+  const baseClasses = "transition-transform duration-300 group-hover:scale-105";
+
+  if (orientation === "portrait") {
+    return cn(baseClasses, "object-contain p-1");
+  }
+  return cn(baseClasses, "object-cover");
+};
+
+const getContainerHeight = (orientation?: string) => {
+  return orientation === "portrait" ? "h-44" : "h-40"; // Slightly smaller for bootcamp projects
+};
+
 const MoreSection: React.FC<MoreSectionProps> = ({ id = "more" }) => {
   return (
     <Section id={id} title="">
-      <div className="space-y-xl">
+      <div className="space-y-12">
         {/* Bootcamp Projects */}
         <div>
-          <h3 className="text-2xl font-semibold text-center mb-lg">
+          <h3 className="text-2xl font-heading font-semibold text-text-emphasis text-center mb-8">
             Bootcamp Projects
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-lg">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {bootcampProjects.map((proj, idx) => (
-              <Card key={idx} className="flex flex-col">
-                <div className="relative w-full h-40 mb-md rounded-md overflow-hidden bg-surface border border-border">
+              <Card key={idx} className="flex flex-col group">
+                <div
+                  className={cn(
+                    "relative w-full mb-6 rounded-md overflow-hidden bg-surface border border-border",
+                    getContainerHeight(proj.imageOrientation)
+                  )}
+                >
                   <Image
                     src={proj.image}
                     alt={proj.alt}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-contain p-1"
+                    className={getImageClasses(proj.imageOrientation)}
                   />
+
+                  {/* Hover overlay (same as professional projects) */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
 
-                <h4 className="text-lg font-semibold mb-sm">{proj.name}</h4>
+                <h4 className="text-lg font-heading font-semibold text-text-emphasis mb-4">
+                  {proj.name}
+                </h4>
 
-                <p className="mb-sm text-textMuted text-sm flex-grow">
+                {/* Fixed typo: text-text-mutedd → text-text-muted */}
+                <p className="mb-4 text-text-muted text-sm flex-grow">
                   {proj.description}
                 </p>
 
-                <ul className="mb-md space-y-xs text-textMuted text-sm">
+                <ul className="mb-6 space-y-2 text-text-muted text-sm">
                   {proj.features.map((f, i) => (
-                    <li key={i} className="flex items-start">
-                      <span className="w-1.5 h-1.5 rounded-full bg-gradient-primary mr-2 mt-1.5 flex-shrink-0" />
-                      <span>{f}</span>
+                    <li key={i} className="flex items-start group/item">
+                      {/* Updated gradient dot to use Tailwind */}
+                      <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-primary-start to-primary-end mr-2 mt-1.5 flex-shrink-0 transition-all duration-200 group-hover/item:scale-110" />
+                      <span className="group-hover/item:text-text transition-colors duration-200">
+                        {f}
+                      </span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="flex gap-sm mt-auto">
+                <div className="flex gap-4 mt-auto">
                   {proj.demo && (
                     <Button
                       asChild
                       variant="secondary"
                       size="sm"
-                      className="flex-1"
+                      className="flex-1 focus:outline-none focus:ring-2 focus:ring-primary"
                     >
                       <a
                         href={proj.demo}
@@ -125,7 +156,7 @@ const MoreSection: React.FC<MoreSectionProps> = ({ id = "more" }) => {
                     asChild
                     variant="secondary"
                     size="sm"
-                    className="flex-1"
+                    className="flex-1 focus:outline-none focus:ring-2 focus:ring-primary"
                   >
                     <a
                       href={proj.github}
@@ -144,21 +175,25 @@ const MoreSection: React.FC<MoreSectionProps> = ({ id = "more" }) => {
 
         {/* Hobbies */}
         <Card className="max-w-3xl mx-auto">
-          <h3 className="text-2xl font-semibold text-center mb-lg">Hobbies</h3>
-          <div className="flex flex-wrap justify-center gap-sm">
+          <h3 className="text-2xl font-heading font-semibold text-text-emphasis text-center mb-8">
+            Hobbies
+          </h3>
+          <div className="flex flex-wrap justify-center gap-4">
             {hobbies.map((hobby, idx) => (
               <div
                 key={idx}
                 className={cn(
                   "flex items-center space-x-2 rounded-full",
                   "bg-surface border border-border",
-                  "px-md py-xs",
+                  "px-6 py-2",
                   "transition-all duration-200",
-                  "hover:border-border-hover hover:bg-surface-hover"
+                  "hover:border-border-hover hover:bg-surface-hover group"
                 )}
               >
-                <span className="w-2 h-2 rounded-full bg-gradient-primary" />
-                <span className="text-textMuted">{hobby}</span>
+                <span className="w-2 h-2 rounded-full bg-gradient-to-r from-primary-start to-primary-end transition-transform duration-200 group-hover:scale-110" />
+                <span className="text-text-muted group-hover:text-text transition-colors duration-200">
+                  {hobby}
+                </span>
               </div>
             ))}
           </div>

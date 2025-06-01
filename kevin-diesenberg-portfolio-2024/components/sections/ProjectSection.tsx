@@ -13,7 +13,6 @@ import brgLeaderboard from "@/assets/images/Blue_Ridge_Games_Leaderboard.png";
 import pinUploadModal from "@/assets/images/Pin_Upload_Success_Modal_Mobile.png";
 import newsLetterSignUpCard from "@/assets/images/Newsletter_Sign_Up_Card.png";
 
-// Enhanced interfaces
 interface LeaderboardUrl {
   label: string;
   url: string;
@@ -122,7 +121,7 @@ const ProjectFeatures: React.FC<{
   const hasMoreFeatures = features.length > 2;
 
   return (
-    <div className="mb-md">
+    <div className="mb-6">
       {/* Always visible features */}
       {visibleFeatures.map((feature, index) => (
         <span
@@ -151,7 +150,7 @@ const ProjectFeatures: React.FC<{
               "bg-surface border border-border",
               "text-xs text-text font-medium",
               "transition-all duration-200",
-              "animate-in fade-in slide-in-from-left-1"
+              "animate-fade-in"
             )}
           >
             {feature}
@@ -165,7 +164,7 @@ const ProjectFeatures: React.FC<{
           className={cn(
             "text-xs text-primary hover:text-primary-start",
             "transition-colors duration-200",
-            "focus-ring rounded px-1 py-0.5",
+            "focus:outline-none focus:ring-2 focus:ring-primary rounded px-1 py-0.5",
             "font-medium"
           )}
           aria-label={
@@ -200,7 +199,7 @@ const ProjectActions: React.FC<{
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center focus-ring"
+              className="inline-flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary"
             >
               <Icon name="eye" className="mr-2" size="sm" />
               {label.replace("View ", "")}
@@ -223,7 +222,7 @@ const ProjectActions: React.FC<{
           href={demo!}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center focus-ring"
+          className="inline-flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary"
         >
           <Icon name="play" className="mr-2" size="sm" />
           {demo === "#" ? "Demo Coming Soon" : "View Demo"}
@@ -254,25 +253,25 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
   return (
     <Section id={id} title="">
       {/* Section header */}
-      <div className="text-center mb-xl">
-        <h2 className="text-h2 font-heading font-semibold gradient-text mb-md">
+      <div className="text-center mb-12">
+        <h2 className="text-h2 font-heading font-semibold bg-gradient-to-r from-primary-start to-primary-end bg-clip-text text-transparent mb-6">
           Professional Projects
         </h2>
-        <div className="section-separator" />
-        <p className="text-lg text-textMuted max-w-2xl mx-auto">
+        <div className="w-12 h-0.5 bg-gradient-to-r from-primary-start to-primary-end mx-auto mb-8 opacity-60 rounded-full" />
+        <p className="text-lg text-text-muted max-w-2xl mx-auto">
           Recent work at Graham Media Group, building features for millions of
           daily users
         </p>
       </div>
 
       {/* Projects grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {professionalProjects.map((project, index) => (
           <Card key={index} className="flex flex-col h-full group">
             {/* Project image */}
             <div
               className={cn(
-                "relative w-full mb-md rounded-md overflow-hidden bg-surface-hover",
+                "relative w-full mb-6 rounded-md overflow-hidden bg-surface-hover",
                 getContainerHeight(project.imageOrientation)
               )}
             >
@@ -290,12 +289,12 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
             </div>
 
             {/* Project title */}
-            <h3 className="text-xl font-heading font-semibold mb-sm text-emphasis">
+            <h3 className="text-xl font-heading font-semibold mb-4 text-text-emphasis">
               {project.name}
             </h3>
 
             {/* Project description */}
-            <p className="mb-md flex-grow text-textMuted text-sm leading-relaxed">
+            <p className="mb-6 flex-grow text-text-muted text-sm leading-relaxed">
               {project.description}
             </p>
 

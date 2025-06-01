@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Inter, Poppins } from "next/font/google";
-import Header from "../components/layout/Header";
+import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 
 import { Analytics } from "@vercel/analytics/react";
@@ -86,7 +86,7 @@ export default function RootLayout({
         <StructuredData />
       </head>
       <body>
-        <Header />
+        <Navbar />
         <main>{children}</main>
         <Footer />
         <Analytics />

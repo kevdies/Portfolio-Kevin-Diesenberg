@@ -41,163 +41,87 @@ export interface ConnectSectionProps {
 
 const ConnectSection: React.FC<ConnectSectionProps> = ({ id = "connect" }) => {
   return (
-    <Section id={id} title="" spacing="lg">
-      <div className="text-center mb-xl">
-        <h2 className="text-h2 font-heading font-semibold gradient-text mb-md">
+    <Section id={id} title="">
+      <div className="text-center mb-12">
+        <h2 className="text-h2 font-heading font-semibold bg-gradient-to-r from-primary-start to-primary-end bg-clip-text text-transparent mb-6">
           {`Let's Connect`}
         </h2>
-        <div className="section-separator" />
-        <p className="text-xl text-textMuted max-w-2xl mx-auto leading-relaxed">
+        <div className="w-12 h-0.5 bg-gradient-to-r from-primary-start to-primary-end mx-auto mb-8 opacity-60 rounded-full" />
+        <p className="text-xl text-text-muted max-w-2xl mx-auto leading-relaxed">
           {`Ready to build something amazing together? I'd love to hear about your next project.`}
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-lg max-w-4xl mx-auto">
-        {/* Resume Card - Enhanced */}
-        <Card className="group">
+      {/* Resume Card - Moved to top, centered */}
+      <div className="max-w-md mx-auto mb-16">
+        <Card className="group shadow-lg hover:shadow-xl transition-shadow duration-300">
           <CardHeader>
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-primary-start to-primary-end flex items-center justify-center shadow-md">
                 <Icon name="download" size="lg" className="text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-heading font-semibold text-emphasis">{`Resume`}</h3>
-                <p className="text-textMuted text-sm">
-                  {`Complete professional background`}
+                <h3 className="text-xl font-heading font-semibold text-text-emphasis">
+                  Resume
+                </h3>
+                <p className="text-text-muted text-sm">
+                  Complete professional background
                 </p>
               </div>
             </div>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-col gap-sm">
+            <div className="flex flex-col gap-4">
               <Button
                 asChild
-                className="text-base font-semibold focus-ring group-hover:shadow-glow"
+                className="text-base font-semibold focus:outline-none focus:ring-2 focus:ring-primary shadow-md hover:shadow-lg transition-shadow duration-200"
               >
                 <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer">
                   <Icon name="eye" className="mr-2" size="sm" />
-                  {`View Resume`}
+                  View Resume
                 </a>
               </Button>
-              <Button asChild variant="secondary" className="focus-ring">
+              <Button
+                asChild
+                variant="secondary"
+                className="focus:outline-none focus:ring-2 focus:ring-primary shadow-sm hover:shadow-md transition-shadow duration-200"
+              >
                 <a href={RESUME_PATH} download>
                   <Icon name="download" className="mr-2" size="sm" />
-                  {`Download PDF`}
+                  Download PDF
                 </a>
               </Button>
               <Button
                 onClick={shareResume}
                 variant="secondary"
-                className="focus-ring"
+                className="focus:outline-none focus:ring-2 focus:ring-primary shadow-sm hover:shadow-md transition-shadow duration-200"
               >
                 <Icon name="share" className="mr-2" size="sm" />
-                {`Share Resume`}
+                Share Resume
               </Button>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Contact Card - Enhanced */}
-        <Card className="group">
-          <CardHeader>
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center">
-                <Icon name="email" size="lg" className="text-white" />
-              </div>
-              <div>
-                <h3 className="text-xl font-heading font-semibold text-emphasis">{`Get In Touch`}</h3>
-                <p className="text-textMuted text-sm">
-                  {`Multiple ways to reach me`}
-                </p>
-              </div>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-sm">
-              {/* Primary contact methods */}
-              <div className="grid grid-cols-1 gap-sm">
-                {socialLinks
-                  .filter((link) => link.primary)
-                  .map((link) => (
-                    <Button
-                      key={link.name}
-                      asChild
-                      variant="secondary"
-                      className={cn(
-                        "w-full justify-start text-left focus-ring",
-                        "hover:bg-surface-hover hover:border-border-hover"
-                      )}
-                    >
-                      <a
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Contact via ${link.name}`}
-                        title={`Contact via ${link.name}`}
-                      >
-                        <Icon name={link.icon} size="lg" className="mr-3" />
-                        <span className="text-textMuted group-hover:text-text transition-colors">
-                          {link.name === "Email"
-                            ? "kdiesenb@gmail.com"
-                            : link.name}
-                        </span>
-                      </a>
-                    </Button>
-                  ))}
-              </div>
-
-              {/* Secondary social links */}
-              <div className="pt-md border-t border-border/50">
-                <p className="text-xs text-textDim mb-3">{`Also find me on:`}</p>
-                <div className="grid grid-cols-2 gap-sm">
-                  {socialLinks
-                    .filter((link) => !link.primary)
-                    .map((link) => (
-                      <Button
-                        key={link.name}
-                        asChild
-                        variant="ghost"
-                        size="sm"
-                        className="focus-ring justify-start"
-                      >
-                        <a
-                          href={link.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`Find me on ${link.name}`}
-                          title={`Find me on ${link.name}`}
-                        >
-                          <Icon name={link.icon} size="sm" className="mr-2" />
-                          {link.name}
-                        </a>
-                      </Button>
-                    ))}
-                </div>
-              </div>
             </div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Call-to-action footer */}
-      <div className="text-center mt-xl pt-xl border-t border-border/30">
-        <p className="text-lg text-textMuted mb-md">
-          {`Currently open to new opportunities`}
+      <div className="text-center mb-16">
+        <p className="text-lg text-text-muted mb-8">
+          Currently open to new opportunities
         </p>
-        <div className="flex flex-col sm:flex-row gap-sm justify-center max-w-lg mx-auto">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
           <Button
             asChild
-            className="text-base font-semibold shadow-glow focus-ring flex-1 sm:flex-initial"
+            className="text-base font-semibold shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-primary flex-1 sm:flex-initial transition-shadow duration-200"
           >
             <a href="mailto:kdiesenb@gmail.com?subject=Let's%20work%20together!">
               <Icon name="email" className="mr-2" size="sm" />
-              {`Start a Conversation`}
+              Start a Conversation
             </a>
           </Button>
           <Button
             asChild
             variant="secondary"
-            className="focus-ring flex-1 sm:flex-initial"
+            className="focus:outline-none focus:ring-2 focus:ring-primary flex-1 sm:flex-initial shadow-md hover:shadow-lg transition-shadow duration-200"
           >
             <a
               href="https://linkedin.com/in/kevindiesenberg"
@@ -205,9 +129,70 @@ const ConnectSection: React.FC<ConnectSectionProps> = ({ id = "connect" }) => {
               rel="noopener noreferrer"
             >
               <Icon name="linkedin" className="mr-2" size="sm" />
-              {`Connect on LinkedIn`}
+              Connect on LinkedIn
             </a>
           </Button>
+        </div>
+      </div>
+
+      <div className="max-w-2xl mx-auto">
+        <h3 className="text-center text-lg font-heading font-semibold text-text-emphasis mb-8">
+          Multiple Ways to Reach Me
+        </h3>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          {socialLinks
+            .filter((link) => link.primary)
+            .map((link) => (
+              <Button
+                key={link.name}
+                asChild
+                variant="secondary"
+                className={cn(
+                  "justify-start text-left focus:outline-none focus:ring-2 focus:ring-primary",
+                  "hover:bg-surface-hover hover:border-border-hover",
+                  "shadow-sm hover:shadow-md transition-all duration-200"
+                )}
+              >
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Contact via ${link.name}`}
+                  title={`Contact via ${link.name}`}
+                >
+                  <Icon name={link.icon} size="lg" className="mr-3" />
+                  <span className="text-text-muted group-hover:text-text transition-colors">
+                    {link.name === "Email" ? "kdiesenb@gmail.com" : link.name}
+                  </span>
+                </a>
+              </Button>
+            ))}
+        </div>
+
+        <div className="text-center">
+          <p className="text-sm text-text-dim mb-4">Also find me on:</p>
+          <div className="flex justify-center gap-6">
+            {socialLinks
+              .filter((link) => !link.primary)
+              .map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Find me on ${link.name}`}
+                  className={cn(
+                    "flex items-center gap-2 text-text-muted hover:text-text",
+                    "transition-colors duration-200",
+                    "focus:outline-none focus:ring-2 focus:ring-primary rounded px-2 py-1"
+                  )}
+                >
+                  <Icon name={link.icon} size="sm" />
+                  <span className="text-sm">{link.name}</span>
+                </a>
+              ))}
+          </div>
         </div>
       </div>
     </Section>

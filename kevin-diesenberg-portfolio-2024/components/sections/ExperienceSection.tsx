@@ -48,24 +48,22 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
 }) => {
   return (
     <Section id={id} title="">
-      <div className="text-center mb-xl">
-        <h2 className="text-h2 font-heading font-semibold gradient-text mb-md">
+      <div className="text-center mb-12">
+        <h2 className="text-h2 font-heading font-semibold bg-gradient-to-r from-primary-start to-primary-end bg-clip-text text-transparent mb-6">
           Work Experience
         </h2>
-        <div className="section-separator" />
-        <p className="text-lg text-textMuted max-w-2xl mx-auto">
+        <div className="w-12 h-0.5 bg-gradient-to-r from-primary-start to-primary-end mx-auto mb-8 opacity-60 rounded-full" />
+        <p className="text-lg text-text-muted max-w-2xl mx-auto">
           A diverse background spanning tech, entertainment, and public service
         </p>
       </div>
 
-      <div className="max-w-4xl mx-auto space-y-lg relative">
-        {/* Timeline line */}
-        <div className="hidden md:block absolute left-8 top-8 bottom-8 w-0.5 bg-gradient-primary opacity-30" />
+      <div className="max-w-4xl mx-auto space-y-8 relative">
+        <div className="hidden md:block absolute left-8 top-8 bottom-8 w-0.5 bg-gradient-to-b from-primary-start to-primary-end opacity-30" />
 
         {experiences.map((exp, idx) => (
           <div key={idx} className="relative">
-            {/* Timeline dot */}
-            <div className="hidden md:block absolute left-6 top-6 w-4 h-4 rounded-full bg-gradient-primary border-4 border-background shadow-glow" />
+            <div className="hidden md:block absolute left-6 top-6 w-4 h-4 rounded-full bg-gradient-to-r from-primary-start to-primary-end border-4 border-background shadow-glow" />
 
             <Card
               className={cn(
@@ -73,50 +71,48 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
                 exp.current && "ring-2 ring-primary/20 shadow-glow" // Highlight current role
               )}
             >
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-sm">
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
                 <div className="flex-1">
-                  <div
-                    className="flex items-start
-                   gap-2 mb-1"
-                  >
-                    <h3 className="text-xl font-heading font-semibold text-emphasis">
+                  <div className="flex items-start gap-2 mb-1">
+                    <h3 className="text-xl font-heading font-semibold text-text-emphasis">
                       {exp.role}
                     </h3>
                     {exp.current && (
-                      <span className="px-2 py-1 text-xs font-medium bg-gradient-primary text-white rounded-full">
+                      <span className="px-2 py-1 text-xs font-medium bg-gradient-to-r from-primary-start to-primary-end text-white rounded-full">
                         Current
                       </span>
                     )}
                   </div>
-                  <p className="text-textMuted font-medium">{exp.company}</p>
+                  <p className="text-text-muted font-medium">{exp.company}</p>
                 </div>
-                <span className="text-sm text-textDim mt-2 md:mt-0 font-medium">
+                <span className="text-sm text-text-dim mt-2 md:mt-0 font-medium">
                   {exp.period}
                 </span>
               </div>
 
-              <ul className="space-y-xs">
+              <ul className="space-y-2">
                 {exp.details.map((detail, i) => (
                   <li key={i} className="flex items-start group">
                     <span
                       className={cn(
-                        "w-1.5 h-1.5 rounded-full bg-gradient-primary",
+                        "w-1.5 h-1.5 rounded-full bg-gradient-to-r from-primary-start to-primary-end",
                         "mr-3 mt-2 flex-shrink-0",
                         "transition-all duration-200",
                         "group-hover:scale-125"
                       )}
                     />
-                    <span className="text-textMuted text-sm leading-relaxed group-hover:text-text transition-colors duration-200">
+                    <span className="text-text-muted text-sm leading-relaxed group-hover:text-text transition-colors duration-200">
                       {detail}
                     </span>
                   </li>
                 ))}
               </ul>
 
-              {/* Optional: Add skills used for current role */}
               {exp.current && (
-                <div className="mt-md pt-md border-t border-border/50">
-                  <p className="text-xs text-textDim mb-2">Key Technologies:</p>
+                <div className="mt-6 pt-6 border-t border-border/50">
+                  <p className="text-xs text-text-dim mb-2">
+                    Key Technologies:
+                  </p>
                   <div className="flex flex-wrap gap-1">
                     {[
                       "React",
@@ -127,7 +123,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
                     ].map((tech, i) => (
                       <span
                         key={i}
-                        className="px-2 py-1 text-xs bg-surface border border-border rounded text-textMuted"
+                        className="px-2 py-1 text-xs bg-surface border border-border rounded text-text-muted"
                       >
                         {tech}
                       </span>
