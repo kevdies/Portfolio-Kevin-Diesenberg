@@ -1,11 +1,17 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Icon from "../ui/Icon";
 import { cn } from "../../utils/utils";
 
-const navItems = [
+interface NavItem {
+  id: string;
+  label: string;
+  href: string;
+}
+
+const navItems: NavItem[] = [
   { id: "about", label: "About", href: "#about" },
   { id: "skills", label: "Skills", href: "#skills" },
   {
@@ -23,9 +29,10 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState<string>("");
   const [isScrolled, setIsScrolled] = useState(false);
+  const isNavigating = useRef(false);
 
-  // Smooth scroll function
-  const scrollToSection = useCallback((elementId: string) => {
+  // Smooth scroll function with URL update
+  const scrollToSection = useCallback((elementId: string, updateUrl = true) => {
     const element = document.getElementById(elementId);
     if (element) {
       const yOffset = -80; // Account for sticky navbar height
@@ -36,20 +43,34 @@ const Navbar: React.FC = () => {
         top: y,
         behavior: "smooth",
       });
+
+      // Update URL hash without triggering scroll
+      if (updateUrl && !isNavigating.current) {
+        window.history.pushState(null, "", `#${elementId}`);
+      }
     }
   }, []);
 
-  // Handle navigation
+  // Handle navigation with proper timing
   const handleNav = useCallback(
-    (id: string, href: string) => {
+    async (id: string, href: string) => {
       setIsOpen(false);
 
-      // If we're on the home page, scroll to section
+      // If we're on the home page, just scroll to section
       if (pathname === "/" || pathname === "") {
         scrollToSection(id);
       } else {
-        // If we're on a different page, navigate to home then scroll
-        router.push(`/${href}`);
+        // Set navigation flag to prevent URL updates during navigation
+        isNavigating.current = true;
+
+        // Navigate to home page with hash
+        await router.push(`/${href}`);
+
+        // Wait for navigation and DOM to be ready
+        setTimeout(() => {
+          scrollToSection(id, false); // Don't update URL as router already did
+          isNavigating.current = false;
+        }, 100);
       }
     },
     [pathname, router, scrollToSection]
@@ -61,10 +82,43 @@ const Navbar: React.FC = () => {
     if (pathname === "/" || pathname === "") {
       window.scrollTo({ top: 0, behavior: "smooth" });
       setActive("");
+      // Clear hash from URL
+      window.history.pushState(null, "", window.location.pathname);
     } else {
       router.push("/");
     }
   }, [pathname, router]);
+
+  // Handle initial hash on page load
+  useEffect(() => {
+    if (pathname === "/" || pathname === "") {
+      const hash = window.location.hash.slice(1);
+      if (hash && navItems.some((item) => item.id === hash)) {
+        // Small delay to ensure DOM is ready
+        const timer = setTimeout(() => {
+          scrollToSection(hash, false); // Don't update URL as it already has hash
+          setActive(hash);
+        }, 100);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [pathname, scrollToSection]);
+
+  // Handle browser back/forward with hash changes
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.slice(1);
+      if (hash && navItems.some((item) => item.id === hash)) {
+        scrollToSection(hash, false);
+        setActive(hash);
+      } else if (!hash) {
+        setActive("");
+      }
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, [scrollToSection]);
 
   // Scroll detection for header styling
   useEffect(() => {
@@ -78,22 +132,29 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Intersection Observer for scroll spy (more performant than scroll events)
+  // Intersection Observer for scroll spy
   useEffect(() => {
     if (pathname !== "/" && pathname !== "") return;
 
     const observerOptions = {
       root: null,
-      rootMargin: "-20% 0px -80% 0px", // Trigger when section is 20% visible
+      rootMargin: "-20% 0px -70% 0px", // Adjust for better section detection
       threshold: 0,
     };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      // Don't update during navigation
+      if (isNavigating.current) return;
+
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const id = entry.target.id;
           if (navItems.some((item) => item.id === id)) {
             setActive(id);
+            // Update URL hash during scroll without triggering scroll
+            if (!isNavigating.current) {
+              window.history.replaceState(null, "", `#${id}`);
+            }
           }
         }
       });
@@ -183,7 +244,7 @@ const Navbar: React.FC = () => {
               >
                 {item.label}
               </button>
-              {/* Active underline indicator only */}
+              {/* Active underline indicator */}
               <span
                 className={cn(
                   "absolute -bottom-1 left-1/2 h-0.5 bg-primary rounded-full",
