@@ -75,7 +75,10 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
             >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-sm">
                 <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-1">
+                  <div
+                    className="flex items-start
+                   gap-2 mb-1"
+                  >
                     <h3 className="text-xl font-heading font-semibold text-emphasis">
                       {exp.role}
                     </h3>

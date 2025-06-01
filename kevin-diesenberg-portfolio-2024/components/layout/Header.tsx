@@ -68,11 +68,11 @@ const Navbar: React.FC = () => {
       )}
     >
       <div className="container mx-auto max-w-7xl flex items-center justify-between py-4 px-6">
-        {/* Logo - Enhanced */}
+        {/* Logo - Now using the new header-name class */}
         <button
           onClick={handleLogoClick}
           className={cn(
-            "text-2xl md:text-h1 font-heading font-bold gradient-text",
+            "header-name gradient-text", // Using the new class instead of text-2xl md:text-h1
             "cursor-pointer select-none",
             "transition-all duration-300",
             "hover:scale-105 focus-ring rounded-md px-2 py-1",
@@ -81,7 +81,7 @@ const Navbar: React.FC = () => {
           style={{ textShadow: "0 2px 4px rgba(0,0,0,0.5)" }}
           aria-label="Kevin Diesenberg - Back to top"
         >
-          {`Kevin Diesenberg`}
+          Kevin Diesenberg
         </button>
 
         {/* Desktop Menu - Enhanced */}
@@ -141,10 +141,10 @@ const Navbar: React.FC = () => {
 
           {/* Panel with enhanced styling */}
           <div className="relative flex flex-col h-full bg-background/98 backdrop-blur-sm border-r border-border">
-            {/* Header */}
+            {/* Header - Also updated to use better sizing */}
             <div className="flex justify-between items-center p-6 border-b border-border/50">
               <span className="text-lg font-heading font-semibold gradient-text">
-                {`Navigation`}
+                Navigation
               </span>
               <button
                 onClick={() => setIsOpen(false)}
