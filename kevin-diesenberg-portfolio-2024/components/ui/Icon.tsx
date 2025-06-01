@@ -39,46 +39,61 @@ export type IconName =
   | keyof typeof REACT_ICON_MAP;
 
 export interface IconProps {
-  /** name of the icon to render */
   name: IconName;
-  /** size scale, maps to Tailwind text size classes */
   size?: "sm" | "md" | "lg" | "xl" | "2xl";
-  /** additional classes (e.g., color or hover states) */
   className?: string;
 }
 
+// Updated size mapping for better consistency with your design system
 const sizeClassesMap: Record<Required<IconProps>["size"], string> = {
-  sm: "text-sm", // 14px
-  md: "text-base", // 16px
-  lg: "text-lg", // 18px
-  xl: "text-xl", // 20px
-  "2xl": "text-2xl", // 24px
+  sm: "w-4 h-4", // 16px - more precise than text-sm
+  md: "w-5 h-5", // 20px - more precise than text-base
+  lg: "w-6 h-6", // 24px - more precise than text-lg
+  xl: "w-7 h-7", // 28px - more precise than text-xl
+  "2xl": "w-8 h-8", // 32px - more precise than text-2xl
 };
 
 export const Icon: React.FC<IconProps> = ({ name, size = "md", className }) => {
-  const classes = cn(sizeClassesMap[size], className);
+  const classes = cn(
+    sizeClassesMap[size],
+    "inline-block flex-shrink-0",
+    className
+  );
 
   // Check FontAwesome icons first
   if (name in FONT_AWESOME_MAP) {
     const icon = FONT_AWESOME_MAP[name as keyof typeof FONT_AWESOME_MAP];
-    return <FontAwesomeIcon icon={icon} className={classes} />;
+    return (
+      <FontAwesomeIcon
+        icon={icon}
+        className={classes}
+        aria-hidden="true" // Better accessibility
+      />
+    );
   }
 
   // Check React Icons
   if (name in REACT_ICON_MAP) {
     const RiIcon = REACT_ICON_MAP[name as keyof typeof REACT_ICON_MAP];
-    return <RiIcon className={classes} />;
+    return (
+      <RiIcon
+        className={classes}
+        aria-hidden="true" // Better accessibility
+      />
+    );
   }
 
-  // Fallback - show a warning in development
   if (process.env.NODE_ENV === "development") {
     console.warn(`Icon "${name}" not found in icon maps`);
   }
 
-  // Return a placeholder or null for unknown icons
   return (
-    <span className={cn("inline-block", classes)} aria-hidden="true">
-      ?
+    <span
+      className={cn("inline-flex items-center justify-center", classes)}
+      aria-hidden="true"
+      title={`Missing icon: ${name}`}
+    >
+      <span className="text-xs text-text-dim">?</span>
     </span>
   );
 };

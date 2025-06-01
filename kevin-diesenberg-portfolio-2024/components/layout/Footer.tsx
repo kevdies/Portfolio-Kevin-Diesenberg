@@ -6,27 +6,9 @@ import { cn } from "../../utils/utils";
 
 const quickLinks = [
   { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#professional-projects" },
   { label: "Experience", href: "#experience" },
-  { label: "Connect", href: "#connect" },
-];
-
-const socialLinks = [
-  {
-    name: "LinkedIn",
-    icon: "linkedin" as const,
-    href: "https://linkedin.com/in/kevindiesenberg",
-  },
-  {
-    name: "GitHub",
-    icon: "github" as const,
-    href: "https://github.com/kevdies",
-  },
-  {
-    name: "Email",
-    icon: "email" as const,
-    href: "mailto:kdiesenb@gmail.com",
-  },
 ];
 
 const Footer: React.FC = () => {
@@ -40,101 +22,55 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-surface/50 border-t border-border backdrop-blur-sm">
-      <div className="container mx-auto max-w-7xl px-md py-xl">
-        {/* Main footer content */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-lg mb-lg">
-          {/* Brand/Name */}
+    <footer className="bg-background border-t border-border/20 mt-24">
+      <div className="container mx-auto max-w-7xl px-6 py-8">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">
-            <h3 className="text-xl font-heading font-semibold gradient-text mb-sm">
+            <h3 className="text-lg font-heading font-bold text-text-emphasis mb-2">
               Kevin Diesenberg
             </h3>
-            <p className="text-textMuted text-sm leading-relaxed">
-              Web Developer passionate about building accessible, performant
-              applications that make a difference.
+            <p className="text-sm text-text-muted">
+              © {currentYear} All rights reserved.
             </p>
           </div>
 
-          {/* Quick Navigation */}
-          <div className="text-center">
-            <h4 className="text-sm font-semibold text-emphasis mb-sm uppercase tracking-wide">
-              Quick Links
-            </h4>
-            <nav className="flex flex-wrap justify-center gap-x-md gap-y-xs">
-              {quickLinks.map((link) => (
-                <button
-                  key={link.label}
-                  onClick={() => scrollToSection(link.href)}
-                  className={cn(
-                    "text-sm text-textMuted hover:text-text",
-                    "transition-colors duration-200",
-                    "focus-ring rounded px-1 py-0.5"
-                  )}
-                >
-                  {link.label}
-                </button>
-              ))}
-            </nav>
-          </div>
+          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+            {quickLinks.map((link) => (
+              <button
+                key={link.label}
+                onClick={() => scrollToSection(link.href)}
+                className={cn(
+                  "text-sm text-text-muted hover:text-text",
+                  "transition-colors duration-200",
+                  "focus:outline-none focus:ring-2 focus:ring-primary rounded px-2 py-1"
+                )}
+              >
+                {link.label}
+              </button>
+            ))}
+          </nav>
 
-          {/* Social Links */}
-          <div className="text-center md:text-right">
-            <h4 className="text-sm font-semibold text-emphasis mb-sm uppercase tracking-wide">
-              Connect
-            </h4>
-            <div className="flex justify-center md:justify-end gap-sm">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Connect on ${link.name}`}
-                  className={cn(
-                    "w-8 h-8 rounded-full bg-surface border border-border",
-                    "flex items-center justify-center",
-                    "text-textMuted hover:text-text",
-                    "hover:border-border-hover hover:bg-surface-hover",
-                    "transition-all duration-300",
-                    "hover:-translate-y-0.5 hover:shadow-sm",
-                    "focus-ring"
-                  )}
-                >
-                  <Icon name={link.icon} size="sm" />
-                </a>
-              ))}
-            </div>
+          <div className="flex items-center gap-2 text-text-dim text-sm">
+            <span>Built with</span>
+            <Icon name="heart" size="sm" className="text-red-400" />
+            <span>Next.js & Tailwind</span>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="border-t border-border/50 pt-lg">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-md text-center sm:text-left">
-            <p className="text-textMuted text-sm">
-              {`© ${currentYear} Kevin Diesenberg. All rights reserved.`}
-            </p>
-            <div className="flex items-center gap-2 text-textDim text-sm">
-              <span>{`Built with`}</span>
-              <Icon name="heart" size="sm" className="text-red-400" />
-              <span>{`using Next.js, TypeScript, and Tailwind CSS`}</span>
-            </div>
-          </div>
-
-          {/* Back to top - separate row for better spacing */}
-          <div className="text-center mt-md pt-md border-t border-border/30">
-            <button
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className={cn(
-                "text-sm text-textMuted hover:text-text",
-                "transition-all duration-300",
-                "focus-ring rounded px-3 py-2",
-                "hover:-translate-y-0.5 hover:bg-surface/30"
-              )}
-              aria-label="Back to top"
-            >
-              {`↑ Back to top`}
-            </button>
-          </div>
+        <div className="text-center mt-8 pt-6 border-t border-border/20">
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className={cn(
+              "inline-flex items-center gap-2 text-sm text-text-muted hover:text-text",
+              "transition-all duration-300",
+              "focus:outline-none focus:ring-2 focus:ring-primary rounded px-3 py-2",
+              "hover:-translate-y-1"
+            )}
+            aria-label="Back to top"
+          >
+            <span>↑</span>
+            <span>Back to top</span>
+          </button>
         </div>
       </div>
     </footer>

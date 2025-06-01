@@ -10,85 +10,136 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--color-background)",
-        surface: "var(--color-surface)",
-        "surface-hover": "var(--color-surface-hover)",
-        primary: {
-          DEFAULT: "var(--color-primary)",
-          start: "var(--color-primary-start)",
-          end: "var(--color-primary-end)",
+        background: "#0a0a0a",
+        surface: {
+          DEFAULT: "rgba(255, 255, 255, 0.03)",
+          hover: "rgba(255, 255, 255, 0.05)",
         },
-        text: "var(--color-text)",
-        textMuted: "var(--color-text-muted)",
-        textDim: "var(--color-text-dim)",
-        border: "var(--color-border)",
-        "border-hover": "var(--color-border-hover)",
-      },
-      spacing: {
-        xs: "var(--spacing-xs)",
-        sm: "var(--spacing-sm)",
-        md: "var(--spacing-md)",
-        lg: "var(--spacing-lg)",
-        xl: "var(--spacing-xl)",
-        "2xl": "var(--spacing-2xl)",
-        "3xl": "var(--spacing-3xl)",
-      },
-      borderRadius: {
-        sm: "var(--radius-sm)",
-        md: "var(--radius-md)",
-        lg: "var(--radius-lg)",
-      },
-      boxShadow: {
-        sm: "var(--shadow-sm)",
-        md: "var(--shadow-md)",
-        lg: "var(--shadow-lg)",
-        glow: "var(--shadow-glow)",
-      },
-      backgroundImage: {
-        "gradient-primary":
-          "linear-gradient(135deg, var(--color-primary-start) 0%, var(--color-primary-end) 100%)",
+        primary: {
+          DEFAULT: "#a78bfa",
+          start: "#a78bfa",
+          end: "#c084fc",
+          50: "#faf5ff",
+          100: "#f3e8ff",
+          200: "#e9d5ff",
+          300: "#d8b4fe",
+          400: "#c084fc",
+          500: "#a78bfa",
+          600: "#9333ea",
+          700: "#7c3aed",
+          800: "#6b21a8",
+          900: "#581c87",
+        },
+        text: {
+          DEFAULT: "#e5e7eb",
+          muted: "#9ca3af",
+          dim: "#6b7280",
+          emphasis: "#f9fafb",
+        },
+        border: {
+          DEFAULT: "rgba(255, 255, 255, 0.05)",
+          hover: "rgba(167, 139, 250, 0.2)",
+        },
       },
 
-      // Typography using CSS variables
+      spacing: {
+        xs: "0.5rem", // 8px
+        sm: "1rem", // 16px
+        md: "1.5rem", // 24px
+        lg: "2rem", // 32px
+        xl: "3rem", // 48px
+        "2xl": "4rem", // 64px
+        "3xl": "6rem", // 96px
+      },
+
+      borderRadius: {
+        sm: "0.5rem", // 8px
+        md: "0.75rem", // 12px
+        lg: "1rem", // 16px
+      },
+
+      boxShadow: {
+        sm: "0 2px 8px rgba(0, 0, 0, 0.1)",
+        md: "0 4px 16px rgba(0, 0, 0, 0.15)",
+        lg: "0 8px 32px rgba(0, 0, 0, 0.2)",
+        glow: "0 20px 40px rgba(167, 139, 250, 0.15)",
+      },
+
       fontFamily: {
-        sans: ["var(--font-sans)"],
-        heading: ["var(--font-heading)"],
+        sans: [
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "sans-serif",
+        ],
+        heading: ["Poppins", "system-ui", "sans-serif"],
       },
 
       fontSize: {
-        xs: "var(--text-xs)",
-        sm: "var(--text-sm)",
-        base: "var(--text-base)",
-        lg: "var(--text-lg)",
-        xl: "var(--text-xl)",
-        "2xl": "var(--text-2xl)",
-        "3xl": "var(--text-3xl)",
-        "4xl": "var(--text-4xl)",
-        "5xl": "var(--text-5xl)",
-        // Keep the responsive clamp sizes for specific use cases
+        xs: ["0.75rem", { lineHeight: "1.5" }],
+        sm: ["0.875rem", { lineHeight: "1.5" }],
+        base: ["1rem", { lineHeight: "1.5" }],
+        lg: ["1.125rem", { lineHeight: "1.5" }],
+        xl: ["1.25rem", { lineHeight: "1.4" }],
+        "2xl": ["1.5rem", { lineHeight: "1.3" }],
+        "3xl": ["1.875rem", { lineHeight: "1.25" }],
+        "4xl": ["2.25rem", { lineHeight: "1.2" }],
+        "5xl": ["3rem", { lineHeight: "1.1" }],
+
+        // Custom responsive sizes
         h1: [
           "clamp(2.25rem, 5vw + 1rem, 3.5rem)",
-          { lineHeight: "var(--leading-tight)", letterSpacing: "-0.02em" },
+          { lineHeight: "1.25", letterSpacing: "-0.02em", fontWeight: "700" },
         ],
         h2: [
           "clamp(1.875rem, 4vw + 0.75rem, 2.5rem)",
-          { lineHeight: "var(--leading-tight)", letterSpacing: "-0.02em" },
+          { lineHeight: "1.25", letterSpacing: "-0.02em", fontWeight: "600" },
         ],
-        h3: ["var(--text-xl)", { lineHeight: "var(--leading-snug)" }],
+        "header-name": [
+          "clamp(1.5rem, 3vw + 0.5rem, 2.25rem)",
+          { lineHeight: "1.25", letterSpacing: "-0.015em", fontWeight: "700" },
+        ],
       },
 
       lineHeight: {
-        tight: "var(--leading-tight)",
-        snug: "var(--leading-snug)",
-        normal: "var(--leading-normal)",
-        relaxed: "var(--leading-relaxed)",
+        tight: "1.25",
+        snug: "1.375",
+        normal: "1.5",
+        relaxed: "1.625",
       },
 
       fontWeight: {
-        normal: "var(--font-normal)",
-        medium: "var(--font-medium)",
-        semibold: "var(--font-semibold)",
-        bold: "var(--font-bold)",
+        normal: "400",
+        medium: "500",
+        semibold: "600",
+        bold: "700",
+      },
+
+      backgroundImage: {
+        "gradient-primary": "linear-gradient(135deg, #a78bfa 0%, #c084fc 100%)",
+      },
+
+      animation: {
+        "fade-in": "fadeIn 0.3s ease-in-out",
+        "slide-in-left": "slideInLeft 0.3s ease-out",
+        "scale-in": "scaleIn 0.3s ease-out",
+      },
+
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        slideInLeft: {
+          "0%": { transform: "translateX(-10px)", opacity: "0" },
+          "100%": { transform: "translateX(0)", opacity: "1" },
+        },
+        scaleIn: {
+          "0%": { transform: "scale(0.95)", opacity: "0" },
+          "100%": { transform: "scale(1)", opacity: "1" },
+        },
       },
     },
   },
