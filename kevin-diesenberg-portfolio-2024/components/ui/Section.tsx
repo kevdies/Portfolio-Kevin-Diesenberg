@@ -6,7 +6,6 @@ interface SectionProps {
   title?: string;
   children: React.ReactNode;
   className?: string;
-  spacing?: "sm" | "default" | "lg";
   subtitle?: string;
   /** Whether to show the gradient separator below title */
   showSeparator?: boolean;
@@ -18,23 +17,15 @@ const Section: React.FC<SectionProps> = ({
   subtitle,
   children,
   className,
-  spacing = "default",
   showSeparator = true,
 }) => {
-  const spacingClasses = {
-    sm: "py-12",
-    default: "py-16",
-    lg: "py-24",
-  };
-
   return (
     <section
       id={id}
       className={cn(
-        spacingClasses[spacing],
-        "px-6",
+        "py-8 md:py-12 lg:py-16", // Reduced top/bottom padding with responsive sizing
+        "px-4 sm:px-6", // Reduced horizontal padding, responsive
         "bg-background",
-        // Enhanced background with subtle animation
         "relative overflow-hidden",
         className
       )}
@@ -42,7 +33,7 @@ const Section: React.FC<SectionProps> = ({
       {/* Animated background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-start/5 via-transparent to-primary-end/5 opacity-50" />
 
-      {/* Subtle animated dots pattern (optional) */}
+      {/* Subtle animated dots pattern */}
       <div
         className="absolute inset-0 opacity-[0.02]"
         style={{
@@ -53,11 +44,11 @@ const Section: React.FC<SectionProps> = ({
 
       <div className="container mx-auto max-w-7xl relative">
         {title && (
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 md:mb-12">
             {/* Enhanced title with better animation */}
             <h2
               className={cn(
-                "text-h2 font-heading font-semibold mb-6",
+                "text-h2 font-heading font-semibold mb-4 md:mb-6",
                 "bg-gradient-to-r from-primary-start to-primary-end bg-clip-text text-transparent",
                 "animate-in fade-in slide-in-from-bottom-4 duration-700"
               )}
@@ -69,7 +60,7 @@ const Section: React.FC<SectionProps> = ({
             {showSeparator && (
               <div
                 className={cn(
-                  "w-12 h-0.5 bg-gradient-to-r from-primary-start to-primary-end mx-auto mb-6",
+                  "w-12 h-0.5 bg-gradient-to-r from-primary-start to-primary-end mx-auto mb-4 md:mb-6",
                   "opacity-60 rounded-full shadow-sm",
                   "animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150"
                 )}
