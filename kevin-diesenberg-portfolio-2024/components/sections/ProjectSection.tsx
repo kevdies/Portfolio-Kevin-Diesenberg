@@ -94,21 +94,6 @@ const professionalProjects: ProjectWithUrls[] = [
   },
 ];
 
-// Helper function to get image styling based on orientation
-const getImageClasses = (orientation?: string) => {
-  const baseClasses = "transition-transform duration-300 group-hover:scale-105";
-
-  if (orientation === "portrait") {
-    return cn(baseClasses, "object-contain p-1");
-  }
-  return cn(baseClasses, "object-cover");
-};
-
-// Helper function to get container height based on orientation
-const getContainerHeight = (orientation?: string) => {
-  return orientation === "portrait" ? "h-56" : "h-48";
-};
-
 // Component for rendering project features
 const ProjectFeatures: React.FC<{
   features: string[];
@@ -164,7 +149,7 @@ const ProjectFeatures: React.FC<{
           className={cn(
             "text-xs text-primary hover:text-primary-start",
             "transition-colors duration-200",
-            "focus:outline-none focus:ring-2 focus:ring-primary rounded px-1 py-0.5",
+            "focus:outline-none focus:text-primary rounded px-1 py-0.5",
             "font-medium"
           )}
           aria-label={
@@ -199,7 +184,7 @@ const ProjectActions: React.FC<{
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary"
+              className="inline-flex items-center justify-center focus:outline-none focus:text-primary"
             >
               <Icon name="eye" className="mr-2" size="sm" />
               {label.replace("View ", "")}
@@ -213,20 +198,27 @@ const ProjectActions: React.FC<{
   return (
     <div className="mt-auto">
       <Button
-        asChild
+        asChild={demo !== "#"}
         variant="secondary"
         className="w-full"
         disabled={demo === "#"}
       >
-        <a
-          href={demo!}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary"
-        >
-          <Icon name="play" className="mr-2" size="sm" />
-          {demo === "#" ? "Demo Coming Soon" : "View Demo"}
-        </a>
+        {demo === "#" ? (
+          <span className="inline-flex items-center justify-center opacity-50 cursor-not-allowed">
+            <Icon name="play" className="mr-2" size="sm" />
+            Demo Coming Soon
+          </span>
+        ) : (
+          <a
+            href={demo!}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center focus:outline-none focus:text-primary"
+          >
+            <Icon name="play" className="mr-2" size="sm" />
+            View Demo
+          </a>
+        )}
       </Button>
     </div>
   );
@@ -268,21 +260,33 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {professionalProjects.map((project, index) => (
           <Card key={index} className="flex flex-col h-full group">
-            {/* Project image */}
-            <div
-              className={cn(
-                "relative w-full mb-6 rounded-md overflow-hidden bg-surface-hover",
-                getContainerHeight(project.imageOrientation)
+            {/* Project image - responsive container */}
+            <div className="relative w-full mb-6 rounded-md overflow-hidden bg-surface-hover">
+              {project.imageOrientation === "portrait" ? (
+                // Portrait images: responsive height based on viewport
+                <div className="flex justify-center items-center h-48 sm:h-56 md:h-64 lg:h-72">
+                  <Image
+                    src={project.image}
+                    alt={project.alt}
+                    width={180}
+                    height={360}
+                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 30vw, 20vw"
+                    className="w-auto h-full object-contain p-2"
+                    priority={project.priority}
+                  />
+                </div>
+              ) : (
+                // Landscape images: natural aspect ratio
+                <Image
+                  src={project.image}
+                  alt={project.alt}
+                  width={400}
+                  height={225}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                  priority={project.priority}
+                />
               )}
-            >
-              <Image
-                src={project.image}
-                alt={project.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className={getImageClasses(project.imageOrientation)}
-                priority={project.priority}
-              />
 
               {/* Hover overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

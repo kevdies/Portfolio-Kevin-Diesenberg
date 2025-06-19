@@ -27,7 +27,7 @@ const bootcampProjects: ProjectWithDemo[] = [
   {
     name: "Aweful Skydiving",
     image: awefulLogo,
-    imageOrientation: "landscape", // Future-proofing
+    imageOrientation: "landscape",
     alt: "Aweful Skydiving logo",
     description:
       "Event signup platform for skydivers (React, Rails, PostgreSQL).",
@@ -42,7 +42,7 @@ const bootcampProjects: ProjectWithDemo[] = [
   {
     name: "Trail Share",
     image: trailShareLogo,
-    imageOrientation: "landscape", // Future-proofing
+    imageOrientation: "landscape",
     alt: "Trail Share logo",
     description: "Social network for hikers (React, Rails, PostgreSQL).",
     features: ["RESTful API design", "Auth via bcrypt", "Bootstrap styling"],
@@ -52,7 +52,7 @@ const bootcampProjects: ProjectWithDemo[] = [
   {
     name: "HSTRY",
     image: HSTRYLogo,
-    imageOrientation: "landscape", // Future-proofing
+    imageOrientation: "landscape",
     alt: "HSTRY logo",
     description: "Medical history form aid (React, Rails, PostgreSQL).",
     features: ["Controlled forms", "Accessible markup", "Reactstrap UI"],
@@ -70,19 +70,6 @@ const hobbies = [
   "Mountain Biking",
 ];
 
-const getImageClasses = (orientation?: string) => {
-  const baseClasses = "transition-transform duration-300 group-hover:scale-105";
-
-  if (orientation === "portrait") {
-    return cn(baseClasses, "object-contain p-1");
-  }
-  return cn(baseClasses, "object-cover");
-};
-
-const getContainerHeight = (orientation?: string) => {
-  return orientation === "portrait" ? "h-44" : "h-40"; // Slightly smaller for bootcamp projects
-};
-
 const MoreSection: React.FC<MoreSectionProps> = ({ id = "more" }) => {
   return (
     <Section id={id} title="">
@@ -95,21 +82,18 @@ const MoreSection: React.FC<MoreSectionProps> = ({ id = "more" }) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {bootcampProjects.map((proj, idx) => (
               <Card key={idx} className="flex flex-col group">
-                <div
-                  className={cn(
-                    "relative w-full mb-6 rounded-md overflow-hidden bg-surface border border-border",
-                    getContainerHeight(proj.imageOrientation)
-                  )}
-                >
+                {/* Image container with natural aspect ratio */}
+                <div className="relative w-full mb-6 rounded-md overflow-hidden bg-surface border border-border">
                   <Image
                     src={proj.image}
                     alt={proj.alt}
-                    fill
+                    width={300}
+                    height={150}
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className={getImageClasses(proj.imageOrientation)}
+                    className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                   />
 
-                  {/* Hover overlay (same as professional projects) */}
+                  {/* Hover overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
 
@@ -117,7 +101,6 @@ const MoreSection: React.FC<MoreSectionProps> = ({ id = "more" }) => {
                   {proj.name}
                 </h4>
 
-                {/* Fixed typo: text-text-mutedd → text-text-muted */}
                 <p className="mb-4 text-text-muted text-sm flex-grow">
                   {proj.description}
                 </p>
@@ -125,7 +108,6 @@ const MoreSection: React.FC<MoreSectionProps> = ({ id = "more" }) => {
                 <ul className="mb-6 space-y-2 text-text-muted text-sm">
                   {proj.features.map((f, i) => (
                     <li key={i} className="flex items-start group/item">
-                      {/* Updated gradient dot to use Tailwind */}
                       <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-primary-start to-primary-end mr-2 mt-1.5 flex-shrink-0 transition-all duration-200 group-hover/item:scale-110" />
                       <span className="group-hover/item:text-text transition-colors duration-200">
                         {f}
@@ -140,7 +122,7 @@ const MoreSection: React.FC<MoreSectionProps> = ({ id = "more" }) => {
                       asChild
                       variant="secondary"
                       size="sm"
-                      className="flex-1 focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="flex-1 focus:outline-none focus:text-primary"
                     >
                       <a
                         href={proj.demo}
@@ -156,7 +138,7 @@ const MoreSection: React.FC<MoreSectionProps> = ({ id = "more" }) => {
                     asChild
                     variant="secondary"
                     size="sm"
-                    className="flex-1 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="flex-1 focus:outline-none focus:text-primary"
                   >
                     <a
                       href={proj.github}

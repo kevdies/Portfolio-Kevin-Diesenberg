@@ -214,7 +214,7 @@ const Navbar: React.FC = () => {
             "cursor-pointer select-none",
             "transition-all duration-300",
             "hover:scale-105 hover:text-primary",
-            "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background",
+            "focus:outline-none focus:text-primary",
             "rounded-md px-2 py-1"
           )}
           style={{
@@ -234,10 +234,10 @@ const Navbar: React.FC = () => {
                 onClick={() => handleNav(item.id, item.href)}
                 className={cn(
                   "py-2 px-4 rounded-md transition-all duration-300",
-                  "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1",
+                  "focus:outline-none",
                   active === item.id
                     ? "text-primary font-semibold"
-                    : "text-text-muted hover:text-text font-medium"
+                    : "text-text-muted hover:text-text focus:text-primary font-medium"
                 )}
                 aria-label={`Navigate to ${item.label} section`}
                 aria-current={active === item.id ? "page" : undefined}
@@ -266,7 +266,7 @@ const Navbar: React.FC = () => {
           className={cn(
             "md:hidden p-3 rounded-md transition-all duration-300",
             "hover:bg-surface hover:scale-105",
-            "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1",
+            "focus:outline-none focus:bg-surface",
             "border border-transparent hover:border-border",
             isOpen && "bg-surface border-border-hover"
           )}
@@ -296,7 +296,7 @@ const Navbar: React.FC = () => {
                 <button
                   onClick={() => setIsOpen(false)}
                   aria-label="Close menu"
-                  className="p-2 rounded-md hover:bg-surface transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="p-2 rounded-md hover:bg-surface transition-colors focus:outline-none focus:bg-surface"
                 >
                   <Icon name="times" size="lg" />
                 </button>
@@ -311,10 +311,10 @@ const Navbar: React.FC = () => {
                         onClick={() => handleNav(item.id, item.href)}
                         className={cn(
                           "w-full text-left px-4 py-3 rounded-md transition-all duration-200",
-                          "hover:bg-surface focus:outline-none focus:ring-2 focus:ring-primary",
+                          "hover:bg-surface focus:outline-none focus:bg-surface",
                           active === item.id
                             ? "bg-surface text-primary font-semibold border-l-4 border-primary"
-                            : "text-text-muted hover:text-text"
+                            : "text-text-muted hover:text-text focus:text-primary"
                         )}
                         aria-current={active === item.id ? "page" : undefined}
                       >
