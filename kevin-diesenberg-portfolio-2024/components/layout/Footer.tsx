@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-background border-t border-border/20 mt-24">
+    <footer className="bg-background border-t border-border/20">
       <div className="container mx-auto max-w-7xl px-6 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">

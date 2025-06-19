@@ -44,14 +44,13 @@ const AboutSection: React.FC<AboutSectionProps> = ({ id = "about" }) => {
         {/* Image Column - Fixed for both mobile and desktop */}
         <div className="order-1 md:order-2">
           <div className="relative rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-            {/* Mobile: constrained height with object-cover */}
-            <div className="block md:hidden relative w-full h-64 sm:h-80">
+            {/* Mobile: natural aspect ratio like desktop */}
+            <div className="block md:hidden">
               <Image
                 src={kevHenryArti}
                 alt="Kevin and his dogs on Lake Huron"
                 placeholder="blur"
-                fill
-                className="object-cover"
+                className="w-full h-auto object-cover"
                 sizes="100vw"
                 priority
               />
