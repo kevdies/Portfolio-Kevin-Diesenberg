@@ -45,7 +45,6 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ id = "skills" }) => {
                 "px-4 py-2 text-sm",
                 "transition-all duration-300",
                 "hover:border-border-hover hover:bg-surface-hover",
-                "hover:-translate-y-1 hover:shadow-sm",
                 "focus:outline-none focus:ring-2 focus:ring-primary",
                 "group"
               )}

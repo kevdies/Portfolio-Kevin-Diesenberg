@@ -11,7 +11,6 @@ const Card = React.forwardRef<
       "relative overflow-hidden",
       "bg-surface border border-border rounded-lg",
       "p-8",
-      "transition-all duration-300 hover:-translate-y-1 hover:border-border-hover hover:shadow-glow",
       className
     )}
     {...props}

@@ -82,19 +82,20 @@ const MoreSection: React.FC<MoreSectionProps> = ({ id = "more" }) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {bootcampProjects.map((proj, idx) => (
               <Card key={idx} className="flex flex-col group">
-                {/* Image container with natural aspect ratio */}
-                <div className="relative w-full mb-6 rounded-md overflow-hidden bg-surface border border-border">
-                  <Image
-                    src={proj.image}
-                    alt={proj.alt}
-                    width={300}
-                    height={150}
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* Image container with consistent height */}
+                <div className="relative w-full mb-6 rounded-md overflow-hidden bg-surface-hover">
+                  {/* Fixed height container matching ProjectSection */}
+                  <div className="relative w-full aspect-square">
+                    <Image
+                      src={proj.image}
+                      alt={proj.alt}
+                      fill
+                      placeholder="blur"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-contain p-2"
+                      priority={false}
+                    />
+                  </div>
                 </div>
 
                 <h4 className="text-lg font-heading font-semibold text-text-emphasis mb-4">
