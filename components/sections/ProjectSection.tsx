@@ -9,8 +9,9 @@ import Icon from "../ui/Icon";
 import { cn } from "../../utils/utils";
 import type { Project } from "../../types";
 
-import brgLeaderboard from "@/assets/images/Blue_Ridge_Games_Leaderboard.png";
-import pinUploadModal from "@/assets/images/Pin_Upload_Success_Modal_Mobile.png";
+// import brgLeaderboard from "@/assets/images/Blue_Ridge_Games_Leaderboard.png";
+import brgLeaderboard from "@/assets/images/Dark_Mode_Leaderboard_Mobile.png";
+import pinUploadModal from "@/assets/images/Pin_Upload_Success_Modal.png";
 import newsLetterSignUpCard from "@/assets/images/Newsletter_Sign_Up_Card.png";
 
 interface LeaderboardUrl {
@@ -57,12 +58,12 @@ const professionalProjects: ProjectWithUrls[] = [
         url: "https://www.wsls.com/pinit/blue-ridge-games/leaderboard/",
       },
     ],
-    priority: true,
+    priority: false,
   },
   {
     name: "Pin Upload Success Modal",
     image: pinUploadModal,
-    imageOrientation: "portrait",
+    imageOrientation: "landscape",
     alt: "Mobile view of pin upload success modal",
     description:
       "User-friendly modal to confirm pin uploads, with retry flow and Web Share API (plus clipboard fallback), styled via theming and announced via ARIA live regions.",
@@ -260,33 +261,19 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {professionalProjects.map((project, index) => (
           <Card key={index} className="flex flex-col h-full group">
-            {/* Project image - responsive container */}
+            {/* Project image - optimized for larger display */}
             <div className="relative w-full mb-6 rounded-md overflow-hidden bg-surface-hover">
-              {project.imageOrientation === "portrait" ? (
-                // Portrait images: responsive height based on viewport
-                <div className="flex justify-center items-center h-48 sm:h-56 md:h-64 lg:h-72">
-                  <Image
-                    src={project.image}
-                    alt={project.alt}
-                    width={180}
-                    height={360}
-                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 30vw, 20vw"
-                    className="w-auto h-full object-contain p-2"
-                    priority={project.priority}
-                  />
-                </div>
-              ) : (
-                // Landscape images: natural aspect ratio
+              {/* Taller aspect ratio for better image visibility */}
+              <div className="relative w-full">
                 <Image
                   src={project.image}
                   alt={project.alt}
-                  width={400}
-                  height={225}
+                  placeholder="blur"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="object-contain p-2"
                   priority={project.priority}
                 />
-              )}
+              </div>
 
               {/* Hover overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

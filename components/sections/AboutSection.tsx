@@ -41,35 +41,22 @@ const AboutSection: React.FC<AboutSectionProps> = ({ id = "about" }) => {
           </div>
         </div>
 
-        {/* Image Column - Fixed for both mobile and desktop */}
         <div className="order-1 md:order-2">
-          <div className="relative rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-            {/* Mobile: natural aspect ratio like desktop */}
-            <div className="block md:hidden">
-              <Image
-                src={kevHenryArti}
-                alt="Kevin and his dogs on Lake Huron"
-                placeholder="blur"
-                className="w-full h-auto object-cover"
-                sizes="100vw"
-                priority
-              />
-            </div>
-
-            {/* Desktop: natural aspect ratio */}
-            <div className="hidden md:block">
-              <Image
-                src={kevHenryArti}
-                alt="Kevin and his dogs on Lake Huron"
-                placeholder="blur"
-                className="w-full h-auto object-cover"
-                sizes="50vw"
-                priority
-              />
-            </div>
-
-            {/* Subtle overlay on hover */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
+          <div
+            className="relative rounded-lg overflow-hidden 
+                          aspect-[4/3]      /* mobile ratio */
+ 
+                          w-full"
+          >
+            <Image
+              src={kevHenryArti}
+              alt="Kevin and his dogs on Lake Huron"
+              placeholder="blur"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority
+            />
           </div>
         </div>
       </div>

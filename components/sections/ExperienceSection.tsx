@@ -58,81 +58,74 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
         </p>
       </div>
 
-      <div className="max-w-4xl mx-auto space-y-8 relative">
-        <div className="hidden md:block absolute left-8 top-8 bottom-8 w-0.5 bg-gradient-to-b from-primary-start to-primary-end opacity-30" />
-
+      <div className="max-w-4xl mx-auto space-y-8">
         {experiences.map((exp, idx) => (
-          <div key={idx} className="relative">
-            <div className="hidden md:block absolute left-6 top-6 w-4 h-4 rounded-full bg-gradient-to-r from-primary-start to-primary-end border-4 border-background shadow-glow" />
-
-            <Card
-              className={cn(
-                "md:ml-16 transition-all duration-300",
-                exp.current && "ring-2 ring-primary/20 shadow-glow" // Highlight current role
-              )}
-            >
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
-                <div className="flex-1">
-                  <div className="flex items-start gap-2 mb-1">
-                    <h3 className="text-xl font-heading font-semibold text-text-emphasis">
-                      {exp.role}
-                    </h3>
-                    {exp.current && (
-                      <span className="px-2 py-1 text-xs font-medium bg-gradient-to-r from-primary-start to-primary-end text-white rounded-full">
-                        Current
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-text-muted font-medium">{exp.company}</p>
-                </div>
-                <span className="text-sm text-text-dim mt-2 md:mt-0 font-medium">
-                  {exp.period}
-                </span>
-              </div>
-
-              <ul className="space-y-2">
-                {exp.details.map((detail, i) => (
-                  <li key={i} className="flex items-start group">
-                    <span
-                      className={cn(
-                        "w-1.5 h-1.5 rounded-full bg-gradient-to-r from-primary-start to-primary-end",
-                        "mr-3 mt-2 flex-shrink-0",
-                        "transition-all duration-200",
-                        "group-hover:scale-125"
-                      )}
-                    />
-                    <span className="text-text-muted text-sm leading-relaxed group-hover:text-text transition-colors duration-200">
-                      {detail}
+          <Card
+            key={idx}
+            className={cn(
+              "transition-all duration-300",
+              exp.current && "ring-2 ring-primary/20 shadow-glow" // Highlight current role
+            )}
+          >
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+              <div className="flex-1">
+                <div className="flex items-start gap-2 mb-1">
+                  <h3 className="text-xl font-heading font-semibold text-text-emphasis">
+                    {exp.role}
+                  </h3>
+                  {exp.current && (
+                    <span className="px-2 py-1 text-xs font-medium bg-gradient-to-r from-primary-start to-primary-end text-white rounded-full">
+                      Current
                     </span>
-                  </li>
-                ))}
-              </ul>
-
-              {exp.current && (
-                <div className="mt-6 pt-6 border-t border-border/50">
-                  <p className="text-xs text-text-dim mb-2">
-                    Key Technologies:
-                  </p>
-                  <div className="flex flex-wrap gap-1">
-                    {[
-                      "React",
-                      "TypeScript",
-                      "Styled Components",
-                      "Analytics",
-                      "Accessibility",
-                    ].map((tech, i) => (
-                      <span
-                        key={i}
-                        className="px-2 py-1 text-xs bg-surface border border-border rounded text-text-muted"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                  )}
                 </div>
-              )}
-            </Card>
-          </div>
+                <p className="text-text-muted font-medium">{exp.company}</p>
+              </div>
+              <span className="text-sm text-text-dim mt-2 md:mt-0 font-medium">
+                {exp.period}
+              </span>
+            </div>
+
+            <ul className="space-y-2">
+              {exp.details.map((detail, i) => (
+                <li key={i} className="flex items-start group">
+                  <span
+                    className={cn(
+                      "w-1.5 h-1.5 rounded-full bg-gradient-to-r from-primary-start to-primary-end",
+                      "mr-3 mt-2 flex-shrink-0",
+                      "transition-all duration-200",
+                      "group-hover:scale-125"
+                    )}
+                  />
+                  <span className="text-text-muted text-sm leading-relaxed group-hover:text-text transition-colors duration-200">
+                    {detail}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            {exp.current && (
+              <div className="mt-6 pt-6 border-t border-border/50">
+                <p className="text-xs text-text-dim mb-2">Key Technologies:</p>
+                <div className="flex flex-wrap gap-1">
+                  {[
+                    "React",
+                    "TypeScript",
+                    "Styled Components",
+                    "Analytics",
+                    "Accessibility",
+                  ].map((tech, i) => (
+                    <span
+                      key={i}
+                      className="px-2 py-1 text-xs bg-surface border border-border rounded text-text-muted"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </Card>
         ))}
       </div>
     </Section>
