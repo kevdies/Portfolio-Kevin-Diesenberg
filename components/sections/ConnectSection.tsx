@@ -6,7 +6,6 @@ import { Card, CardHeader, CardContent } from "../ui/Card";
 import Button from "../ui/Button";
 import Icon from "../ui/Icon";
 import { shareResume, RESUME_PATH } from "../../utils/share";
-import { cn } from "../../utils/utils";
 
 const socialLinks = [
   {
