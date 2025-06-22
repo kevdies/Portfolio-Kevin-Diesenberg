@@ -76,14 +76,14 @@ const MoreSection: React.FC<MoreSectionProps> = ({ id = "more" }) => {
       <div className="space-y-12">
         {/* Bootcamp Projects */}
         <div>
-          <h3 className="text-2xl font-heading font-semibold text-text-emphasis text-center mb-8">
+          <h3 className="text-2xl font-['Poppins'] font-semibold text-white text-center mb-8">
             Bootcamp Projects
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {bootcampProjects.map((proj, idx) => (
               <Card key={idx} className="flex flex-col group">
                 {/* Image container with consistent height */}
-                <div className="relative w-full mb-6 rounded-md overflow-hidden bg-surface-hover">
+                <div className="relative w-full mb-6 rounded-md overflow-hidden bg-zinc-700">
                   {/* Fixed height container matching ProjectSection */}
                   <div className="relative w-full aspect-square">
                     <Image
@@ -92,25 +92,25 @@ const MoreSection: React.FC<MoreSectionProps> = ({ id = "more" }) => {
                       fill
                       placeholder="blur"
                       sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-contain p-2"
+                      className="object-contain p-2 rounded-md"
                       priority={false}
                     />
                   </div>
                 </div>
 
-                <h4 className="text-lg font-heading font-semibold text-text-emphasis mb-4">
+                <h4 className="text-lg font-['Poppins'] font-semibold text-white mb-4">
                   {proj.name}
                 </h4>
 
-                <p className="mb-4 text-text-muted text-sm flex-grow">
+                <p className="mb-4 text-gray-400 text-sm flex-grow">
                   {proj.description}
                 </p>
 
-                <ul className="mb-6 space-y-2 text-text-muted text-sm">
+                <ul className="mb-6 space-y-2 text-gray-400 text-sm">
                   {proj.features.map((f, i) => (
                     <li key={i} className="flex items-start group/item">
-                      <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-primary-start to-primary-end mr-2 mt-1.5 flex-shrink-0 transition-all duration-200 group-hover/item:scale-110" />
-                      <span className="group-hover/item:text-text transition-colors duration-200">
+                      <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 mr-2 mt-1.5 flex-shrink-0 transition-all duration-200 group-hover/item:scale-110" />
+                      <span className="group-hover/item:text-gray-200 transition-colors duration-200">
                         {f}
                       </span>
                     </li>
@@ -123,7 +123,7 @@ const MoreSection: React.FC<MoreSectionProps> = ({ id = "more" }) => {
                       asChild
                       variant="secondary"
                       size="sm"
-                      className="flex-1 focus:outline-none focus:text-primary"
+                      className="flex-1 focus:outline-none focus:ring-purple-500"
                     >
                       <a
                         href={proj.demo}
@@ -139,7 +139,7 @@ const MoreSection: React.FC<MoreSectionProps> = ({ id = "more" }) => {
                     asChild
                     variant="secondary"
                     size="sm"
-                    className="flex-1 focus:outline-none focus:text-primary"
+                    className="flex-1 focus:outline-none focus:ring-purple-500"
                   >
                     <a
                       href={proj.github}
@@ -158,7 +158,7 @@ const MoreSection: React.FC<MoreSectionProps> = ({ id = "more" }) => {
 
         {/* Hobbies */}
         <Card className="max-w-3xl mx-auto">
-          <h3 className="text-2xl font-heading font-semibold text-text-emphasis text-center mb-8">
+          <h3 className="text-2xl font-['Poppins'] font-semibold text-white text-center mb-8">
             Hobbies
           </h3>
           <div className="flex flex-wrap justify-center gap-4">
@@ -167,14 +167,14 @@ const MoreSection: React.FC<MoreSectionProps> = ({ id = "more" }) => {
                 key={idx}
                 className={cn(
                   "flex items-center space-x-2 rounded-full",
-                  "bg-surface border border-border",
+                  "bg-zinc-800 border border-zinc-600",
                   "px-6 py-2",
                   "transition-all duration-200",
-                  "hover:border-border-hover hover:bg-surface-hover group"
+                  "hover:bg-zinc-700 hover:border-zinc-500 group"
                 )}
               >
-                <span className="w-2 h-2 rounded-full bg-gradient-to-r from-primary-start to-primary-end transition-transform duration-200 group-hover:scale-110" />
-                <span className="text-text-muted group-hover:text-text transition-colors duration-200">
+                <span className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 transition-transform duration-200 group-hover:scale-110" />
+                <span className="text-gray-400 group-hover:text-gray-200 transition-colors duration-200">
                   {hobby}
                 </span>
               </div>

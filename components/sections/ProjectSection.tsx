@@ -6,10 +6,8 @@ import Section from "../ui/Section";
 import { Card } from "../ui/Card";
 import Button from "../ui/Button";
 import Icon from "../ui/Icon";
-import { cn } from "../../utils/utils";
 import type { Project } from "../../types";
 
-// import brgLeaderboard from "@/assets/images/Blue_Ridge_Games_Leaderboard.png";
 import brgLeaderboard from "@/assets/images/Dark_Mode_Leaderboard_Mobile.png";
 import pinUploadModal from "@/assets/images/Pin_Upload_Success_Modal.png";
 import newsLetterSignUpCard from "@/assets/images/Newsletter_Sign_Up_Card.png";
@@ -22,19 +20,16 @@ interface LeaderboardUrl {
 interface ProjectWithUrls extends Project {
   liveUrls?: LeaderboardUrl[];
   priority?: boolean;
-  imageOrientation?: "landscape" | "portrait" | "square";
 }
 
 export interface ProjectSectionProps {
   id?: string;
 }
 
-// Project data with image orientation metadata
 const professionalProjects: ProjectWithUrls[] = [
   {
     name: "Photo Contest Leaderboard",
     image: brgLeaderboard,
-    imageOrientation: "landscape",
     alt: "Leaderboard UI for photo contests",
     description:
       "This reusable leaderboard powers both the Blue Ridge Games and My Hometown's Best photo contests—displaying real-time user rankings per category with contest-specific rules, accessibility support, and responsive design.",
@@ -50,11 +45,11 @@ const professionalProjects: ProjectWithUrls[] = [
     ],
     liveUrls: [
       {
-        label: "View My Hometown's Best Leaderboard",
+        label: "MHTB Leaderboard",
         url: "https://www.wsls.com/pinit/my-hometowns-best/leaderboard/",
       },
       {
-        label: "View Blue Ridge Games Leaderboard",
+        label: "BRG Leaderboard",
         url: "https://www.wsls.com/pinit/blue-ridge-games/leaderboard/",
       },
     ],
@@ -63,7 +58,6 @@ const professionalProjects: ProjectWithUrls[] = [
   {
     name: "Pin Upload Success Modal",
     image: pinUploadModal,
-    imageOrientation: "landscape",
     alt: "Mobile view of pin upload success modal",
     description:
       "User-friendly modal to confirm pin uploads, with retry flow and Web Share API (plus clipboard fallback), styled via theming and announced via ARIA live regions.",
@@ -80,7 +74,6 @@ const professionalProjects: ProjectWithUrls[] = [
   {
     name: "Newsletter Sign-Up Card",
     image: newsLetterSignUpCard,
-    imageOrientation: "landscape",
     alt: "Newsletter sign-up card embedded in article",
     description:
       "Dynamic sign-up card embedded in side rails and articles, with email regex validation, personalized messages, full screen-reader & keyboard support, and redirects on success.",
@@ -95,7 +88,12 @@ const professionalProjects: ProjectWithUrls[] = [
   },
 ];
 
-// Component for rendering project features
+const FeatureTag: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <span className="inline-block mr-2 mb-2 px-3 py-1 rounded-full bg-zinc-800 border border-zinc-600 text-xs text-gray-200 font-medium transition-colors duration-200 hover:border-zinc-500">
+    {children}
+  </span>
+);
+
 const ProjectFeatures: React.FC<{
   features: string[];
   isExpanded: boolean;
@@ -108,51 +106,19 @@ const ProjectFeatures: React.FC<{
 
   return (
     <div className="mb-6">
-      {/* Always visible features */}
       {visibleFeatures.map((feature, index) => (
-        <span
-          key={index}
-          className={cn(
-            "inline-block mr-2 mb-2",
-            "px-3 py-1 rounded-full",
-            "bg-surface border border-border",
-            "text-xs text-text font-medium",
-            "transition-colors duration-200",
-            "hover:border-border-hover"
-          )}
-        >
-          {feature}
-        </span>
+        <FeatureTag key={index}>{feature}</FeatureTag>
       ))}
 
-      {/* Expandable features */}
       {isExpanded &&
         hiddenFeatures.map((feature, index) => (
-          <span
-            key={index + 2}
-            className={cn(
-              "inline-block mr-2 mb-2",
-              "px-3 py-1 rounded-full",
-              "bg-surface border border-border",
-              "text-xs text-text font-medium",
-              "transition-all duration-200",
-              "animate-fade-in"
-            )}
-          >
-            {feature}
-          </span>
+          <FeatureTag key={`expanded-${index}`}>{feature}</FeatureTag>
         ))}
 
-      {/* Toggle button */}
       {hasMoreFeatures && (
         <button
           onClick={onToggle}
-          className={cn(
-            "text-xs text-primary hover:text-primary-start",
-            "transition-colors duration-200",
-            "focus:outline-none focus:text-primary rounded px-1 py-0.5",
-            "font-medium"
-          )}
+          className="text-xs text-purple-500 hover:text-purple-400 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded px-1 py-0.5 font-medium"
           aria-label={
             isExpanded
               ? `Hide additional features for ${projectName}`
@@ -166,7 +132,6 @@ const ProjectFeatures: React.FC<{
   );
 };
 
-// Component for rendering project actions (buttons)
 const ProjectActions: React.FC<{
   liveUrls?: LeaderboardUrl[];
   demo?: string;
@@ -176,19 +141,14 @@ const ProjectActions: React.FC<{
       <div className="mt-auto space-y-2">
         {liveUrls.map(({ label, url }, index) => (
           <Button
-            key={index}
+            key={url}
             asChild
             variant={index === 0 ? "default" : "secondary"}
-            className={cn("w-full", index === 0 && "font-semibold")}
+            className="w-full"
           >
-            <a
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center focus:outline-none focus:text-primary"
-            >
+            <a href={url} target="_blank" rel="noopener noreferrer">
               <Icon name="eye" className="mr-2" size="sm" />
-              {label.replace("View ", "")}
+              {label}
             </a>
           </Button>
         ))}
@@ -196,26 +156,23 @@ const ProjectActions: React.FC<{
     );
   }
 
+  const isDisabled = demo === "#";
+
   return (
     <div className="mt-auto">
       <Button
-        asChild={demo !== "#"}
+        asChild={!isDisabled}
         variant="secondary"
         className="w-full"
-        disabled={demo === "#"}
+        disabled={isDisabled}
       >
-        {demo === "#" ? (
+        {isDisabled ? (
           <span className="inline-flex items-center justify-center opacity-50 cursor-not-allowed">
             <Icon name="play" className="mr-2" size="sm" />
             Demo Coming Soon
           </span>
         ) : (
-          <a
-            href={demo!}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center focus:outline-none focus:text-primary"
-          >
+          <a href={demo!} target="_blank" rel="noopener noreferrer">
             <Icon name="play" className="mr-2" size="sm" />
             View Demo
           </a>
@@ -225,7 +182,6 @@ const ProjectActions: React.FC<{
   );
 };
 
-// Main component
 const ProjectSection: React.FC<ProjectSectionProps> = ({
   id = "professional-projects",
 }) => {
@@ -234,62 +190,45 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
   );
 
   const toggleFeatures = (projectIndex: number) => {
-    const newExpanded = new Set(expandedProjects);
-    if (newExpanded.has(projectIndex)) {
-      newExpanded.delete(projectIndex);
-    } else {
-      newExpanded.add(projectIndex);
-    }
-    setExpandedProjects(newExpanded);
+    setExpandedProjects((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(projectIndex)) {
+        newSet.delete(projectIndex);
+      } else {
+        newSet.add(projectIndex);
+      }
+      return newSet;
+    });
   };
 
   return (
-    <Section id={id} title="">
-      {/* Section header */}
-      <div className="text-center mb-12">
-        <h2 className="text-h2 font-heading font-semibold bg-gradient-to-r from-primary-start to-primary-end bg-clip-text text-transparent mb-6">
-          Professional Projects
-        </h2>
-        <div className="w-12 h-0.5 bg-gradient-to-r from-primary-start to-primary-end mx-auto mb-8 opacity-60 rounded-full" />
-        <p className="text-lg text-text-muted max-w-2xl mx-auto">
-          Recent work at Graham Media Group, building features for millions of
-          daily users
-        </p>
-      </div>
-
-      {/* Projects grid */}
+    <Section
+      id={id}
+      title="Professional Projects"
+      subtitle="Recent work at Graham Media Group, building features for millions of daily users"
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {professionalProjects.map((project, index) => (
-          <Card key={index} className="flex flex-col h-full group">
-            {/* Project image - optimized for larger display */}
-            <div className="relative w-full mb-6 rounded-md overflow-hidden bg-surface-hover">
-              {/* Taller aspect ratio for better image visibility */}
-              <div className="relative w-full">
-                <Image
-                  src={project.image}
-                  alt={project.alt}
-                  placeholder="blur"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-contain p-2"
-                  priority={project.priority}
-                />
-              </div>
-
-              {/* Hover overlay */}
+          <Card key={project.name} className="flex flex-col h-full group">
+            <div className="relative w-full mb-6 rounded-md overflow-hidden bg-zinc-700">
+              <Image
+                src={project.image}
+                alt={project.alt}
+                placeholder="blur"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-contain p-2 w-full h-auto rounded-md"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
 
-            {/* Project title */}
-            <h3 className="text-xl font-heading font-semibold mb-4 text-text-emphasis">
+            <h3 className="text-xl font-['Poppins'] font-semibold mb-4 text-white">
               {project.name}
             </h3>
 
-            {/* Project description */}
-            <p className="mb-6 flex-grow text-text-muted text-sm leading-relaxed">
+            <p className="mb-6 flex-grow text-gray-400 text-sm leading-relaxed">
               {project.description}
             </p>
 
-            {/* Project features */}
             <ProjectFeatures
               features={project.features}
               isExpanded={expandedProjects.has(index)}
@@ -297,7 +236,6 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
               projectName={project.name}
             />
 
-            {/* Project actions */}
             <ProjectActions liveUrls={project.liveUrls} demo={project.demo} />
           </Card>
         ))}

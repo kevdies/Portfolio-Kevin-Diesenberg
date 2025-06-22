@@ -42,197 +42,81 @@ export interface ConnectSectionProps {
 const ConnectSection: React.FC<ConnectSectionProps> = ({ id = "connect" }) => {
   return (
     <Section id={id} title="">
-      <div className="text-center mb-12">
-        <h2 className="text-h2 font-heading font-semibold bg-gradient-to-r from-primary-start to-primary-end bg-clip-text text-transparent mb-6">
+      <div className="text-center mb-16">
+        <h2 className="text-3xl font-['Poppins'] font-semibold bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent mb-6">
           {`Let's Connect`}
         </h2>
-        <div className="w-12 h-0.5 bg-gradient-to-r from-primary-start to-primary-end mx-auto mb-8 opacity-60 rounded-full" />
       </div>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-          gap: "2rem",
-          maxWidth: "56rem",
-          margin: "0 auto",
-        }}
-      >
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
         {/* Resume Card */}
-        <Card
-          className="group"
-          style={{
-            boxShadow:
-              "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-            transition: "box-shadow 300ms",
-            height: "100%",
-          }}
-        >
+        <Card className="h-full">
           <CardHeader>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "0.75rem",
-                marginBottom: "0.5rem",
-              }}
-            >
-              <div
-                style={{
-                  width: "3rem",
-                  height: "3rem",
-                  borderRadius: "50%",
-                  background:
-                    "linear-gradient(to right, var(--primary-start), var(--primary-end))",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-                  color: "white",
-                }}
-              >
-                <Icon name="download" size="lg" />
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center shadow-md">
+                <Icon name="download" size="lg" className="text-white" />
               </div>
               <div>
-                <h3
-                  style={{
-                    fontSize: "1.25rem",
-                    fontFamily: "var(--font-heading)",
-                    fontWeight: 600,
-                    color: "var(--text-emphasis)",
-                  }}
-                >
-                  {`Resume`}
+                <h3 className="text-xl font-['Poppins'] font-semibold text-white">
+                  Resume
                 </h3>
-                <p style={{ color: "var(--text-muted)", fontSize: "0.875rem" }}>
-                  {`Complete professional background`}
+                <p className="text-gray-400 text-sm">
+                  Complete professional background
                 </p>
               </div>
             </div>
           </CardHeader>
           <CardContent>
-            <div
-              style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
-            >
-              <Button
-                asChild
-                style={{
-                  fontSize: "1rem",
-                  fontWeight: 600,
-                  boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-                  transition: "box-shadow 200ms",
-                }}
-              >
+            <div className="flex flex-col gap-3">
+              <Button asChild className="w-full">
                 <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer">
                   <Icon name="eye" className="mr-2" size="sm" />
-                  {`View Resume`}
+                  View Resume
                 </a>
               </Button>
-              <Button
-                asChild
-                variant="secondary"
-                style={{
-                  boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1)",
-                  transition: "box-shadow 200ms",
-                }}
-              >
+              <Button asChild variant="secondary" className="w-full">
                 <a href={RESUME_PATH} download>
                   <Icon name="download" className="mr-2" size="sm" />
-                  {`Download PDF`}
+                  Download PDF
                 </a>
               </Button>
               <Button
                 onClick={shareResume}
                 variant="secondary"
-                style={{
-                  boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1)",
-                  transition: "box-shadow 200ms",
-                }}
+                className="w-full"
               >
                 <Icon name="share" className="mr-2" size="sm" />
-                {`Share Resume`}
+                Share Resume
               </Button>
             </div>
           </CardContent>
         </Card>
 
         {/* Contact Card */}
-        <Card
-          className="group"
-          style={{
-            boxShadow:
-              "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-            transition: "box-shadow 300ms",
-            height: "100%",
-          }}
-        >
+        <Card className="h-full">
           <CardHeader>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "0.75rem",
-                marginBottom: "0.5rem",
-              }}
-            >
-              <div
-                style={{
-                  width: "3rem",
-                  height: "3rem",
-                  borderRadius: "50%",
-                  background:
-                    "linear-gradient(to right, var(--primary-start), var(--primary-end))",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-                  color: "white",
-                }}
-              >
-                <Icon name="email" size="lg" />
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center shadow-md">
+                <Icon name="email" size="lg" className="text-white" />
               </div>
               <div>
-                <h3
-                  style={{
-                    fontSize: "1.25rem",
-                    fontFamily: "var(--font-heading)",
-                    fontWeight: 600,
-                    color: "var(--text-emphasis)",
-                  }}
-                >
-                  {`Get in Touch`}
+                <h3 className="text-xl font-['Poppins'] font-semibold text-white">
+                  Get in Touch
                 </h3>
-                <p style={{ color: "var(--text-muted)", fontSize: "0.875rem" }}>
-                  {`Currently open to new opportunities`}
+                <p className="text-gray-400 text-sm">
+                  Currently open to new opportunities
                 </p>
               </div>
             </div>
           </CardHeader>
           <CardContent>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.75rem",
-              }}
-            >
+            <div className="flex flex-col gap-3">
               {socialLinks.map((link, index) => (
                 <Button
                   key={link.name}
                   asChild
                   variant={index === 0 ? "default" : "secondary"}
-                  className={cn("justify-start text-left")}
-                  style={{
-                    boxShadow:
-                      index === 0
-                        ? "0 4px 6px -1px rgba(0, 0, 0, 0.1)"
-                        : "0 1px 3px 0 rgba(0, 0, 0, 0.1)",
-                    transition: "all 200ms",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "flex-start",
-                    textAlign: "left",
-                    fontSize: "0.875rem",
-                  }}
+                  className="w-full justify-start"
                 >
                   <a
                     href={link.href}
@@ -241,13 +125,7 @@ const ConnectSection: React.FC<ConnectSectionProps> = ({ id = "connect" }) => {
                     aria-label={`Contact via ${link.name}`}
                   >
                     <Icon name={link.icon} size="sm" className="mr-2" />
-                    <span
-                      style={{
-                        color: index === 0 ? "inherit" : "var(--text-muted)",
-                      }}
-                    >
-                      {link.label}
-                    </span>
+                    {link.label}
                   </a>
                 </Button>
               ))}
