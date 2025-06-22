@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Inter, Poppins } from "next/font/google";
 import Navbar from "../components/layout/Navbar";
@@ -15,7 +15,7 @@ const inter = Inter({
   variable: "--font-sans",
   weight: ["400", "500", "600"],
   display: "swap",
-  adjustFontFallback: true, // Reduces layout shift
+  adjustFontFallback: true,
   preload: true,
 });
 
@@ -24,11 +24,22 @@ const poppins = Poppins({
   variable: "--font-heading",
   weight: ["400", "600", "700"],
   display: "swap",
-  adjustFontFallback: true, // Reduces layout shift
+  adjustFontFallback: true,
   preload: true,
 });
 
 const isProduction = process.env.NODE_ENV === "production";
+
+// Viewport export - separate from metadata
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5, // Allow zooming for accessibility
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#a78bfa" },
+  ],
+};
 
 export const metadata: Metadata = {
   title: "Kevin Diesenberg - Web Developer & Software Engineer",
@@ -60,14 +71,6 @@ export const metadata: Metadata = {
     siteName: "Kevin Diesenberg Portfolio",
     locale: "en_US",
     type: "website",
-    // images: [ // Add when you have OG images
-    //   {
-    //     url: "https://www.kevindiesenberg.com/og-image.jpg",
-    //     width: 1200,
-    //     height: 630,
-    //     alt: "Kevin Diesenberg - Web Developer",
-    //   },
-    // ],
   },
   twitter: {
     card: "summary_large_image",
@@ -75,7 +78,6 @@ export const metadata: Metadata = {
     description:
       "Web Developer passionate about building accessible, performant applications using React, TypeScript, and modern tooling.",
     creator: "@KevinDiesenberg",
-    // images: ["https://www.kevindiesenberg.com/og-image.jpg"], // Add when you have OG images
   },
   robots: isProduction
     ? {
@@ -96,15 +98,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.kevindiesenberg.com",
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5, // Allow zooming for accessibility
-  },
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#a78bfa" },
-  ],
   icons: {
     icon: [
       { url: "/favicon.ico" },

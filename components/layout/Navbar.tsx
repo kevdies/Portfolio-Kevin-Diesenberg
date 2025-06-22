@@ -1,227 +1,106 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import React, { useState, useEffect } from "react";
 import Icon from "../ui/Icon";
 import { cn } from "../../utils/utils";
 
-interface NavItem {
-  id: string;
-  label: string;
-  href: string;
-}
-
-const navItems: NavItem[] = [
-  { id: "about", label: "About", href: "#about" },
-  { id: "skills", label: "Skills", href: "#skills" },
-  {
-    id: "professional-projects",
-    label: "Projects",
-    href: "#professional-projects",
-  },
-  { id: "experience", label: "Experience", href: "#experience" },
-  { id: "connect", label: "Connect", href: "#connect" },
+const navItems = [
+  { id: "about", label: "About" },
+  { id: "skills", label: "Skills" },
+  { id: "professional-projects", label: "Projects" },
+  { id: "experience", label: "Experience" },
+  { id: "connect", label: "Connect" },
 ];
 
 const Navbar: React.FC = () => {
-  const router = useRouter();
-  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [active, setActive] = useState<string>("");
+  const [active, setActive] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
-  const isNavigating = useRef(false);
 
-  // Smooth scroll function with URL update
-  const scrollToSection = useCallback((elementId: string, updateUrl = true) => {
-    const element = document.getElementById(elementId);
-    if (element) {
-      const yOffset = -80; // Account for sticky navbar height
-      const y =
-        element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-
-      window.scrollTo({
-        top: y,
-        behavior: "smooth",
-      });
-
-      // Update URL hash without triggering scroll
-      if (updateUrl && !isNavigating.current) {
-        window.history.pushState(null, "", `#${elementId}`);
-      }
-    }
-  }, []);
-
-  // Handle navigation with proper timing
-  const handleNav = useCallback(
-    async (id: string, href: string) => {
-      setIsOpen(false);
-
-      // If we're on the home page, just scroll to section
-      if (pathname === "/" || pathname === "") {
-        scrollToSection(id);
-      } else {
-        // Set navigation flag to prevent URL updates during navigation
-        isNavigating.current = true;
-
-        // Navigate to home page with hash
-        await router.push(`/${href}`);
-
-        // Wait for navigation and DOM to be ready
-        setTimeout(() => {
-          scrollToSection(id, false); // Don't update URL as router already did
-          isNavigating.current = false;
-        }, 100);
-      }
-    },
-    [pathname, router, scrollToSection]
-  );
-
-  // Handle logo click
-  const handleLogoClick = useCallback(() => {
+  // Handle navigation
+  const handleNav = (id: string) => {
     setIsOpen(false);
-    if (pathname === "/" || pathname === "") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      setActive("");
-      // Clear hash from URL
-      window.history.pushState(null, "", window.location.pathname);
-    } else {
-      router.push("/");
+    const element = document.getElementById(id);
+    if (element) {
+      const yOffset = -80;
+      const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
     }
-  }, [pathname, router]);
+  };
 
-  // Handle initial hash on page load
-  useEffect(() => {
-    if (pathname === "/" || pathname === "") {
-      const hash = window.location.hash.slice(1);
-      if (hash && navItems.some((item) => item.id === hash)) {
-        // Small delay to ensure DOM is ready
-        const timer = setTimeout(() => {
-          scrollToSection(hash, false); // Don't update URL as it already has hash
-          setActive(hash);
-        }, 100);
-        return () => clearTimeout(timer);
-      }
-    }
-  }, [pathname, scrollToSection]);
-
-  // Handle browser back/forward with hash changes
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.slice(1);
-      if (hash && navItems.some((item) => item.id === hash)) {
-        scrollToSection(hash, false);
-        setActive(hash);
-      } else if (!hash) {
-        setActive("");
-      }
-    };
-
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
-  }, [scrollToSection]);
-
-  // Scroll detection for header styling
+  // Scroll detection
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-    };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // Initial check
+      // Get all sections with their positions
+      const sectionPositions = navItems
+        .map((item) => {
+          const element = document.getElementById(item.id);
+          if (!element) return null;
+          const rect = element.getBoundingClientRect();
+          return {
+            id: item.id,
+            top: rect.top,
+            bottom: rect.bottom,
+          };
+        })
+        .filter(Boolean);
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+      // Find the section that's currently in view
+      // Check from bottom to top to prioritize lower sections when multiple are visible
+      let currentSection = "";
 
-  // Intersection Observer for scroll spy
-  useEffect(() => {
-    if (pathname !== "/" && pathname !== "") return;
+      for (let i = sectionPositions.length - 1; i >= 0; i--) {
+        const section = sectionPositions[i];
+        if (!section) continue;
 
-    const observerOptions = {
-      root: null,
-      rootMargin: "-20% 0px -70% 0px", // Adjust for better section detection
-      threshold: 0,
-    };
+        // Section is active if its top is above viewport center
+        // or if it's the last section and we're near bottom of page
+        const isLastSection = i === sectionPositions.length - 1;
+        const nearBottom =
+          window.innerHeight + window.scrollY >=
+          document.body.offsetHeight - 100;
 
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      // Don't update during navigation
-      if (isNavigating.current) return;
-
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          if (navItems.some((item) => item.id === id)) {
-            setActive(id);
-            // Update URL hash during scroll without triggering scroll
-            if (!isNavigating.current) {
-              window.history.replaceState(null, "", `#${id}`);
-            }
-          }
+        if (
+          section.top <= window.innerHeight / 2 ||
+          (isLastSection && nearBottom)
+        ) {
+          currentSection = section.id;
+          break;
         }
-      });
-    };
+      }
 
-    const observer = new IntersectionObserver(
-      observerCallback,
-      observerOptions
-    );
-
-    // Observe all sections
-    navItems.forEach(({ id }) => {
-      const element = document.getElementById(id);
-      if (element) observer.observe(element);
-    });
-
-    return () => observer.disconnect();
-  }, [pathname]);
-
-  // Handle escape key and body scroll lock
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
-        setIsOpen(false);
+      if (currentSection) {
+        setActive(currentSection);
       }
     };
 
-    if (isOpen) {
-      document.addEventListener("keydown", handleEscape);
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check initial position
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-    return () => {
-      document.removeEventListener("keydown", handleEscape);
-      document.body.style.overflow = "unset";
-    };
-  }, [isOpen]);
+  // No body scroll lock needed - mobile menu is fixed position anyway
 
   return (
     <nav
       className={cn(
         "sticky top-0 z-50 transition-all duration-300",
-        "border-b border-border",
+        "border-b",
         isScrolled
           ? "bg-background/95 backdrop-blur-md shadow-lg border-border-hover"
-          : "bg-background/90 backdrop-blur-sm"
+          : "bg-background/90 backdrop-blur-sm border-border"
       )}
     >
       <div className="container mx-auto max-w-7xl flex items-center justify-between py-4 px-6">
         {/* Logo */}
         <button
-          onClick={handleLogoClick}
-          className={cn(
-            "font-heading font-bold text-text-emphasis",
-            "cursor-pointer select-none",
-            "transition-all duration-300",
-            "hover:scale-105 hover:text-primary",
-            "focus:outline-none focus:text-primary",
-            "rounded-md px-2 py-1"
-          )}
-          style={{
-            fontSize: "clamp(1.5rem, 3vw + 0.5rem, 2.25rem)",
-            textShadow: "0 1px 2px rgba(0,0,0,0.3)",
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            setActive("");
           }}
-          aria-label="Kevin Diesenberg - Back to top"
+          className="text-md md:text-l font-heading font-bold text-text-emphasis hover:text-primary transition-colors"
         >
           Kevin Diesenberg
         </button>
@@ -229,109 +108,72 @@ const Navbar: React.FC = () => {
         {/* Desktop Menu */}
         <ul className="hidden md:flex items-center space-x-1">
           {navItems.map((item) => (
-            <li key={item.id} className="relative">
+            <li key={item.id}>
               <button
-                onClick={() => handleNav(item.id, item.href)}
+                onClick={() => handleNav(item.id)}
                 className={cn(
-                  "py-2 px-4 rounded-md transition-all duration-300",
-                  "focus:outline-none",
+                  "py-2 px-4 rounded-md transition-colors",
                   active === item.id
                     ? "text-primary font-semibold"
-                    : "text-text-muted hover:text-text focus:text-primary font-medium"
+                    : "text-text-muted hover:text-text"
                 )}
-                aria-label={`Navigate to ${item.label} section`}
-                aria-current={active === item.id ? "page" : undefined}
               >
                 {item.label}
               </button>
-              {/* Active underline indicator */}
-              <span
-                className={cn(
-                  "absolute -bottom-1 left-1/2 h-0.5 bg-primary rounded-full",
-                  "transition-all duration-300 ease-out",
-                  active === item.id
-                    ? "w-4/5 opacity-100 -translate-x-1/2 shadow-sm shadow-primary/50"
-                    : "w-0 opacity-0 -translate-x-1/2"
-                )}
-              />
             </li>
           ))}
         </ul>
 
         {/* Mobile Toggle */}
         <button
-          onClick={() => setIsOpen((prev) => !prev)}
-          aria-label={isOpen ? "Close menu" : "Open menu"}
-          aria-expanded={isOpen}
-          className={cn(
-            "md:hidden p-3 rounded-md transition-all duration-300",
-            "hover:bg-surface hover:scale-105",
-            "focus:outline-none focus:bg-surface",
-            "border border-transparent hover:border-border",
-            isOpen && "bg-surface border-border-hover"
-          )}
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden p-2 rounded-md hover:bg-surface"
         >
           <Icon name={isOpen ? "times" : "bars"} size="lg" />
         </button>
       </div>
 
-      {/* Mobile Overlay */}
+      {/* Mobile Menu */}
       {isOpen && (
         <>
-          {/* Backdrop */}
+          {/* Backdrop with proper z-index */}
           <div
-            className="fixed inset-0 z-40 bg-black/50 md:hidden"
-            aria-hidden="true"
+            className="fixed inset-0 bg-black/50 md:hidden z-40"
             onClick={() => setIsOpen(false)}
           />
-
-          {/* Mobile Menu Panel */}
-          <div className="fixed top-0 right-0 z-50 h-full w-80 max-w-[85vw] md:hidden">
-            <div className="flex h-full flex-col bg-background border-l border-border shadow-xl">
-              {/* Header */}
-              <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-background">
-                <span className="text-lg font-heading font-semibold text-text-emphasis">
-                  Menu
-                </span>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  aria-label="Close menu"
-                  className="p-2 rounded-md hover:bg-surface transition-colors focus:outline-none focus:bg-surface"
-                >
-                  <Icon name="times" size="lg" />
-                </button>
-              </div>
-
-              {/* Navigation Links */}
-              <nav className="flex-1 px-6 py-6 bg-background">
-                <ul className="space-y-2">
-                  {navItems.map((item) => (
-                    <li key={item.id}>
-                      <button
-                        onClick={() => handleNav(item.id, item.href)}
-                        className={cn(
-                          "w-full text-left px-4 py-3 rounded-md transition-all duration-200",
-                          "hover:bg-surface focus:outline-none focus:bg-surface",
-                          active === item.id
-                            ? "bg-surface text-primary font-semibold border-l-4 border-primary"
-                            : "text-text-muted hover:text-text focus:text-primary"
-                        )}
-                        aria-current={active === item.id ? "page" : undefined}
-                      >
-                        {item.label}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-
-              {/* Footer */}
-              <div className="px-6 py-4 border-t border-border bg-background">
-                <p className="text-xs text-text-dim text-center">
-                  © 2024 Kevin Diesenberg
-                </p>
-              </div>
+          {/* Menu panel with higher z-index and solid background */}
+          <div className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-background border-l border-border shadow-xl md:hidden z-50">
+            <div className="flex items-center justify-between p-6 border-b border-border bg-background">
+              <span className="text-lg font-heading font-semibold text-text-emphasis">
+                Menu
+              </span>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="p-2 rounded-md hover:bg-surface"
+              >
+                <Icon name="times" size="lg" />
+              </button>
             </div>
+            <nav className="p-6 bg-background">
+              <ul className="space-y-2">
+                {navItems.map((item) => (
+                  <li key={item.id}>
+                    <button
+                      onClick={() => handleNav(item.id)}
+                      className={cn(
+                        "w-full text-left px-4 py-3 rounded-md",
+                        "hover:bg-surface transition-colors",
+                        active === item.id
+                          ? "bg-surface text-primary font-semibold"
+                          : "text-text-muted hover:text-text"
+                      )}
+                    >
+                      {item.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
         </>
       )}
