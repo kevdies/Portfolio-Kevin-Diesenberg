@@ -24,6 +24,7 @@ const Section: React.FC<SectionProps> = ({
         "px-4 sm:px-6", // Reduced horizontal padding, responsive
         "bg-black",
         "relative overflow-hidden",
+        "scroll-mt-[64px]",
         className
       )}
     >

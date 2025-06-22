@@ -3,53 +3,51 @@
 import React from "react";
 import Icon from "../ui/Icon";
 import { cn } from "../../utils/utils";
+import { useScrollSpy } from "@/hooks/useScrollSpy";
 
-const quickLinks = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#professional-projects" },
-  { label: "Experience", href: "#experience" },
-];
+const navItems = [
+  { id: "about", label: "About" },
+  { id: "skills", label: "Skills" },
+  { id: "professional-projects", label: "Projects" },
+  { id: "experience", label: "Experience" },
+  { id: "connect", label: "Connect" },
+] as const;
 
-const Footer: React.FC = () => {
-  const currentYear = new Date().getFullYear();
-
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+export default function Footer() {
+  const year = new Date().getFullYear();
+  const { activeSection, navigateTo } = useScrollSpy();
 
   return (
-    <footer className="bg-black border-t border-zinc-600/20">
-      <div className="container mx-auto max-w-7xl px-6 py-8">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+    <footer className="bg-black border-t border-zinc-600/20 pt-8">
+      <div className="container mx-auto max-w-7xl px-6">
+        <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
+          {/* Branding */}
           <div className="text-center md:text-left">
-            <h3 className="text-lg font-['Poppins'] font-bold text-white mb-2">
-              Kevin Diesenberg
-            </h3>
+            <h3 className="text-lg font-bold text-white">Kevin Diesenberg</h3>
             <p className="text-sm text-gray-400">
-              © {currentYear} All rights reserved.
+              © {year} All rights reserved.
             </p>
           </div>
 
-          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-            {quickLinks.map((link) => (
+          {/* Shrunken nav: no wrap, tight gap, xs text */}
+          <nav className="flex flex-nowrap justify-center gap-2 text-xs">
+            {navItems.map((item) => (
               <button
-                key={link.label}
-                onClick={() => scrollToSection(link.href)}
+                key={item.id}
+                onClick={() => navigateTo(item.id)}
                 className={cn(
-                  "text-sm text-gray-400 hover:text-gray-200",
-                  "transition-colors duration-200",
-                  "focus:outline-none focus:ring-2 focus:ring-purple-500 rounded px-2 py-1"
+                  "px-2 py-1 rounded",
+                  activeSection === item.id
+                    ? "text-purple-500 bg-purple-500/20 font-semibold"
+                    : "text-gray-400 hover:text-gray-200"
                 )}
               >
-                {link.label}
+                {item.label}
               </button>
             ))}
           </nav>
 
+          {/* Built With */}
           <div className="flex items-center gap-2 text-gray-500 text-sm">
             <span>Built with</span>
             <Icon name="heart" size="sm" className="text-red-400" />
@@ -57,24 +55,16 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="text-center mt-8 pt-6 border-t border-zinc-600/20">
+        {/* Back to top */}
+        <div className="text-center mt-8 pb-8">
           <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className={cn(
-              "inline-flex items-center gap-2 text-sm text-gray-400 hover:text-gray-200",
-              "transition-all duration-300",
-              "focus:outline-none focus:ring-2 focus:ring-purple-500 rounded px-3 py-2",
-              "hover:-translate-y-1"
-            )}
-            aria-label="Back to top"
+            onClick={() => navigateTo("about")}
+            className="inline-flex items-center gap-2 text-sm hover:-translate-y-1"
           >
-            <span>↑</span>
-            <span>Back to top</span>
+            <span>↑</span> Back to top
           </button>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}
