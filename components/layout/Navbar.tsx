@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Icon from "../ui/Icon";
 import { cn } from "../../utils/utils";
 
@@ -10,97 +10,131 @@ const navItems = [
   { id: "professional-projects", label: "Projects" },
   { id: "experience", label: "Experience" },
   { id: "connect", label: "Connect" },
-];
+] as const;
+
+const SCROLL_THRESHOLD = 20;
+const NAVBAR_OFFSET = -80;
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Handle navigation
-  const handleNav = (id: string) => {
-    setIsOpen(false);
+  // Smooth scroll to section
+  const scrollToSection = useCallback((id: string) => {
     const element = document.getElementById(id);
-    if (element) {
-      const yOffset = -80;
-      const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
-      window.scrollTo({ top: y, behavior: "smooth" });
-    }
-  };
+    if (!element) return;
 
-  // Scroll detection
+    const y =
+      element.getBoundingClientRect().top + window.scrollY + NAVBAR_OFFSET;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  }, []);
+
+  // Handle navigation click
+  const handleNavClick = useCallback(
+    (id: string) => {
+      setIsOpen(false);
+      scrollToSection(id);
+    },
+    [scrollToSection]
+  );
+
+  // Handle logo click
+  const handleLogoClick = useCallback(() => {
+    setActive("");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  // Close mobile menu on escape key
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
 
-      // Get all sections with their positions
+    if (isOpen) {
+      document.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+
+  // Optimized scroll detection with map instead of loops
+  useEffect(() => {
+    let ticking = false;
+
+    const updateScrollState = () => {
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > SCROLL_THRESHOLD);
+
+      // Get section positions using map
       const sectionPositions = navItems
-        .map((item) => {
+        .map((item, index) => {
           const element = document.getElementById(item.id);
           if (!element) return null;
+
           const rect = element.getBoundingClientRect();
           return {
             id: item.id,
+            index,
             top: rect.top,
-            bottom: rect.bottom,
+            isVisible: rect.top <= window.innerHeight / 2,
           };
         })
         .filter(Boolean);
 
-      // Find the section that's currently in view
-      // Check from bottom to top to prioritize lower sections when multiple are visible
-      let currentSection = "";
+      // Find active section using map/find instead of loop
+      const viewportCenter = window.innerHeight / 2;
+      const isNearBottom =
+        window.innerHeight + scrollY >= document.body.offsetHeight - 100;
 
-      for (let i = sectionPositions.length - 1; i >= 0; i--) {
-        const section = sectionPositions[i];
-        if (!section) continue;
+      // Check from bottom to top by reversing
+      const activeSection = sectionPositions.reverse().find((section) => {
+        if (!section) return false;
+        const isLastSection = section.index === navItems.length - 1;
+        return section.top <= viewportCenter || (isLastSection && isNearBottom);
+      });
 
-        // Section is active if its top is above viewport center
-        // or if it's the last section and we're near bottom of page
-        const isLastSection = i === sectionPositions.length - 1;
-        const nearBottom =
-          window.innerHeight + window.scrollY >=
-          document.body.offsetHeight - 100;
+      const currentSection = activeSection?.id || "";
 
-        if (
-          section.top <= window.innerHeight / 2 ||
-          (isLastSection && nearBottom)
-        ) {
-          currentSection = section.id;
-          break;
-        }
+      if (currentSection !== active) {
+        setActive(currentSection);
       }
 
-      if (currentSection) {
-        setActive(currentSection);
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateScrollState);
+        ticking = true;
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Check initial position
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    updateScrollState();
 
-  // No body scroll lock needed - mobile menu is fixed position anyway
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [active]);
 
   return (
     <nav
       className={cn(
-        "sticky top-0 z-50 transition-all duration-300",
-        "border-b",
+        "sticky top-0 z-50 transition-all duration-300 border-b",
         isScrolled
-          ? "bg-background/95 backdrop-blur-md shadow-lg border-border-hover"
-          : "bg-background/90 backdrop-blur-sm border-border"
+          ? "bg-black/95 backdrop-blur-md shadow-lg border-zinc-600"
+          : "bg-black/90 backdrop-blur-sm border-zinc-700"
       )}
     >
       <div className="container mx-auto max-w-7xl flex items-center justify-between py-4 px-6">
         {/* Logo */}
         <button
-          onClick={() => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-            setActive("");
-          }}
-          className="text-md md:text-l font-heading font-bold text-text-emphasis hover:text-primary transition-colors"
+          onClick={handleLogoClick}
+          className="text-lg md:text-xl font-['Poppins'] font-bold text-white hover:text-purple-500 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 rounded-md px-2 py-1"
+          aria-label="Go to top of page"
         >
           Kevin Diesenberg
         </button>
@@ -110,12 +144,12 @@ const Navbar: React.FC = () => {
           {navItems.map((item) => (
             <li key={item.id}>
               <button
-                onClick={() => handleNav(item.id)}
+                onClick={() => handleNavClick(item.id)}
                 className={cn(
-                  "py-2 px-4 rounded-md transition-colors",
+                  "py-2 px-4 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500",
                   active === item.id
-                    ? "text-primary font-semibold"
-                    : "text-text-muted hover:text-text"
+                    ? "text-purple-500 font-semibold bg-purple-500/10"
+                    : "text-gray-400 hover:text-gray-200 hover:bg-zinc-800/50"
                 )}
               >
                 {item.label}
@@ -127,7 +161,9 @@ const Navbar: React.FC = () => {
         {/* Mobile Toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2 rounded-md hover:bg-surface"
+          className="md:hidden p-2 rounded-md hover:bg-zinc-800 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500"
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
         >
           <Icon name={isOpen ? "times" : "bars"} size="lg" />
         </button>
@@ -136,36 +172,36 @@ const Navbar: React.FC = () => {
       {/* Mobile Menu */}
       {isOpen && (
         <>
-          {/* Backdrop with proper z-index */}
           <div
             className="fixed inset-0 bg-black/50 md:hidden z-40"
             onClick={() => setIsOpen(false)}
           />
-          {/* Menu panel with higher z-index and solid background */}
-          <div className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-background border-l border-border shadow-xl md:hidden z-50">
-            <div className="flex items-center justify-between p-6 border-b border-border bg-background">
-              <span className="text-lg font-heading font-semibold text-text-emphasis">
+
+          <div className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-black border-l border-zinc-600 shadow-xl md:hidden z-50">
+            <div className="flex items-center justify-between p-6 border-b border-zinc-600">
+              <span className="text-lg font-['Poppins'] font-semibold text-white">
                 Menu
               </span>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-2 rounded-md hover:bg-surface"
+                className="p-2 rounded-md hover:bg-zinc-800 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500"
+                aria-label="Close menu"
               >
                 <Icon name="times" size="lg" />
               </button>
             </div>
-            <nav className="p-6 bg-background">
+
+            <nav className="p-6">
               <ul className="space-y-2">
                 {navItems.map((item) => (
                   <li key={item.id}>
                     <button
-                      onClick={() => handleNav(item.id)}
+                      onClick={() => handleNavClick(item.id)}
                       className={cn(
-                        "w-full text-left px-4 py-3 rounded-md",
-                        "hover:bg-surface transition-colors",
+                        "w-full text-left px-4 py-3 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500",
                         active === item.id
-                          ? "bg-surface text-primary font-semibold"
-                          : "text-text-muted hover:text-text"
+                          ? "bg-zinc-800 text-purple-500 font-semibold"
+                          : "text-gray-400 hover:text-gray-200 hover:bg-zinc-800"
                       )}
                     >
                       {item.label}

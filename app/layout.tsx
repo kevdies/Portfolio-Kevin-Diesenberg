@@ -31,14 +31,13 @@ const poppins = Poppins({
 
 const isProduction = process.env.NODE_ENV === "production";
 
-// Viewport export - separate from metadata
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 5, // Allow zooming for accessibility
+  maximumScale: 5,
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#a78bfa" },
+    { media: "(prefers-color-scheme: dark)", color: "#a855f7" },
   ],
 };
 
@@ -117,7 +116,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
-      <body className="bg-background text-text antialiased">
+      <body className="bg-black text-gray-200 antialiased">
         <StructuredData />
         <Navbar />
         <main id="main-content" className="min-h-screen">

@@ -22,14 +22,14 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-background border-t border-border/20">
+    <footer className="bg-black border-t border-zinc-600/20">
       <div className="container mx-auto max-w-7xl px-6 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">
-            <h3 className="text-lg font-heading font-bold text-text-emphasis mb-2">
+            <h3 className="text-lg font-['Poppins'] font-bold text-white mb-2">
               Kevin Diesenberg
             </h3>
-            <p className="text-sm text-text-muted">
+            <p className="text-sm text-gray-400">
               © {currentYear} All rights reserved.
             </p>
           </div>
@@ -40,9 +40,9 @@ const Footer: React.FC = () => {
                 key={link.label}
                 onClick={() => scrollToSection(link.href)}
                 className={cn(
-                  "text-sm text-text-muted hover:text-text",
+                  "text-sm text-gray-400 hover:text-gray-200",
                   "transition-colors duration-200",
-                  "focus:outline-none focus:ring-2 focus:ring-primary rounded px-2 py-1"
+                  "focus:outline-none focus:ring-2 focus:ring-purple-500 rounded px-2 py-1"
                 )}
               >
                 {link.label}
@@ -50,20 +50,20 @@ const Footer: React.FC = () => {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2 text-text-dim text-sm">
+          <div className="flex items-center gap-2 text-gray-500 text-sm">
             <span>Built with</span>
             <Icon name="heart" size="sm" className="text-red-400" />
             <span>Next.js & Tailwind</span>
           </div>
         </div>
 
-        <div className="text-center mt-8 pt-6 border-t border-border/20">
+        <div className="text-center mt-8 pt-6 border-t border-zinc-600/20">
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className={cn(
-              "inline-flex items-center gap-2 text-sm text-text-muted hover:text-text",
+              "inline-flex items-center gap-2 text-sm text-gray-400 hover:text-gray-200",
               "transition-all duration-300",
-              "focus:outline-none focus:ring-2 focus:ring-primary rounded px-3 py-2",
+              "focus:outline-none focus:ring-2 focus:ring-purple-500 rounded px-3 py-2",
               "hover:-translate-y-1"
             )}
             aria-label="Back to top"

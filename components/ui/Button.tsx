@@ -4,16 +4,16 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../utils/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-md text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center rounded-md text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         default:
-          "bg-gradient-to-r from-primary-start to-primary-end text-white hover:opacity-90 hover:shadow-lg shadow-md",
+          "bg-gradient-to-r from-purple-500 to-purple-600 text-white hover:opacity-90 hover:shadow-lg shadow-md",
         secondary:
-          "bg-surface border border-border text-text hover:bg-surface-hover hover:border-border-hover shadow-sm hover:shadow-md",
-        ghost: "bg-transparent text-text hover:bg-surface",
-        link: "underline-offset-4 hover:underline text-primary",
+          "bg-zinc-800 border border-zinc-600 text-gray-200 hover:bg-zinc-700 hover:border-zinc-500 shadow-sm hover:shadow-md",
+        ghost: "bg-transparent text-gray-200 hover:bg-zinc-800",
+        link: "underline-offset-4 hover:underline text-purple-500",
       },
       size: {
         default: "h-10 px-6 py-2",

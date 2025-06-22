@@ -93,7 +93,7 @@ export const Icon: React.FC<IconProps> = ({ name, size = "md", className }) => {
       aria-hidden="true"
       title={`Missing icon: ${name}`}
     >
-      <span className="text-xs text-text-dim">?</span>
+      <span className="text-xs text-gray-500">?</span>
     </span>
   );
 };
