@@ -117,13 +117,13 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body className="bg-black text-gray-200 antialiased">
         <StructuredData />
+        <Analytics />
+        <SpeedInsights />
         <Navbar />
         <main id="main-content" className="min-h-screen">
           {children}
         </main>
         <Footer />
-        <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );
