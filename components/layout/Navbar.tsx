@@ -3,6 +3,8 @@ import React from "react";
 import Icon from "../ui/Icon";
 import { cn } from "../../utils/utils";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
+import FocusTrap from "focus-trap-react";
+import { CSSTransition } from "react-transition-group";
 
 const navItems = [
   { id: "about", label: "About" },
@@ -12,9 +14,47 @@ const navItems = [
   { id: "connect", label: "Connect" },
 ] as const;
 
+type NavItem = typeof navItems[number];
+
+interface NavLinkProps {
+  item: NavItem;
+  activeSection: string | null;
+  isMobile?: boolean;
+  onClick: (id: NavItem["id"]) => void;
+}
+
+function NavLink({ item, activeSection, isMobile, onClick }: NavLinkProps) {
+  const baseClasses = "rounded transition-colors duration-200";
+  const desktopClasses = "py-2 px-4";
+  const mobileClasses = "text-2xl py-4";
+
+  const activeClasses = "text-purple-400";
+  const inactiveClasses = "text-gray-200 hover:text-purple-400";
+
+  return (
+    <button
+      onClick={() => onClick(item.id)}
+      className={cn(
+        baseClasses,
+        isMobile ? mobileClasses : desktopClasses,
+        activeSection === item.id ? activeClasses : inactiveClasses
+      )}
+    >
+      {item.label}
+    </button>
+  );
+}
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
   const { activeSection, navigateTo } = useScrollSpy();
+
+  const handleLinkClick = (id: NavItem["id"]) => {
+    navigateTo(id);
+    if (isOpen) {
+      setIsOpen(false);
+    }
+  };
 
   return (
     <nav className="sticky top-0 z-50 bg-black/95 backdrop-blur-md border-b border-zinc-600 shadow-lg">
@@ -29,17 +69,11 @@ export default function Navbar() {
         <ul className="hidden md:flex space-x-4">
           {navItems.map((item) => (
             <li key={item.id}>
-              <button
-                onClick={() => navigateTo(item.id)}
-                className={cn(
-                  "py-2 px-4 rounded",
-                  activeSection === item.id
-                    ? "text-purple-500 bg-purple-500/20"
-                    : "text-gray-400 hover:text-gray-200 hover:bg-zinc-800/50"
-                )}
-              >
-                {item.label}
-              </button>
+              <NavLink
+                item={item}
+                activeSection={activeSection}
+                onClick={handleLinkClick}
+              />
             </li>
           ))}
         </ul>
@@ -47,32 +81,40 @@ export default function Navbar() {
         <button
           onClick={() => setIsOpen((o) => !o)}
           className="md:hidden p-2 rounded hover:bg-zinc-800"
+          aria-controls="mobile-menu"
+          aria-expanded={isOpen}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
         >
           <Icon name={isOpen ? "times" : "bars"} size="lg" />
         </button>
       </div>
 
-      {isOpen && (
-        <div className="md:hidden bg-black border-t border-zinc-600">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => {
-                navigateTo(item.id);
-                setIsOpen(false);
-              }}
-              className={cn(
-                "w-full text-left px-6 py-3 rounded",
-                activeSection === item.id
-                  ? "text-purple-500 bg-purple-500/20"
-                  : "text-gray-400 hover:text-gray-200 hover:bg-zinc-800/50"
-              )}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
-      )}
+      <CSSTransition
+        in={isOpen}
+        timeout={200}
+        classNames="mobile-menu"
+        unmountOnExit
+      >
+        <FocusTrap active={isOpen}>
+          <div
+            id="mobile-menu"
+            className="fixed inset-0 z-40 bg-black/95 backdrop-blur-md md:hidden"
+          >
+            <ul className="flex flex-col items-center justify-center h-full">
+              {navItems.map((item) => (
+                <li key={item.id}>
+                  <NavLink
+                    item={item}
+                    activeSection={activeSection}
+                    isMobile
+                    onClick={handleLinkClick}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </FocusTrap>
+      </CSSTransition>
     </nav>
   );
 }
