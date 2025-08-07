@@ -48,6 +48,7 @@ function NavLink({ item, activeSection, isMobile, onClick }: NavLinkProps) {
 export default function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
   const { activeSection, navigateTo } = useScrollSpy();
+  const mobileMenuRef = React.useRef(null);
 
   const handleLinkClick = (id: NavItem["id"]) => {
     navigateTo(id);
@@ -90,6 +91,7 @@ export default function Navbar() {
       </div>
 
       <CSSTransition
+        nodeRef={mobileMenuRef}
         in={isOpen}
         timeout={200}
         classNames="mobile-menu"
@@ -97,6 +99,7 @@ export default function Navbar() {
       >
         <FocusTrap active={isOpen}>
           <div
+            ref={mobileMenuRef}
             id="mobile-menu"
             className="fixed inset-0 z-40 bg-black/95 backdrop-blur-md md:hidden"
           >
