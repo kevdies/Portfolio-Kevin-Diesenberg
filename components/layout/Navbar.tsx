@@ -3,8 +3,7 @@ import React from "react";
 import Icon from "../ui/Icon";
 import { cn } from "../../utils/utils";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
-import FocusTrap from "focus-trap-react";
-import { CSSTransition } from "react-transition-group";
+import * as Dialog from "@radix-ui/react-dialog";
 
 const navItems = [
   { id: "about", label: "About" },
@@ -25,11 +24,11 @@ interface NavLinkProps {
 
 function NavLink({ item, activeSection, isMobile, onClick }: NavLinkProps) {
   const baseClasses = "rounded transition-colors duration-200";
-  const desktopClasses = "py-2 px-4";
-  const mobileClasses = "text-2xl py-4";
+  const desktopClasses = "py-2 px-4 text-sm";
+  const mobileClasses = "text-3xl font-medium py-4";
 
   const activeClasses = "text-purple-400";
-  const inactiveClasses = "text-gray-200 hover:text-purple-400";
+  const inactiveClasses = "text-gray-300 hover:text-purple-400";
 
   return (
     <button
@@ -45,79 +44,82 @@ function NavLink({ item, activeSection, isMobile, onClick }: NavLinkProps) {
   );
 }
 
-export default function Navbar() {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const { activeSection, navigateTo } = useScrollSpy();
-  const mobileMenuRef = React.useRef(null);
-
-  const handleLinkClick = (id: NavItem["id"]) => {
-    navigateTo(id);
-    if (isOpen) {
-      setIsOpen(false);
-    }
-  };
-
+function MobileMenu({
+  activeSection,
+  onLinkClick,
+}: {
+  activeSection: string | null;
+  onLinkClick: (id: NavItem["id"]) => void;
+}) {
   return (
-    <nav className="sticky top-0 z-50 bg-black/95 backdrop-blur-md border-b border-zinc-600 shadow-lg">
-      <div className="container mx-auto max-w-7xl flex items-center justify-between py-4 px-6">
+    <Dialog.Root>
+      <Dialog.Trigger asChild>
         <button
-          onClick={() => navigateTo("about")}
-          className="text-lg font-bold text-white hover:text-purple-500"
+          className="md:hidden p-2 rounded-md hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-purple-500"
+          aria-label="Open menu"
         >
-          Kevin Diesenberg
+          <Icon name="bars" size="lg" />
         </button>
-
-        <ul className="hidden md:flex space-x-4">
-          {navItems.map((item) => (
-            <li key={item.id}>
-              <NavLink
-                item={item}
-                activeSection={activeSection}
-                onClick={handleLinkClick}
-              />
-            </li>
-          ))}
-        </ul>
-
-        <button
-          onClick={() => setIsOpen((o) => !o)}
-          className="relative z-60 md:hidden p-2 rounded hover:bg-zinc-800"
-          aria-controls="mobile-menu"
-          aria-expanded={isOpen}
-          aria-label={isOpen ? "Close menu" : "Open menu"}
-        >
-          <Icon name={isOpen ? "times" : "bars"} size="lg" />
-        </button>
-      </div>
-
-      <CSSTransition
-        nodeRef={mobileMenuRef}
-        in={isOpen}
-        timeout={200}
-        classNames="mobile-menu"
-        unmountOnExit
-      >
-        <FocusTrap active={isOpen}>
-          <div
-            ref={mobileMenuRef}
-            id="mobile-menu"
-            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md md:hidden"
-          >
-            <ul className="flex flex-col items-center justify-center h-full">
-              {navItems.map((item) => (
-                <li key={item.id}>
+      </Dialog.Trigger>
+      <Dialog.Portal>
+        <Dialog.Overlay className="fixed inset-0 bg-black/50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
+        <Dialog.Content className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/95 backdrop-blur-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
+          <ul className="flex flex-col items-center space-y-4">
+            {navItems.map((item) => (
+              <li key={item.id}>
+                <Dialog.Close asChild>
                   <NavLink
                     item={item}
                     activeSection={activeSection}
                     isMobile
-                    onClick={handleLinkClick}
+                    onClick={onLinkClick}
                   />
-                </li>
-              ))}
-            </ul>
-          </div>
-        </FocusTrap>
-      </CSSTransition>
-    </nav>
+                </Dialog.Close>
+              </li>
+            ))}
+          </ul>
+          <Dialog.Close asChild>
+            <button
+              className="absolute top-4 right-4 p-2 rounded-md hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              aria-label="Close menu"
+            >
+              <Icon name="times" size="lg" />
+            </button>
+          </Dialog.Close>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
+  );
+}
+
+export default function Navbar() {
+  const { activeSection, navigateTo } = useScrollSpy();
+
+  return (
+    <header className="sticky top-0 z-40 bg-black/80 backdrop-blur-md border-b border-zinc-800">
+      <div className="container mx-auto max-w-7xl flex items-center justify-between py-4 px-6">
+        <button
+          onClick={() => navigateTo("about")}
+          className="text-lg font-bold text-white hover:text-purple-500 transition-colors"
+        >
+          Kevin Diesenberg
+        </button>
+
+        <nav className="hidden md:flex items-center space-x-2">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.id}
+              item={item}
+              activeSection={activeSection}
+              onClick={navigateTo}
+            />
+          ))}
+        </nav>
+
+        <div className="md:hidden">
+          <MobileMenu activeSection={activeSection} onLinkClick={navigateTo} />
+        </div>
+      </div>
+    </header>
   );
 }
