@@ -136,7 +136,7 @@ const ProjectActions: React.FC<{
   liveUrls?: LeaderboardUrl[];
   demo?: string;
 }> = ({ liveUrls, demo }) => {
-  if (liveUrls) {
+  if (liveUrls?.length) {
     return (
       <div className="mt-auto space-y-2">
         {liveUrls.map(({ label, url }, index) => (
@@ -156,25 +156,30 @@ const ProjectActions: React.FC<{
     );
   }
 
-  const isDisabled = demo === "#";
+  const isDemoDisabled = !demo || demo === "#";
+
+  const content = (
+    <>
+      <Icon name="play" className="mr-2" size="sm" />
+      {isDemoDisabled ? "Demo Coming Soon" : "View Demo"}
+    </>
+  );
 
   return (
     <div className="mt-auto">
       <Button
-        asChild={!isDisabled}
+        asChild={!isDemoDisabled}
         variant="secondary"
         className="w-full"
-        disabled={isDisabled}
+        disabled={isDemoDisabled}
       >
-        {isDisabled ? (
+        {isDemoDisabled ? (
           <span className="inline-flex items-center justify-center opacity-50 cursor-not-allowed">
-            <Icon name="play" className="mr-2" size="sm" />
-            Demo Coming Soon
+            {content}
           </span>
         ) : (
-          <a href={demo!} target="_blank" rel="noopener noreferrer">
-            <Icon name="play" className="mr-2" size="sm" />
-            View Demo
+          <a href={demo} target="_blank" rel="noopener noreferrer">
+            {content}
           </a>
         )}
       </Button>
@@ -217,11 +222,12 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
                 placeholder="blur"
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-contain p-2 w-full h-auto rounded-md"
+                priority={index === 0}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
 
-            <h3 className="text-xl font-['Poppins'] font-semibold mb-4 text-white">
+            <h3 className="text-xl font-heading font-semibold mb-4 text-white">
               {project.name}
             </h3>
 
