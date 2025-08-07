@@ -81,7 +81,7 @@ export default function Navbar() {
 
         <button
           onClick={() => setIsOpen((o) => !o)}
-          className="md:hidden p-2 rounded hover:bg-zinc-800"
+          className="relative z-60 md:hidden p-2 rounded hover:bg-zinc-800"
           aria-controls="mobile-menu"
           aria-expanded={isOpen}
           aria-label={isOpen ? "Close menu" : "Open menu"}
@@ -101,7 +101,7 @@ export default function Navbar() {
           <div
             ref={mobileMenuRef}
             id="mobile-menu"
-            className="fixed inset-0 z-40 bg-black/95 backdrop-blur-md md:hidden"
+            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md md:hidden"
           >
             <ul className="flex flex-col items-center justify-center h-full">
               {navItems.map((item) => (
