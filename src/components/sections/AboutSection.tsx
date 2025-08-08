@@ -7,11 +7,15 @@ import kevHenryArti from "@/assets/images/kev-henry-artichoke.webp";
 
 export interface AboutSectionProps {
   id?: string;
+  paddingTop?: string;
 }
 
-const AboutSection: React.FC<AboutSectionProps> = ({ id = "about" }) => {
+const AboutSection: React.FC<AboutSectionProps> = ({
+  id = "about",
+  paddingTop,
+}) => {
   return (
-    <Section id={id} title="">
+    <Section id={id} title="" paddingTop={paddingTop}>
       <div className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-12">
         {/* Text Column */}
         <div className="order-2 space-y-6 md:order-1 md:space-y-8">

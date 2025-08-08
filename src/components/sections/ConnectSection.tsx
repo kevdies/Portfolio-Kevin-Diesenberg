@@ -36,11 +36,15 @@ const socialLinks = [
 
 export interface ConnectSectionProps {
   id?: string;
+  paddingBottom?: string;
 }
 
-const ConnectSection: React.FC<ConnectSectionProps> = ({ id = "connect" }) => {
+const ConnectSection: React.FC<ConnectSectionProps> = ({
+  id = "connect",
+  paddingBottom,
+}) => {
   return (
-    <Section id={id} title="">
+    <Section id={id} title="" paddingBottom={paddingBottom}>
       <div className="mb-16 text-center">
         <h2 className="mb-6 bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text font-['Poppins'] text-3xl font-semibold text-transparent">
           {`Let's Connect`}
