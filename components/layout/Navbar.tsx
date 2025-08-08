@@ -12,7 +12,7 @@ const navItems = [
   { id: "connect", label: "Connect" },
 ] as const;
 
-type NavItem = typeof navItems[number];
+type NavItem = (typeof navItems)[number];
 
 interface NavLinkProps {
   item: NavItem;
@@ -35,7 +35,7 @@ function NavLink({ item, activeSection, isMobile, onClick }: NavLinkProps) {
       className={cn(
         baseClasses,
         isMobile ? mobileClasses : desktopClasses,
-        activeSection === item.id ? activeClasses : inactiveClasses
+        activeSection === item.id ? activeClasses : inactiveClasses,
       )}
     >
       {item.label}
@@ -53,7 +53,7 @@ function MobileMenu({ activeSection, onLinkClick }: MobileMenuProps) {
     <Dialog.Root>
       <Dialog.Trigger asChild>
         <button
-          className="md:hidden p-2 rounded-md hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-purple-500"
+          className="rounded-md p-2 hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-purple-500 md:hidden"
           aria-label="Open menu"
         >
           <Icon name="bars" size="lg" />
@@ -78,7 +78,7 @@ function MobileMenu({ activeSection, onLinkClick }: MobileMenuProps) {
           </ul>
           <Dialog.Close asChild>
             <button
-              className="absolute top-4 right-4 p-2 rounded-md hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="absolute right-4 top-4 rounded-md p-2 hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-purple-500"
               aria-label="Close menu"
             >
               <Icon name="times" size="lg" />
@@ -100,17 +100,17 @@ const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
     return (
       <header
         ref={ref}
-        className="sticky top-0 z-40 bg-black/80 backdrop-blur-md border-b border-zinc-800"
+        className="sticky top-0 z-40 border-b border-zinc-800 bg-black/80 backdrop-blur-md"
       >
-        <div className="container mx-auto max-w-7xl flex items-center justify-between py-4 px-6">
+        <div className="container mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <button
             onClick={() => navigateTo("about")}
-            className="text-lg font-bold text-white hover:text-purple-500 transition-colors"
+            className="text-lg font-bold text-white transition-colors hover:text-purple-500"
           >
             Kevin Diesenberg
           </button>
 
-          <nav className="hidden md:flex items-center space-x-2">
+          <nav className="hidden items-center space-x-2 md:flex">
             {navItems.map((item) => (
               <NavLink
                 key={item.id}
@@ -130,7 +130,7 @@ const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
         </div>
       </header>
     );
-  }
+  },
 );
 
 Navbar.displayName = "Navbar";

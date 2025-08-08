@@ -30,15 +30,15 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ id = "skills" }) => {
       title="Technical Skills"
       subtitle="Core technologies and tools I work with"
     >
-      <Card className="max-w-4xl mx-auto">
-        <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      <Card className="mx-auto max-w-4xl">
+        <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
           {technicalSkills.map((skill) => (
             <li
               key={skill}
-              className="flex items-center bg-zinc-800 border border-zinc-600 rounded-md px-4 py-2 text-sm transition-all duration-300 hover:bg-zinc-700 hover:border-zinc-500 focus:outline-none focus:ring-2 focus:ring-purple-500 group"
+              className="group flex items-center rounded-md border border-zinc-600 bg-zinc-800 px-4 py-2 text-sm transition-all duration-300 hover:border-zinc-500 hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
               tabIndex={0}
             >
-              <span className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 mr-2 flex-shrink-0 transition-all duration-300 group-hover:scale-110" />
+              <span className="mr-2 h-2 w-2 flex-shrink-0 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 transition-all duration-300 group-hover:scale-110" />
               <span className="text-gray-400 transition-colors duration-300 group-hover:text-gray-200">
                 {skill}
               </span>
@@ -46,8 +46,8 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ id = "skills" }) => {
           ))}
         </ul>
 
-        <div className="mt-8 pt-6 border-t border-zinc-600/50 text-center">
-          <p className="text-gray-500 text-sm">
+        <div className="mt-8 border-t border-zinc-600/50 pt-6 text-center">
+          <p className="text-sm text-gray-500">
             Always learning and exploring new technologies
           </p>
         </div>

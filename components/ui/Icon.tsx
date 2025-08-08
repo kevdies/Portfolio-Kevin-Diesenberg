@@ -57,7 +57,7 @@ export const Icon: React.FC<IconProps> = ({ name, size = "md", className }) => {
   const classes = cn(
     sizeClassesMap[size],
     "inline-block flex-shrink-0",
-    className
+    className,
   );
 
   // Check FontAwesome icons first
