@@ -8,12 +8,12 @@ import ConnectSection from "../components/sections/ConnectSection";
 export default function HomePage() {
   return (
     <>
-      <AboutSection />
+      <AboutSection paddingTop="pt-0 md:pt-0" />
       <SkillsSection />
       <ProjectSection />
       <ExperienceSection />
       <MoreSection />
-      <ConnectSection />
+      <ConnectSection paddingBottom="pb-0 md:pb-0" />
     </>
   );
 }

@@ -7,6 +7,8 @@ interface SectionProps {
   children: React.ReactNode;
   className?: string;
   subtitle?: string;
+  paddingTop?: string;
+  paddingBottom?: string;
 }
 
 const Section: React.FC<SectionProps> = ({
@@ -15,13 +17,16 @@ const Section: React.FC<SectionProps> = ({
   subtitle,
   children,
   className,
+  paddingTop,
+  paddingBottom,
 }) => {
   return (
     <section
       id={id}
       className={cn(
-        "py-8 md:py-12 lg:py-16", // Reduced top/bottom padding with responsive sizing
         "px-4 sm:px-6", // Reduced horizontal padding, responsive
+        paddingTop ? paddingTop : "pt-8 md:pt-12 lg:pt-16",
+        paddingBottom ? paddingBottom : "pb-8 md:pb-12 lg:pb-16",
         "bg-black",
         "relative overflow-hidden",
         "scroll-mt-[64px]",
