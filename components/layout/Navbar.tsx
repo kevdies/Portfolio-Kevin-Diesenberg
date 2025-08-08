@@ -93,10 +93,14 @@ function MobileMenu({
 }
 
 export default function Navbar() {
-  const { activeSection, navigateTo } = useScrollSpy();
+  const headerRef = React.useRef<HTMLElement>(null);
+  const { activeSection, navigateTo } = useScrollSpy(headerRef);
 
   return (
-    <header className="sticky top-0 z-40 bg-black/80 backdrop-blur-md border-b border-zinc-800">
+    <header
+      ref={headerRef}
+      className="sticky top-0 z-40 bg-black/80 backdrop-blur-md border-b border-zinc-800"
+    >
       <div className="container mx-auto max-w-7xl flex items-center justify-between py-4 px-6">
         <button
           onClick={() => navigateTo("about")}
