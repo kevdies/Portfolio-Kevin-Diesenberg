@@ -2,7 +2,6 @@
 import React from "react";
 import Icon from "../ui/Icon";
 import { cn } from "../../utils/utils";
-import { useScrollSpy } from "@/hooks/useScrollSpy";
 import * as Dialog from "@radix-ui/react-dialog";
 
 const navItems = [
@@ -44,13 +43,12 @@ function NavLink({ item, activeSection, isMobile, onClick }: NavLinkProps) {
   );
 }
 
-function MobileMenu({
-  activeSection,
-  onLinkClick,
-}: {
+interface MobileMenuProps {
   activeSection: string | null;
   onLinkClick: (id: NavItem["id"]) => void;
-}) {
+}
+
+function MobileMenu({ activeSection, onLinkClick }: MobileMenuProps) {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
@@ -92,34 +90,49 @@ function MobileMenu({
   );
 }
 
-export default function Navbar() {
-  const { activeSection, navigateTo } = useScrollSpy();
-
-  return (
-    <header className="sticky top-0 z-40 bg-black/80 backdrop-blur-md border-b border-zinc-800">
-      <div className="container mx-auto max-w-7xl flex items-center justify-between py-4 px-6">
-        <button
-          onClick={() => navigateTo("about")}
-          className="text-lg font-bold text-white hover:text-purple-500 transition-colors"
-        >
-          Kevin Diesenberg
-        </button>
-
-        <nav className="hidden md:flex items-center space-x-2">
-          {navItems.map((item) => (
-            <NavLink
-              key={item.id}
-              item={item}
-              activeSection={activeSection}
-              onClick={navigateTo}
-            />
-          ))}
-        </nav>
-
-        <div className="md:hidden">
-          <MobileMenu activeSection={activeSection} onLinkClick={navigateTo} />
-        </div>
-      </div>
-    </header>
-  );
+interface NavbarProps {
+  activeSection: string | null;
+  navigateTo: (id: NavItem["id"]) => void;
 }
+
+const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
+  ({ activeSection, navigateTo }, ref) => {
+    return (
+      <header
+        ref={ref}
+        className="sticky top-0 z-40 bg-black/80 backdrop-blur-md border-b border-zinc-800"
+      >
+        <div className="container mx-auto max-w-7xl flex items-center justify-between py-4 px-6">
+          <button
+            onClick={() => navigateTo("about")}
+            className="text-lg font-bold text-white hover:text-purple-500 transition-colors"
+          >
+            Kevin Diesenberg
+          </button>
+
+          <nav className="hidden md:flex items-center space-x-2">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.id}
+                item={item}
+                activeSection={activeSection}
+                onClick={navigateTo}
+              />
+            ))}
+          </nav>
+
+          <div className="md:hidden">
+            <MobileMenu
+              activeSection={activeSection}
+              onLinkClick={navigateTo}
+            />
+          </div>
+        </div>
+      </header>
+    );
+  }
+);
+
+Navbar.displayName = "Navbar";
+
+export default Navbar;

@@ -1,11 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Inter, Poppins } from "next/font/google";
-import Navbar from "../components/layout/Navbar";
-import Footer from "../components/layout/Footer";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import StructuredData from "@/components/StructuredData";
+import MainLayout from "@/components/layout/MainLayout";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -116,14 +112,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body className="bg-black text-gray-200 antialiased">
-        <StructuredData />
-        <Analytics />
-        <SpeedInsights />
-        <Navbar />
-        <main id="main-content" className="min-h-screen">
-          {children}
-        </main>
-        <Footer />
+        <MainLayout>{children}</MainLayout>
       </body>
     </html>
   );

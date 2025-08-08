@@ -3,7 +3,6 @@
 import React from "react";
 import Icon from "../ui/Icon";
 import { cn } from "../../utils/utils";
-import { useScrollSpy } from "@/hooks/useScrollSpy";
 
 const navItems = [
   { id: "about", label: "About" },
@@ -13,9 +12,15 @@ const navItems = [
   { id: "connect", label: "Connect" },
 ] as const;
 
-export default function Footer() {
+type NavItem = typeof navItems[number];
+
+interface FooterProps {
+  activeSection: string | null;
+  navigateTo: (id: NavItem["id"]) => void;
+}
+
+export default function Footer({ activeSection, navigateTo }: FooterProps) {
   const year = new Date().getFullYear();
-  const { activeSection, navigateTo } = useScrollSpy();
 
   return (
     <footer className="bg-black border-t border-zinc-600/20 pt-8">
