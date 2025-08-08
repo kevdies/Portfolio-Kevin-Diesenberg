@@ -25,7 +25,7 @@ const Section: React.FC<SectionProps> = ({
         "bg-black",
         "relative overflow-hidden",
         "scroll-mt-[64px]",
-        className
+        className,
       )}
     >
       {/* Animated background gradient */}
@@ -40,15 +40,15 @@ const Section: React.FC<SectionProps> = ({
         }}
       />
 
-      <div className="container mx-auto max-w-7xl relative">
+      <div className="container relative mx-auto max-w-7xl">
         {title && (
-          <div className="text-center mb-8 md:mb-12">
+          <div className="mb-8 text-center md:mb-12">
             {/* Enhanced title with better animation */}
             <h2
               className={cn(
-                "text-3xl font-['Poppins'] font-semibold mb-4 md:mb-6",
+                "mb-4 font-['Poppins'] text-3xl font-semibold md:mb-6",
                 "bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent",
-                "animate-in fade-in slide-in-from-bottom-4 duration-700"
+                "duration-700 animate-in fade-in slide-in-from-bottom-4",
               )}
             >
               {title}
@@ -58,8 +58,8 @@ const Section: React.FC<SectionProps> = ({
             {subtitle && (
               <p
                 className={cn(
-                  "text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed",
-                  "animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300"
+                  "mx-auto max-w-2xl text-lg leading-relaxed text-gray-400",
+                  "delay-300 duration-700 animate-in fade-in slide-in-from-bottom-4",
                 )}
               >
                 {subtitle}
@@ -69,7 +69,7 @@ const Section: React.FC<SectionProps> = ({
         )}
 
         {/* Content with subtle animation */}
-        <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">
+        <div className="delay-500 duration-700 animate-in fade-in slide-in-from-bottom-4">
           {children}
         </div>
       </div>

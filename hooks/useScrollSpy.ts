@@ -42,7 +42,7 @@ export function useScrollSpy(headerRef: RefObject<HTMLElement>) {
       {
         rootMargin: `-${headerHeight}px 0px 0px 0px`,
         threshold: 0,
-      }
+      },
     );
 
     SECTION_IDS.forEach((id) => {
@@ -54,17 +54,20 @@ export function useScrollSpy(headerRef: RefObject<HTMLElement>) {
   }, [headerHeight]);
 
   // scrollIntoView will respect each section’s scroll-margin-top
-  const navigateTo = useCallback((id: SectionId) => {
-    const el = document.getElementById(id);
-    if (!el) return;
+  const navigateTo = useCallback(
+    (id: SectionId) => {
+      const el = document.getElementById(id);
+      if (!el) return;
 
-    // We can't use scroll-margin-top because of the smooth scrolling behavior
-    // which is not consistent across browsers. Instead, we manually calculate the offset.
-    const yOffset = -headerHeight;
-    const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      // We can't use scroll-margin-top because of the smooth scrolling behavior
+      // which is not consistent across browsers. Instead, we manually calculate the offset.
+      const yOffset = -headerHeight;
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
-    window.scrollTo({ top: y, behavior: "smooth" });
-  }, [headerHeight]);
+      window.scrollTo({ top: y, behavior: "smooth" });
+    },
+    [headerHeight],
+  );
 
   return { activeSection, navigateTo };
 }

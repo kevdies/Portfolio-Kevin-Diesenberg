@@ -41,25 +41,25 @@ export interface ConnectSectionProps {
 const ConnectSection: React.FC<ConnectSectionProps> = ({ id = "connect" }) => {
   return (
     <Section id={id} title="">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl font-['Poppins'] font-semibold bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent mb-6">
+      <div className="mb-16 text-center">
+        <h2 className="mb-6 bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text font-['Poppins'] text-3xl font-semibold text-transparent">
           {`Let's Connect`}
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 lg:grid-cols-2">
         {/* Resume Card */}
         <Card className="h-full">
           <CardHeader>
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center shadow-md">
+            <div className="mb-2 flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-purple-600 shadow-md">
                 <Icon name="download" size="lg" className="text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-['Poppins'] font-semibold text-white">
+                <h3 className="font-['Poppins'] text-xl font-semibold text-white">
                   Resume
                 </h3>
-                <p className="text-gray-400 text-sm">
+                <p className="text-sm text-gray-400">
                   Complete professional background
                 </p>
               </div>
@@ -94,15 +94,15 @@ const ConnectSection: React.FC<ConnectSectionProps> = ({ id = "connect" }) => {
         {/* Contact Card */}
         <Card className="h-full">
           <CardHeader>
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center shadow-md">
+            <div className="mb-2 flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-purple-600 shadow-md">
                 <Icon name="email" size="lg" className="text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-['Poppins'] font-semibold text-white">
+                <h3 className="font-['Poppins'] text-xl font-semibold text-white">
                   Get in Touch
                 </h3>
-                <p className="text-gray-400 text-sm">
+                <p className="text-sm text-gray-400">
                   Currently open to new opportunities
                 </p>
               </div>

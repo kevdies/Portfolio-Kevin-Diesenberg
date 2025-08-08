@@ -12,7 +12,7 @@ const navItems = [
   { id: "connect", label: "Connect" },
 ] as const;
 
-type NavItem = typeof navItems[number];
+type NavItem = (typeof navItems)[number];
 
 interface FooterProps {
   activeSection: string | null;
@@ -23,7 +23,7 @@ export default function Footer({ activeSection, navigateTo }: FooterProps) {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-black border-t border-zinc-600/20 pt-8">
+    <footer className="border-t border-zinc-600/20 bg-black pt-8">
       <div className="container mx-auto max-w-7xl px-6">
         <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
           {/* Branding */}
@@ -41,10 +41,10 @@ export default function Footer({ activeSection, navigateTo }: FooterProps) {
                 key={item.id}
                 onClick={() => navigateTo(item.id)}
                 className={cn(
-                  "px-2 py-1 rounded",
+                  "rounded px-2 py-1",
                   activeSection === item.id
-                    ? "text-purple-500 bg-purple-500/20 font-semibold"
-                    : "text-gray-400 hover:text-gray-200"
+                    ? "bg-purple-500/20 font-semibold text-purple-500"
+                    : "text-gray-400 hover:text-gray-200",
                 )}
               >
                 {item.label}
@@ -53,7 +53,7 @@ export default function Footer({ activeSection, navigateTo }: FooterProps) {
           </nav>
 
           {/* Built With */}
-          <div className="flex items-center gap-2 text-gray-500 text-sm">
+          <div className="flex items-center gap-2 text-sm text-gray-500">
             <span>Built with</span>
             <Icon name="heart" size="sm" className="text-red-400" />
             <span>Next.js & Tailwind</span>
@@ -61,7 +61,7 @@ export default function Footer({ activeSection, navigateTo }: FooterProps) {
         </div>
 
         {/* Back to top */}
-        <div className="text-center mt-8 pb-8">
+        <div className="mt-8 pb-8 text-center">
           <button
             onClick={() => navigateTo("about")}
             className="inline-flex items-center gap-2 text-sm hover:-translate-y-1"

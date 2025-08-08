@@ -2,6 +2,9 @@ import type { Project } from "../types";
 import brgLeaderboard from "@/assets/images/Dark_Mode_Leaderboard_Mobile.png";
 import pinUploadModal from "@/assets/images/Pin_Upload_Success_Modal.png";
 import newsLetterSignUpCard from "@/assets/images/Newsletter_Sign_Up_Card.png";
+import awefulLogo from "@/assets/images/aweful-logo.png";
+import trailShareLogo from "@/assets/images/trail-share-logo.png";
+import HSTRYLogo from "@/assets/images/HSTRY-logo.png";
 
 export interface LeaderboardUrl {
   label: string;
@@ -73,4 +76,57 @@ export const professionalProjects: ProjectWithUrls[] = [
     ],
     demo: "#",
   },
+];
+
+export interface ProjectWithDemo extends Project {
+  demo?: string;
+  github: string;
+  imageOrientation?: "landscape" | "portrait" | "square";
+}
+
+export const bootcampProjects: ProjectWithDemo[] = [
+  {
+    name: "Aweful Skydiving",
+    image: awefulLogo,
+    imageOrientation: "landscape",
+    alt: "Aweful Skydiving logo",
+    description:
+      "Event signup platform for skydivers (React, Rails, PostgreSQL).",
+    features: [
+      "User auth via bcrypt",
+      "Responsive UI with Bootstrap",
+      "Active Record models",
+    ],
+    demo: "https://youtu.be/7JUL1CPlHqg",
+    github: "https://github.com/kevdies/aweful",
+  },
+  {
+    name: "Trail Share",
+    image: trailShareLogo,
+    imageOrientation: "landscape",
+    alt: "Trail Share logo",
+    description: "Social network for hikers (React, Rails, PostgreSQL).",
+    features: ["RESTful API design", "Auth via bcrypt", "Bootstrap styling"],
+    demo: "https://youtu.be/seImhfcp8X8",
+    github: "https://github.com/drclements/trail-share",
+  },
+  {
+    name: "HSTRY",
+    image: HSTRYLogo,
+    imageOrientation: "landscape",
+    alt: "HSTRY logo",
+    description: "Medical history form aid (React, Rails, PostgreSQL).",
+    features: ["Controlled forms", "Accessible markup", "Reactstrap UI"],
+    demo: "https://youtu.be/dWumb-_XHhA",
+    github: "https://github.com/kevdies/HSTRY",
+  },
+];
+
+export const hobbies = [
+  "Skydiving",
+  "Paramotoring",
+  "Camping",
+  "Hiking",
+  "Road Biking",
+  "Mountain Biking",
 ];

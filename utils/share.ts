@@ -19,7 +19,7 @@ export async function shareResume(): Promise<void> {
     // fallback: copy to clipboard
     await navigator.clipboard.writeText(resumeUrl);
     alert(
-      "Nice! The resume link’s now in your clipboard—paste it wherever you like."
+      "Nice! The resume link’s now in your clipboard—paste it wherever you like.",
     );
   } catch (err: unknown) {
     // if it’s an AbortError from the share dialog, bail quietly
@@ -31,7 +31,7 @@ export async function shareResume(): Promise<void> {
     const message = err instanceof Error ? err.message : "an unexpected error";
 
     alert(
-      `Oops! Something went wrong sharing this resume (${message}). Please try again in a moment.`
+      `Oops! Something went wrong sharing this resume (${message}). Please try again in a moment.`,
     );
   }
 }
