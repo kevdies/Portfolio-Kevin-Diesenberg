@@ -8,7 +8,7 @@ import ConnectSection from "../components/sections/ConnectSection";
 export default function HomePage() {
   return (
     <>
-      <AboutSection paddingTop="pt-0 md:pt-0" />
+      <AboutSection />
       <SkillsSection />
       <ProjectSection />
       <ExperienceSection />

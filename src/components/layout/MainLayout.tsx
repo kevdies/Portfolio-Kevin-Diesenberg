@@ -26,7 +26,7 @@ export default function MainLayout({
         activeSection={activeSection}
         navigateTo={navigateTo}
       />
-      <main id="main-content" className="min-h-screen">
+      <main id="main-content" className="min-h-screen pt-16">
         {children}
       </main>
       <Footer activeSection={activeSection} navigateTo={navigateTo} />
