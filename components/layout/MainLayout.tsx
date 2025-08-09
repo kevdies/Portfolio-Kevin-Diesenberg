@@ -8,10 +8,10 @@ import { StructuredData } from "@/components/StructuredData";
 
 export function MainLayout({ children }: { children: React.ReactNode }) {
   const headerRef = React.useRef<HTMLElement>(null);
-  const { activeSection, navigateTo } = useScrollSpy(headerRef);
+  const { activeSection, navigateTo, headerHeight } = useScrollSpy(headerRef);
 
   return (
-    <>
+    <div style={{ "--header-height": `${headerHeight}px` } as React.CSSProperties}>
       <StructuredData />
       <Navbar
         ref={headerRef}
@@ -22,6 +22,6 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
         {children}
       </main>
       <Footer activeSection={activeSection} navigateTo={navigateTo} />
-    </>
+    </div>
   );
 }

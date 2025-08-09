@@ -1,14 +1,9 @@
 import { useState, useEffect, useCallback, RefObject } from "react";
 
-const SECTION_IDS = [
-  "about",
-  "skills",
-  "professional-projects",
-  "experience",
-  "connect",
-] as const;
+import { navItems, type NavItem } from "@/lib/navigation";
 
-type SectionId = (typeof SECTION_IDS)[number];
+const SECTION_IDS = navItems.map((item) => item.id);
+type SectionId = NavItem["id"];
 
 export function useScrollSpy(headerRef: RefObject<HTMLElement>) {
   const [activeSection, setActiveSection] = useState<SectionId>("about");
@@ -31,43 +26,42 @@ export function useScrollSpy(headerRef: RefObject<HTMLElement>) {
   useEffect(() => {
     if (headerHeight === 0) return;
 
-    const obs = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id as SectionId);
-          }
-        });
+        const intersectingEntries = entries.filter((e) => e.isIntersecting);
+
+        if (intersectingEntries.length > 0) {
+          // Find the entry with the largest intersection ratio
+          const mostVisibleEntry = intersectingEntries.reduce((prev, current) =>
+            prev.intersectionRatio > current.intersectionRatio ? prev : current,
+          );
+          const newActiveSection = mostVisibleEntry.target.id as SectionId;
+          setActiveSection(newActiveSection);
+        }
       },
       {
         rootMargin: `-${headerHeight}px 0px 0px 0px`,
-        threshold: 0,
+        threshold: [0.1, 0.5, 0.9], // Use multiple thresholds for better accuracy
       },
     );
 
     SECTION_IDS.forEach((id) => {
       const el = document.getElementById(id);
-      if (el) obs.observe(el);
+      if (el) observer.observe(el);
     });
 
-    return () => obs.disconnect();
+    return () => observer.disconnect();
   }, [headerHeight]);
 
-  // scrollIntoView will respect each section’s scroll-margin-top
-  const navigateTo = useCallback(
-    (id: SectionId) => {
-      const el = document.getElementById(id);
-      if (!el) return;
+  const navigateTo = useCallback((id: SectionId) => {
+    // Immediately update the active section for instant feedback
+    setActiveSection(id);
 
-      // We can't use scroll-margin-top because of the smooth scrolling behavior
-      // which is not consistent across browsers. Instead, we manually calculate the offset.
-      const yOffset = -headerHeight;
-      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
 
-      window.scrollTo({ top: y, behavior: "smooth" });
-    },
-    [headerHeight],
-  );
-
-  return { activeSection, navigateTo };
+  return { activeSection, navigateTo, headerHeight };
 }
