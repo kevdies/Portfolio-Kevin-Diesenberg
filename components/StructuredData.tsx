@@ -1,4 +1,4 @@
-export default function StructuredData() {
+export function StructuredData() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Person",

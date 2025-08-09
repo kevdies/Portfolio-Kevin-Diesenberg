@@ -19,7 +19,7 @@ interface FooterProps {
   navigateTo: (id: NavItem["id"]) => void;
 }
 
-export default function Footer({ activeSection, navigateTo }: FooterProps) {
+export function Footer({ activeSection, navigateTo }: FooterProps) {
   const year = new Date().getFullYear();
 
   return (

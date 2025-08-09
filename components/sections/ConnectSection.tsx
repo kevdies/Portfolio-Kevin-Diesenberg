@@ -3,7 +3,7 @@
 import React from "react";
 import Section from "../ui/Section";
 import { Card, CardHeader, CardContent } from "../ui/Card";
-import Button from "../ui/Button";
+import { Button } from "../ui/Button";
 import Icon from "../ui/Icon";
 import { shareResume, RESUME_PATH } from "../../utils/share";
 
@@ -136,4 +136,4 @@ const ConnectSection: React.FC<ConnectSectionProps> = ({ id = "connect" }) => {
   );
 };
 
-export default ConnectSection;
+export { ConnectSection };

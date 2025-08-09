@@ -131,4 +131,4 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
   );
 };
 
-export default ExperienceSection;
+export { ExperienceSection };

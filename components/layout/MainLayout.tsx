@@ -2,15 +2,11 @@
 
 import React from "react";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
-import StructuredData from "@/components/StructuredData";
+import { Navbar } from "./Navbar";
+import { Footer } from "./Footer";
+import { StructuredData } from "@/components/StructuredData";
 
-export default function MainLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function MainLayout({ children }: { children: React.ReactNode }) {
   const headerRef = React.useRef<HTMLElement>(null);
   const { activeSection, navigateTo } = useScrollSpy(headerRef);
 

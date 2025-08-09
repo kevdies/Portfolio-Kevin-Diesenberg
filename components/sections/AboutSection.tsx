@@ -58,4 +58,4 @@ const AboutSection: React.FC<AboutSectionProps> = ({ id = "about" }) => {
   );
 };
 
-export default AboutSection;
+export { AboutSection };

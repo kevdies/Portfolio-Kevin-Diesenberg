@@ -56,4 +56,4 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ id = "skills" }) => {
   );
 };
 
-export default SkillsSection;
+export { SkillsSection };
