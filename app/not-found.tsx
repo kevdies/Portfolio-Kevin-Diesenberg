@@ -1,5 +1,6 @@
 import Button from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
+import Link from "next/link";
 
 export default function NotFound() {
   return (
@@ -11,9 +12,11 @@ export default function NotFound() {
         Oops! The page you're looking for doesn't seem to exist.
       </p>
       <div className="mt-8">
-        <Button as="link" href="/" variant="default" size="lg">
-          Go Back Home
-        </Button>
+        <Link href="/">
+          <Button variant="default" size="lg">
+            Go Back Home
+          </Button>
+        </Link>
       </div>
     </Section>
   );
