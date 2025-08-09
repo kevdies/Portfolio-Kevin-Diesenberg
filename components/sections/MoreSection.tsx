@@ -39,4 +39,4 @@ const MoreSection: React.FC<MoreSectionProps> = ({ id = "more" }) => {
   );
 };
 
-export default MoreSection;
+export { MoreSection };

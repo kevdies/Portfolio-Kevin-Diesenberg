@@ -6,17 +6,7 @@ import awefulLogo from "@/assets/images/aweful-logo.png";
 import trailShareLogo from "@/assets/images/trail-share-logo.png";
 import HSTRYLogo from "@/assets/images/HSTRY-logo.png";
 
-export interface LeaderboardUrl {
-  label: string;
-  url: string;
-}
-
-export interface ProjectWithUrls extends Project {
-  liveUrls?: LeaderboardUrl[];
-  priority?: boolean;
-}
-
-export const professionalProjects: ProjectWithUrls[] = [
+export const professionalProjects: Project[] = [
   {
     name: "Photo Contest Leaderboard",
     image: brgLeaderboard,
@@ -78,13 +68,7 @@ export const professionalProjects: ProjectWithUrls[] = [
   },
 ];
 
-export interface ProjectWithDemo extends Project {
-  demo?: string;
-  github: string;
-  imageOrientation?: "landscape" | "portrait" | "square";
-}
-
-export const bootcampProjects: ProjectWithDemo[] = [
+export const bootcampProjects: Project[] = [
   {
     name: "Aweful Skydiving",
     image: awefulLogo,

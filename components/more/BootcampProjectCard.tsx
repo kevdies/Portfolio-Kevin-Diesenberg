@@ -1,11 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import { Card } from "../ui/Card";
-import Button from "../ui/Button";
+import { Button } from "../ui/Button";
 import Icon from "../ui/Icon";
-import type { ProjectWithDemo } from "@/lib/data";
+import type { Project } from "@/types";
 
-export const BootcampProjectCard: React.FC<{ project: ProjectWithDemo }> = ({
+export const BootcampProjectCard: React.FC<{ project: Project }> = ({
   project,
 }) => (
   <Card className="group flex flex-col">
