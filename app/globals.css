@@ -6,6 +6,10 @@ html {
   scroll-behavior: smooth;
 }
 
+[id] {
+  scroll-margin-top: var(--header-height, 5rem);
+}
+
 body {
   margin: 0;
   background: #0a0a0a;

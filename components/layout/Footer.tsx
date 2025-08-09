@@ -1,18 +1,10 @@
 "use client";
 
 import React from "react";
-import Icon from "../ui/Icon";
+import { Icon } from "../ui/Icon";
 import { cn } from "../../utils/utils";
 
-const navItems = [
-  { id: "about", label: "About" },
-  { id: "skills", label: "Skills" },
-  { id: "professional-projects", label: "Projects" },
-  { id: "experience", label: "Experience" },
-  { id: "connect", label: "Connect" },
-] as const;
-
-type NavItem = (typeof navItems)[number];
+import { navItems, type NavItem } from "@/lib/navigation";
 
 interface FooterProps {
   activeSection: string | null;

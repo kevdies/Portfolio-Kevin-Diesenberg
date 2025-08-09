@@ -2,7 +2,8 @@ import React from "react";
 import Image from "next/image";
 import { Card } from "../ui/Card";
 import { Button } from "../ui/Button";
-import Icon from "../ui/Icon";
+import { Icon } from "../ui/Icon";
+
 import type { Project } from "@/types";
 
 export const BootcampProjectCard: React.FC<{ project: Project }> = ({

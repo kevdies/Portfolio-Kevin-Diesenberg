@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "../ui/Button";
-import Icon from "../ui/Icon";
+import { Icon } from "../ui/Icon";
 import type { ProjectLink } from "@/types";
 
 export const ProjectActions: React.FC<{
