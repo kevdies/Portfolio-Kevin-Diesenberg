@@ -4,8 +4,6 @@ import React from "react";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import StructuredData from "@/components/StructuredData";
 
 export default function MainLayout({
@@ -19,8 +17,6 @@ export default function MainLayout({
   return (
     <>
       <StructuredData />
-      <Analytics />
-      <SpeedInsights />
       <Navbar
         ref={headerRef}
         activeSection={activeSection}
