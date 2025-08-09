@@ -1,18 +1,10 @@
 "use client";
 import React from "react";
-import Icon from "../ui/Icon";
+import { Icon } from "../ui/Icon";
 import { cn } from "../../utils/utils";
 import * as Dialog from "@radix-ui/react-dialog";
 
-const navItems = [
-  { id: "about", label: "About" },
-  { id: "skills", label: "Skills" },
-  { id: "professional-projects", label: "Projects" },
-  { id: "experience", label: "Experience" },
-  { id: "connect", label: "Connect" },
-] as const;
-
-type NavItem = (typeof navItems)[number];
+import { navItems, type NavItem } from "@/lib/navigation";
 
 interface NavLinkProps {
   item: NavItem;
@@ -95,44 +87,43 @@ interface NavbarProps {
   navigateTo: (id: NavItem["id"]) => void;
 }
 
-const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
-  ({ activeSection, navigateTo }, ref) => {
-    return (
-      <header
-        ref={ref}
-        className="sticky top-0 z-40 border-b border-zinc-800 bg-black/80 backdrop-blur-md"
-      >
-        <div className="container mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <button
-            onClick={() => navigateTo("about")}
-            className="text-lg font-bold text-white transition-colors hover:text-purple-500"
-          >
-            Kevin Diesenberg
-          </button>
+function NavbarComponent(
+  { activeSection, navigateTo }: NavbarProps,
+  ref: React.Ref<HTMLElement>,
+) {
+  return (
+    <header
+      ref={ref}
+      className="sticky top-0 z-40 border-b border-zinc-800 bg-black/80 backdrop-blur-md"
+    >
+      <div className="container mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <button
+          onClick={() => navigateTo("about")}
+          className="text-lg font-bold text-white transition-colors hover:text-purple-500"
+        >
+          Kevin Diesenberg
+        </button>
 
-          <nav className="hidden items-center space-x-2 md:flex">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.id}
-                item={item}
-                activeSection={activeSection}
-                onClick={navigateTo}
-              />
-            ))}
-          </nav>
-
-          <div className="md:hidden">
-            <MobileMenu
+        <nav className="hidden items-center space-x-2 md:flex">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.id}
+              item={item}
               activeSection={activeSection}
-              onLinkClick={navigateTo}
+              onClick={navigateTo}
             />
-          </div>
-        </div>
-      </header>
-    );
-  },
-);
+          ))}
+        </nav>
 
+        <div className="md:hidden">
+          <MobileMenu activeSection={activeSection} onLinkClick={navigateTo} />
+        </div>
+      </div>
+    </header>
+  );
+}
+
+const Navbar = React.forwardRef(NavbarComponent);
 Navbar.displayName = "Navbar";
 
-export default Navbar;
+export { Navbar };

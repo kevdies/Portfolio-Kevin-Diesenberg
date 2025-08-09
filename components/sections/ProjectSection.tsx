@@ -5,7 +5,7 @@ import Image from "next/image";
 import Section from "../ui/Section";
 import { Card } from "../ui/Card";
 import { professionalProjects } from "@/lib/data";
-import type { ProjectWithUrls, LeaderboardUrl } from "@/lib/data";
+import type { Project, ProjectLink } from "@/types";
 import { ProjectFeatures } from "../project/ProjectFeatures";
 import { ProjectActions } from "../project/ProjectActions";
 
@@ -76,4 +76,4 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
   );
 };
 
-export default ProjectSection;
+export { ProjectSection };

@@ -1,13 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Inter, Poppins } from "next/font/google";
-import MainLayout from "@/components/layout/MainLayout";
+import { MainLayout } from "@/components/layout/MainLayout";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-import { config } from "@fortawesome/fontawesome-svg-core";
-import "@fortawesome/fontawesome-svg-core/styles.css";
-config.autoAddCss = false;
 
 const inter = Inter({
   subsets: ["latin"],

@@ -2,41 +2,37 @@ import * as React from "react";
 import { cn } from "../../utils/utils";
 
 import {
-  faBars,
-  faTimes,
-  faShare,
-  faDownload,
-  faChevronDown,
-  faEnvelope,
-  faPlayCircle,
-  faEye,
-  faHeart,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { RiLinkedinFill, RiGithubFill, RiMediumFill } from "react-icons/ri";
+  RiMenuLine,
+  RiCloseLine,
+  RiShareLine,
+  RiDownloadLine,
+  RiArrowDownSLine,
+  RiMailLine,
+  RiPlayCircleLine,
+  RiEyeLine,
+  RiHeartFill,
+  RiLinkedinFill,
+  RiGithubFill,
+  RiMediumFill,
+} from "react-icons/ri";
 
-// Maps for icon lookup
-const FONT_AWESOME_MAP = {
-  bars: faBars,
-  times: faTimes,
-  share: faShare,
-  download: faDownload,
-  chevronDown: faChevronDown,
-  email: faEnvelope,
-  play: faPlayCircle,
-  eye: faEye,
-  heart: faHeart,
-} as const;
-
-const REACT_ICON_MAP = {
+// A single, consolidated map for all icons from react-icons
+const ICON_MAP = {
+  bars: RiMenuLine,
+  times: RiCloseLine,
+  share: RiShareLine,
+  download: RiDownloadLine,
+  chevronDown: RiArrowDownSLine,
+  email: RiMailLine,
+  play: RiPlayCircleLine,
+  eye: RiEyeLine,
+  heart: RiHeartFill,
   linkedin: RiLinkedinFill,
   github: RiGithubFill,
   medium: RiMediumFill,
 } as const;
 
-export type IconName =
-  | keyof typeof FONT_AWESOME_MAP
-  | keyof typeof REACT_ICON_MAP;
+export type IconName = keyof typeof ICON_MAP;
 
 export interface IconProps {
   name: IconName;
@@ -44,60 +40,43 @@ export interface IconProps {
   className?: string;
 }
 
-// Updated size mapping for better consistency with your design system
 const sizeClassesMap: Record<Required<IconProps>["size"], string> = {
-  sm: "w-4 h-4", // 16px - more precise than text-sm
-  md: "w-5 h-5", // 20px - more precise than text-base
-  lg: "w-6 h-6", // 24px - more precise than text-lg
-  xl: "w-7 h-7", // 28px - more precise than text-xl
-  "2xl": "w-8 h-8", // 32px - more precise than text-2xl
+  sm: "w-4 h-4",
+  md: "w-5 h-5",
+  lg: "w-6 h-6",
+  xl: "w-7 h-7",
+  "2xl": "w-8 h-8",
 };
 
-export const Icon: React.FC<IconProps> = ({ name, size = "md", className }) => {
+export function Icon({ name, size = "md", className }: IconProps) {
   const classes = cn(
     sizeClassesMap[size],
     "inline-block flex-shrink-0",
     className,
   );
 
-  // Check FontAwesome icons first
-  if (name in FONT_AWESOME_MAP) {
-    const icon = FONT_AWESOME_MAP[name as keyof typeof FONT_AWESOME_MAP];
-    return (
-      <FontAwesomeIcon
-        icon={icon}
-        className={classes}
-        aria-hidden="true" // Better accessibility
-      />
-    );
-  }
+  const IconToShow = ICON_MAP[name];
 
-  // Check React Icons
-  if (name in REACT_ICON_MAP) {
-    const RiIcon = REACT_ICON_MAP[name as keyof typeof REACT_ICON_MAP];
+  if (!IconToShow) {
+    if (process.env.NODE_ENV === "development") {
+      console.warn(`Icon "${name}" not found in ICON_MAP`);
+    }
+    // Render a fallback question mark
     return (
-      <RiIcon
-        className={classes}
-        aria-hidden="true" // Better accessibility
-      />
+      <span
+        className={cn("inline-flex items-center justify-center", classes)}
+        aria-hidden="true"
+        title={`Missing icon: ${name}`}
+      >
+        <span className="text-xs text-gray-500">?</span>
+      </span>
     );
-  }
-
-  if (process.env.NODE_ENV === "development") {
-    console.warn(`Icon "${name}" not found in icon maps`);
   }
 
   return (
-    <span
-      className={cn("inline-flex items-center justify-center", classes)}
-      aria-hidden="true"
-      title={`Missing icon: ${name}`}
-    >
-      <span className="text-xs text-gray-500">?</span>
-    </span>
+    <IconToShow
+      className={classes}
+      aria-hidden="true" // Important for accessibility
+    />
   );
-};
-
-Icon.displayName = "Icon";
-
-export default Icon;
+}
