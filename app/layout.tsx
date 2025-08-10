@@ -66,6 +66,14 @@ export const metadata: Metadata = {
     siteName: "Kevin Diesenberg Portfolio",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/og-image.webp",
+        width: 1200,
+        height: 630,
+        alt: "Kevin Diesenberg, a web developer from Michigan, with his dogs enjoying a sunny day by Lake Huron.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -73,6 +81,14 @@ export const metadata: Metadata = {
     description:
       "Web Developer passionate about building accessible, performant applications using React, TypeScript, and modern tooling.",
     creator: "@KevinDiesenberg",
+    images: [
+      {
+        url: "/og-image.webp",
+        width: 1200,
+        height: 630,
+        alt: "Kevin Diesenberg, a web developer from Michigan, with his dogs enjoying a sunny day by Lake Huron.",
+      },
+    ],
   },
   robots: isProduction
     ? {
