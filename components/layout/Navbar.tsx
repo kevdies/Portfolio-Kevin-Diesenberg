@@ -1,84 +1,38 @@
 "use client";
 import React from "react";
 import { Icon } from "../ui/Icon";
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink,
+} from "../ui/NavigationMenu";
 import { cn } from "../../utils/utils";
-import * as Dialog from "@radix-ui/react-dialog";
-
 import { navItems, type NavItem } from "@/lib/navigation";
 
 interface NavLinkProps {
   item: NavItem;
   activeSection: string | null;
-  isMobile?: boolean;
   onClick: (id: NavItem["id"]) => void;
+  className?: string;
 }
 
-function NavLink({ item, activeSection, isMobile, onClick }: NavLinkProps) {
-  const baseClasses = "rounded transition-colors duration-200";
-  const desktopClasses = "py-2 px-4 text-sm";
-  const mobileClasses = "text-3xl font-medium py-4";
-
-  const activeClasses = "text-purple-400";
-  const inactiveClasses = "text-gray-300 hover:text-purple-400";
-
+function NavLink({ item, activeSection, onClick, className }: NavLinkProps) {
   return (
-    <button
-      onClick={() => onClick(item.id)}
-      className={cn(
-        baseClasses,
-        isMobile ? mobileClasses : desktopClasses,
-        activeSection === item.id ? activeClasses : inactiveClasses,
-      )}
-    >
-      {item.label}
-    </button>
-  );
-}
-
-interface MobileMenuProps {
-  activeSection: string | null;
-  onLinkClick: (id: NavItem["id"]) => void;
-}
-
-function MobileMenu({ activeSection, onLinkClick }: MobileMenuProps) {
-  return (
-    <Dialog.Root>
-      <Dialog.Trigger asChild>
-        <button
-          className="rounded-md p-2 hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-purple-500 md:hidden"
-          aria-label="Open menu"
-        >
-          <Icon name="bars" size="lg" />
-        </button>
-      </Dialog.Trigger>
-      <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-black/50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
-        <Dialog.Content className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/95 backdrop-blur-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
-          <ul className="flex flex-col items-center space-y-4">
-            {navItems.map((item) => (
-              <li key={item.id}>
-                <Dialog.Close asChild>
-                  <NavLink
-                    item={item}
-                    activeSection={activeSection}
-                    isMobile
-                    onClick={onLinkClick}
-                  />
-                </Dialog.Close>
-              </li>
-            ))}
-          </ul>
-          <Dialog.Close asChild>
-            <button
-              className="absolute right-4 top-4 rounded-md p-2 hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-purple-500"
-              aria-label="Close menu"
-            >
-              <Icon name="times" size="lg" />
-            </button>
-          </Dialog.Close>
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
+    <NavigationMenuLink asChild>
+      <button
+        onClick={() => onClick(item.id)}
+        className={cn(
+          "rounded px-4 py-2 text-sm font-medium transition-colors hover:text-purple-400",
+          activeSection === item.id ? "text-purple-400" : "text-gray-300",
+          className,
+        )}
+      >
+        {item.label}
+      </button>
+    </NavigationMenuLink>
   );
 }
 
@@ -104,19 +58,51 @@ function NavbarComponent(
           Kevin Diesenberg
         </button>
 
-        <nav className="hidden items-center space-x-2 md:flex">
-          {navItems.map((item) => (
-            <NavLink
-              key={item.id}
-              item={item}
-              activeSection={activeSection}
-              onClick={navigateTo}
-            />
-          ))}
-        </nav>
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex">
+          <NavigationMenu>
+            <NavigationMenuList>
+              {navItems.map((item) => (
+                <NavigationMenuItem key={item.id}>
+                  <NavLink
+                    item={item}
+                    activeSection={activeSection}
+                    onClick={navigateTo}
+                  />
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
 
+        {/* Mobile Navigation */}
         <div className="md:hidden">
-          <MobileMenu activeSection={activeSection} onLinkClick={navigateTo} />
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger
+                  aria-label="Open menu"
+                  data-testid="mobile-menu-trigger"
+                >
+                  <Icon name="bars" size="lg" />
+                </NavigationMenuTrigger>
+                <NavigationMenuContent data-testid="mobile-menu-content">
+                  <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                    {navItems.map((item) => (
+                      <li key={item.id}>
+                        <NavLink
+                          item={item}
+                          activeSection={activeSection}
+                          onClick={navigateTo}
+                          className="w-full justify-start text-lg"
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
         </div>
       </div>
     </header>
