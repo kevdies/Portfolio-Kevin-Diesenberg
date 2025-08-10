@@ -3,6 +3,12 @@ import React from "react";
 import { Icon } from "../ui/Icon";
 import { cn } from "../../utils/utils";
 import * as Dialog from "@radix-ui/react-dialog";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from "../ui/NavigationMenu";
 
 import { navItems, type NavItem } from "@/lib/navigation";
 
@@ -104,16 +110,23 @@ function NavbarComponent(
           Kevin Diesenberg
         </button>
 
-        <nav className="hidden items-center space-x-2 md:flex">
-          {navItems.map((item) => (
-            <NavLink
-              key={item.id}
-              item={item}
-              activeSection={activeSection}
-              onClick={navigateTo}
-            />
-          ))}
-        </nav>
+        <div className="hidden md:flex">
+          <NavigationMenu>
+            <NavigationMenuList>
+              {navItems.map((item) => (
+                <NavigationMenuItem key={item.id}>
+                  <NavigationMenuLink asChild>
+                    <NavLink
+                      item={item}
+                      activeSection={activeSection}
+                      onClick={navigateTo}
+                    />
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
 
         <div className="md:hidden">
           <MobileMenu activeSection={activeSection} onLinkClick={navigateTo} />
