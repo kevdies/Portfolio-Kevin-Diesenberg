@@ -2,14 +2,17 @@ import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-      disallow: [
-        "/_next/", // Next.js internal files
-        "/admin/",
-      ],
-    },
+    rules: [
+      {
+        userAgent: "Googlebot",
+        allow: ["/", "/assets/*.js", "/assets/*.css"],
+        disallow: ["/_next/", "/admin/", "/private/"],
+      },
+      {
+        userAgent: "*",
+        disallow: ["/_next/", "/admin/", "/temp/"],
+      },
+    ],
     sitemap: "https://www.kevindiesenberg.com/sitemap.xml",
   };
 }
