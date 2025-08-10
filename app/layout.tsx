@@ -1,28 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { Inter, Poppins } from "next/font/google";
+import { inter, poppins } from "@/app/ui/fonts";
 import { MainLayout } from "@/components/layout/MainLayout";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  weight: ["400", "500", "600"],
-  display: "swap",
-  adjustFontFallback: true,
-  preload: true,
-});
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  variable: "--font-heading",
-  weight: ["400", "600", "700"],
-  display: "swap",
-  adjustFontFallback: true,
-  preload: true,
-});
 
 const isProduction = process.env.NODE_ENV === "production";
 
