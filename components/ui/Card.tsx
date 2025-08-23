@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cn } from "../../utils/utils";
+import { cn } from "@/utils/utils";
 
 const Card = React.forwardRef<
   HTMLDivElement,
@@ -9,8 +9,8 @@ const Card = React.forwardRef<
     ref={ref}
     className={cn(
       "relative overflow-hidden",
-      "rounded-lg border border-zinc-600 bg-zinc-800",
-      "p-8",
+      "rounded-lg border border-surface-border bg-surface-secondary",
+      "p-content-lg md:p-content-xl",
       className,
     )}
     {...props}
@@ -24,7 +24,7 @@ const CardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("mb-6 flex flex-col space-y-2", className)}
+    className={cn("mb-content-lg flex flex-col space-y-content-sm", className)}
     {...props}
   />
 ));
@@ -71,7 +71,7 @@ const CardFooter = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("mt-6 flex items-center", className)}
+    className={cn("mt-content-lg flex items-center", className)}
     {...props}
   />
 ));

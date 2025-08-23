@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cn } from "../../utils/utils";
+import { cn } from "@/utils/utils";
 
 import {
   RiMenuLine,
@@ -41,17 +41,17 @@ export interface IconProps {
 }
 
 const sizeClassesMap: Record<Required<IconProps>["size"], string> = {
-  sm: "w-4 h-4",
-  md: "w-5 h-5",
-  lg: "w-6 h-6",
-  xl: "w-7 h-7",
-  "2xl": "w-8 h-8",
+  sm: "w-4 h-4", // 16px - Small icons for inline text, buttons
+  md: "w-5 h-5", // 20px - Default size for most UI elements
+  lg: "w-6 h-6", // 24px - Section headers, navigation
+  xl: "w-8 h-8", // 32px - Card headers, prominent actions
+  "2xl": "w-10 h-10", // 40px - Hero sections, large decorative icons
 };
 
 export function Icon({ name, size = "md", className }: IconProps) {
   const classes = cn(
     sizeClassesMap[size],
-    "inline-block flex-shrink-0",
+    "inline-block flex-shrink-0 transition-colors duration-200",
     className,
   );
 

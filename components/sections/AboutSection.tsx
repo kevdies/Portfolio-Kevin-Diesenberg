@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Section from "../ui/Section";
+import Section from "@/components/ui/Section";
 import Image from "next/image";
 import kevHenryArti from "@/assets/images/kev-henry-artichoke.webp";
 
@@ -9,53 +9,63 @@ export interface AboutSectionProps {
   id?: string;
 }
 
-const AboutSection: React.FC<AboutSectionProps> = ({ id = "about" }) => {
+function AboutSection({ id = "about" }: AboutSectionProps) {
   return (
-    <Section id={id} title="">
-      <div className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-12">
-        {/* Text Column */}
-        <div className="order-2 space-y-6 md:order-1 md:space-y-8">
-          <h3 className="font-['Poppins'] text-2xl font-semibold text-white md:text-3xl">
-            {`Hi, I'm Kevin – a Web Dev from Michigan`}
-          </h3>
+    <Section id={id}>
+      <div className="mx-auto max-w-4xl text-center space-y-content-lg">
+        {/* Mobile-first hero content */}
+        <div className="space-y-content">
+          <h1 className="font-heading text-xl font-semibold text-white xs:text-2xl sm:text-3xl md:text-4xl leading-tight">
+            Built features serving 6 local news stations across 4 states
+          </h1>
 
-          <p className="font-sans text-lg leading-relaxed text-white md:text-xl">
-            I build performant, accessible, and maintainable web applications
-            using React, TypeScript, and modern tooling.
+          <p className="font-sans text-base text-hierarchy-secondary xs:text-lg sm:text-xl leading-tight">
+            Graham Media Group • NBC, CBS, ABC Affiliates • Video Analytics APIs
           </p>
+        </div>
 
-          <p className="text-base leading-relaxed text-gray-400 md:text-lg">
-            {`With a passion for continuous learning and problem-solving, I've
-            successfully delivered features that serve millions of users daily,
-            leveraging analytics, best practices in accessibility, and modern workflows.`}
-          </p>
-
-          <div className="hidden pt-6 md:block">
-            <p className="text-sm text-gray-500">
-              {`Scroll down to explore my work and experience →`}
-            </p>
+        {/* Video Analytics Integration */}
+        <div className="space-y-content">
+          <p className="text-xs text-hierarchy-muted font-medium">Video Player & Analytics Integration:</p>
+          <div className="flex flex-wrap justify-center gap-2 text-xs max-w-md mx-auto">
+            <span className="bg-surface-secondary px-2 py-1 rounded text-hierarchy-muted">Anyclip Player</span>
+            <span className="bg-surface-secondary px-2 py-1 rounded text-hierarchy-muted">Bitmovin Player</span>
+            <span className="bg-surface-secondary px-2 py-1 rounded text-hierarchy-muted">Nielsen DCR</span>
+            <span className="bg-surface-secondary px-2 py-1 rounded text-hierarchy-muted">Chartbeat</span>
+            <span className="bg-surface-secondary px-2 py-1 rounded text-hierarchy-muted">Braze</span>
+            <span className="bg-surface-secondary px-2 py-1 rounded text-hierarchy-muted">Sentry</span>
+          </div>
+          <div className="flex flex-wrap justify-center gap-2 text-xs max-w-md mx-auto">
+            <span className="bg-surface-tertiary/50 px-2 py-1 rounded text-hierarchy-muted">React</span>
+            <span className="bg-surface-tertiary/50 px-2 py-1 rounded text-hierarchy-muted">TypeScript</span>
+            <span className="bg-surface-tertiary/50 px-2 py-1 rounded text-hierarchy-muted">Node.js</span>
+            <span className="bg-surface-tertiary/50 px-2 py-1 rounded text-hierarchy-muted">AWS</span>
+            <span className="bg-surface-tertiary/50 px-2 py-1 rounded text-hierarchy-muted">ArcXP CMS</span>
           </div>
         </div>
 
-        {/* Image Column */}
-        <div className="order-1 md:order-2">
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-zinc-800">
+        {/* Professional hero image */}
+        <div className="mx-auto max-w-xs sm:max-w-sm">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-surface-secondary">
             <Image
               src={kevHenryArti}
               alt="Kevin Diesenberg with his dogs enjoying a sunny day by Lake Huron"
               placeholder="blur"
               fill
-              className="object-cover transition-transform duration-300 hover:scale-105"
-              sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 45vw, 40vw"
+              className="object-cover"
+              sizes="(max-width: 640px) 320px, (max-width: 768px) 384px, 384px"
               priority
               quality={85}
-              loading="eager"
             />
           </div>
         </div>
+
+        <p className="text-sm text-hierarchy-tertiary xs:text-base max-w-lg mx-auto">
+          Proven track record shipping production features to 6 NBC, CBS, and ABC affiliate news stations across Texas, Michigan, Florida, and Virginia markets.
+        </p>
       </div>
     </Section>
   );
-};
+}
 
 export { AboutSection };

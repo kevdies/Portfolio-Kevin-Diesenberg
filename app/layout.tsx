@@ -13,27 +13,33 @@ export const viewport: Viewport = {
   maximumScale: 5,
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#a855f7" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
   ],
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.kevindiesenberg.com"),
   title: "Kevin Diesenberg - Web Developer & Software Engineer",
   description:
-    "Web Developer passionate about building accessible, performant applications using React, TypeScript, and modern tooling. Based in Michigan.",
+    "Web Developer & Software Engineer specializing in enterprise media platforms and video analytics APIs. Built features serving 6 NBC, CBS, and ABC affiliate news stations for Graham Media Group. Based in Michigan.",
   keywords: [
     "Kevin Diesenberg",
     "Web Developer",
     "Software Engineer",
+    "Graham Media Group",
+    "Broadcast Media Technology",
+    "Enterprise Media Platforms",
+    "Video Analytics APIs",
+    "ArcXP CMS",
+    "Nielsen DCR",
+    "Chartbeat",
+    "Anyclip",
+    "Bitmovin",
+    "NBC CBS ABC Affiliates",
     "React",
     "TypeScript",
-    "JavaScript",
     "Next.js",
-    "Tailwind CSS",
     "Michigan",
-    "Frontend Developer",
-    "Accessibility",
-    "Performance",
   ],
   authors: [
     { name: "Kevin Diesenberg", url: "https://www.kevindiesenberg.com" },
@@ -42,7 +48,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Kevin Diesenberg - Web Developer & Software Engineer",
     description:
-      "Web Developer passionate about building accessible, performant applications using React, TypeScript, and modern tooling.",
+      "Web Developer & Software Engineer specializing in enterprise media platforms and video analytics APIs for Graham Media Group's NBC, CBS, and ABC affiliate stations.",
     url: "https://www.kevindiesenberg.com",
     siteName: "Kevin Diesenberg Portfolio",
     locale: "en_US",
@@ -60,7 +66,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Kevin Diesenberg - Web Developer & Software Engineer",
     description:
-      "Web Developer passionate about building accessible, performant applications using React, TypeScript, and modern tooling.",
+      "Web Developer & Software Engineer specializing in enterprise media platforms and video analytics APIs for Graham Media Group's NBC, CBS, and ABC affiliate stations.",
     creator: "@KevinDiesenberg",
     images: [
       {
@@ -91,12 +97,7 @@ export const metadata: Metadata = {
     canonical: "https://www.kevindiesenberg.com",
   },
   icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-    ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    icon: [{ url: "/favicon.ico" }],
   },
 };
 
@@ -107,7 +108,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
-      <body className="bg-black text-gray-200 antialiased">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+      </head>
+      <body className="bg-surface-primary text-gray-200 antialiased">
         <MainLayout>{children}</MainLayout>
         <Analytics />
         <SpeedInsights />

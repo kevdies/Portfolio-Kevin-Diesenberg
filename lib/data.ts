@@ -12,7 +12,15 @@ export const professionalProjects: Project[] = [
     image: brgLeaderboard,
     alt: "Leaderboard UI for photo contests",
     description:
-      "This reusable leaderboard powers both the Blue Ridge Games and My Hometown's Best photo contests—displaying real-time user rankings per category with contest-specific rules, accessibility support, and responsive design.",
+      "Reusable leaderboard powering photo contests for thousands of participants across multiple platforms.",
+    businessImpact:
+      "Increased user engagement through real-time rankings with enterprise API integrations",
+    results: [
+      "Real-time data sync with useSWR",
+      "Cross-platform contest support",
+      "Dynamic contest configuration",
+      "Sentry error monitoring",
+    ],
     features: [
       "React & TypeScript",
       "Headless UI Tabs with custom styled primitives",
@@ -40,11 +48,19 @@ export const professionalProjects: Project[] = [
     image: pinUploadModal,
     alt: "Mobile view of pin upload success modal",
     description:
-      "User-friendly modal to confirm pin uploads, with retry flow and Web Share API (plus clipboard fallback), styled via theming and announced via ARIA live regions.",
+      "User-friendly modal confirming successful uploads with sharing capabilities and accessibility features.",
+    businessImpact:
+      "Improved user experience with video upload success tracking and analytics",
+    results: [
+      "Web Share API integration",
+      "Upload success tracking",
+      "Retry flow implementation",
+      "Sentry error monitoring",
+    ],
     features: [
       "React & TypeScript",
       "Web Share API + clipboard fallback",
-      "ARIA live updates",
+      "Accessibility standards adherence",
       "Built-in retry flow",
       "Styled-components theming",
       "Smooth transitions",
@@ -56,10 +72,17 @@ export const professionalProjects: Project[] = [
     image: newsLetterSignUpCard,
     alt: "Newsletter sign-up card embedded in article",
     description:
-      "Dynamic sign-up card embedded in side rails and articles, with email regex validation, personalized messages, full screen-reader & keyboard support, and redirects on success.",
+      "Dynamic newsletter signup component with validation and accessibility features embedded across news articles.",
+    businessImpact:
+      "Increased newsletter subscriptions through strategic article placement",
+    results: [
+      "Email validation with regex",
+      "Accessibility standards adherence",
+      "Seamless article integration",
+    ],
     features: [
       "Email regex validation & timeout handling",
-      "Screen-reader & keyboard support",
+      "Accessibility standards & keyboard support",
       "Dynamic success/error messaging",
       "Embedded in side rails & articles",
       "Redirects to newsletter page",

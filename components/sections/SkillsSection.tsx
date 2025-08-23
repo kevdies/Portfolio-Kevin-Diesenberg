@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { Card } from "../ui/Card";
-import Section from "../ui/Section";
+import { Card } from "@/components/ui/Card";
+import Section from "@/components/ui/Section";
 
 export interface SkillsSectionProps {
   id?: string;
@@ -23,37 +23,33 @@ const technicalSkills = [
   "GitHub",
 ];
 
-const SkillsSection: React.FC<SkillsSectionProps> = ({ id = "skills" }) => {
+function SkillsSection({ id = "skills" }: SkillsSectionProps) {
   return (
-    <Section
-      id={id}
-      title="Technical Skills"
-      subtitle="Core technologies and tools I work with"
-    >
-      <Card className="mx-auto max-w-4xl">
-        <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+    <Section id={id}>
+      <Card className="mx-auto max-w-5xl">
+        <ul className="grid grid-cols-1 gap-content xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
           {technicalSkills.map((skill) => (
             <li
               key={skill}
-              className="group flex items-center rounded-md border border-zinc-600 bg-zinc-800 px-4 py-2 text-sm transition-all duration-300 hover:border-zinc-500 hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="group flex items-center justify-center rounded-md border border-subtle bg-surface-secondary px-3 py-3 text-sm mobile-hover hover:border-accent hover:bg-surface-tertiary hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-primary touch-target min-w-0"
               tabIndex={0}
             >
-              <span className="mr-2 h-2 w-2 flex-shrink-0 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 transition-all duration-300 group-hover:scale-110" />
-              <span className="text-gray-400 transition-colors duration-300 group-hover:text-gray-200">
+              <span className="mr-2 h-2 w-2 flex-shrink-0 rounded-full bg-brand-primary" />
+              <span className="text-hierarchy-tertiary transition-colors duration-300 group-hover:text-hierarchy-secondary truncate">
                 {skill}
               </span>
             </li>
           ))}
         </ul>
 
-        <div className="mt-8 border-t border-zinc-600/50 pt-6 text-center">
-          <p className="text-sm text-gray-500">
+        <div className="mt-content-xl border-t border-surface-border/50 pt-content-lg text-center">
+          <p className="text-sm text-hierarchy-muted">
             Always learning and exploring new technologies
           </p>
         </div>
       </Card>
     </Section>
   );
-};
+}
 
 export { SkillsSection };

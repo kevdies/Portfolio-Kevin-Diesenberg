@@ -1,12 +1,15 @@
 import React from "react";
-import { Button } from "../ui/Button";
-import { Icon } from "../ui/Icon";
+import { Button } from "@/components/ui/Button";
+import { Icon } from "@/components/ui/Icon";
 import type { ProjectLink } from "@/types";
 
-export const ProjectActions: React.FC<{
+export function ProjectActions({
+  liveUrls,
+  demo,
+}: {
   liveUrls?: ProjectLink[];
   demo?: string;
-}> = ({ liveUrls, demo }) => {
+}) {
   if (liveUrls?.length) {
     return (
       <div className="mt-auto space-y-2">
@@ -56,4 +59,4 @@ export const ProjectActions: React.FC<{
       </Button>
     </div>
   );
-};
+}
