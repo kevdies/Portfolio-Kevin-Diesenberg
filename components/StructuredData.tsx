@@ -3,6 +3,7 @@ export function StructuredData() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Kevin Diesenberg",
+    mainEntityOfPage: "https://www.kevindiesenberg.com",
     jobTitle: "Web Developer | Software Engineer",
     description:
       "Web Developer & Software Engineer specializing in enterprise media platforms and video analytics APIs. Built features serving 6 local news stations across NBC, CBS, and ABC affiliates for Graham Media Group.",
@@ -41,15 +42,14 @@ export function StructuredData() {
       "@type": "Occupation",
       name: "Web Developer",
       description: "Software engineer specializing in enterprise media platforms, video analytics integration, and broadcast technology solutions for news organizations.",
-      mainEntityOfPage: "https://www.kevindiesenberg.com",
       estimatedSalary: {
-        "@type": "MonetaryAmount",
+        "@type": "MonetaryAmountDistribution",
+        name: "base",
         currency: "USD",
-        value: {
-          "@type": "QuantitativeValue",
-          value: 85000,
-          unitText: "YEAR"
-        }
+        duration: "P1Y",
+        median: 85000,
+        percentile25: 75000,
+        percentile75: 95000
       },
       occupationLocation: {
         "@type": "Country",
