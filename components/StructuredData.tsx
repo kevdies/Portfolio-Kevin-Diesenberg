@@ -7,7 +7,7 @@ export function StructuredData() {
     gender: "male",
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": "https://www.kevindiesenberg.com"
+      "@id": "https://www.kevindiesenberg.com",
     },
     jobTitle: "Web Developer | Software Engineer",
     description:
@@ -49,10 +49,9 @@ export function StructuredData() {
       name: "Web Developer",
       description:
         "Software engineer specializing in enterprise media platforms, video analytics integration, and broadcast technology solutions for news organizations.",
-      estimatedSalary: {
-        "@type": "MonetaryAmount",
-        currency: "USD",
-        value: 85000
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "https://www.kevindiesenberg.com",
       },
       occupationLocation: {
         "@type": "Country",
