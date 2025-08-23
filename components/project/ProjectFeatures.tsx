@@ -1,12 +1,17 @@
 import React from "react";
 import { FeatureTag } from "./FeatureTag";
 
-export const ProjectFeatures: React.FC<{
+export function ProjectFeatures({
+  features,
+  isExpanded,
+  onToggle,
+  projectName,
+}: {
   features: string[];
   isExpanded: boolean;
   onToggle: () => void;
   projectName: string;
-}> = ({ features, isExpanded, onToggle, projectName }) => {
+}) {
   const visibleFeatures = features.slice(0, 2);
   const hiddenFeatures = features.slice(2);
   const hasMoreFeatures = features.length > 2;
@@ -25,7 +30,7 @@ export const ProjectFeatures: React.FC<{
       {hasMoreFeatures && (
         <button
           onClick={onToggle}
-          className="rounded px-1 py-0.5 text-xs font-medium text-purple-500 transition-colors duration-200 hover:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+          className="rounded px-1 py-0.5 text-xs font-medium text-brand-primary transition-colors duration-200 hover:text-brand-primary-light focus:outline-none focus:ring-2 focus:ring-brand-primary"
           aria-label={
             isExpanded
               ? `Hide additional features for ${projectName}`
@@ -37,4 +42,4 @@ export const ProjectFeatures: React.FC<{
       )}
     </div>
   );
-};
+}

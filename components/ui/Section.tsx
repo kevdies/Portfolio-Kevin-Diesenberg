@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cn } from "../../utils/utils";
+import { cn } from "@/utils/utils";
 
 interface SectionProps {
   id?: string;
@@ -9,72 +9,47 @@ interface SectionProps {
   subtitle?: string;
 }
 
-const Section: React.FC<SectionProps> = ({
+function Section({
   id,
   title,
   subtitle,
   children,
   className,
-}) => {
+}: SectionProps) {
   return (
     <section
       id={id}
       className={cn(
-        "py-8 md:py-12 lg:py-16", // Reduced top/bottom padding with responsive sizing
-        "px-4 sm:px-6", // Reduced horizontal padding, responsive
-        "bg-black",
+        "py-section", // Consistent section spacing
+        "px-4 xs:px-5 sm:px-6 lg:px-8", // Enhanced mobile padding progression
+        "bg-surface-primary",
         "relative overflow-hidden",
         "scroll-mt-[64px]",
         className,
       )}
     >
-      {/* Animated background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-purple-600/5 opacity-50" />
-
-      {/* Subtle animated dots pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.02]"
-        style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
-          backgroundSize: "32px 32px",
-        }}
-      />
 
       <div className="container relative mx-auto max-w-7xl">
         {title && (
-          <div className="mb-8 text-center md:mb-12">
-            {/* Enhanced title with better animation */}
-            <h2
-              className={cn(
-                "mb-4 font-['Poppins'] text-3xl font-semibold md:mb-6",
-                "bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent",
-                "duration-700 animate-in fade-in slide-in-from-bottom-4",
-              )}
-            >
+          <div className="mb-content-xl text-center">
+            <h2 className="mb-content font-heading text-2xl font-semibold text-white xs:text-3xl md:text-4xl">
               {title}
             </h2>
-
-            {/* Enhanced subtitle */}
             {subtitle && (
-              <p
-                className={cn(
-                  "mx-auto max-w-2xl text-lg leading-relaxed text-gray-400",
-                  "delay-300 duration-700 animate-in fade-in slide-in-from-bottom-4",
-                )}
-              >
+              <p className="mx-auto max-w-3xl text-base text-hierarchy-tertiary xs:text-lg md:text-xl">
                 {subtitle}
               </p>
             )}
           </div>
         )}
 
-        {/* Content with subtle animation */}
-        <div className="delay-500 duration-700 animate-in fade-in slide-in-from-bottom-4">
+        {/* Content */}
+        <div>
           {children}
         </div>
       </div>
     </section>
   );
-};
+}
 
 export default Section;

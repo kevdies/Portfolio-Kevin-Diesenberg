@@ -1,23 +1,42 @@
 "use client";
 
 import React from "react";
-import Section from "../ui/Section";
-import { Card } from "../ui/Card";
-import { cn } from "../../utils/utils";
+import Section from "@/components/ui/Section";
+import { Card } from "@/components/ui/Card";
+import { cn } from "@/utils/utils";
 
 export interface ExperienceSectionProps {
   id?: string;
 }
 
-const experiences = [
+interface Experience {
+  role: string;
+  company: string;
+  period: string;
+  impact?: string;
+  metrics?: { label: string; value: string }[];
+  details: string[];
+  current: boolean;
+}
+
+const experiences: Experience[] = [
   {
     role: "Web Developer | Software Engineer",
     company: "Graham Media Group",
     period: "March 2024 – Present",
+    impact: "Features serving 6 local news stations across 4 states",
+    metrics: [
+      { label: "TV Stations", value: "6" },
+      { label: "States Covered", value: "4" },
+      { label: "Network Affiliates", value: "NBC CBS ABC" },
+      { label: "Video Players", value: "Anyclip & Bitmovin" },
+    ],
     details: [
-      "Built and maintained high-performance news sites with React & TypeScript",
-      "Collaborated on cross-functional teams to ship features serving millions daily",
-      "Implemented Nielsen DCR analytics tracking for VoD & livestream players",
+      "Built features for NBC/CBS/ABC affiliates: KPRC-Houston, WDIV-Detroit, KSAT-San Antonio, WKMG-Orlando, WJXT-Jacksonville, WSLS-Roanoke",
+      "Integrated Nielsen DCR and Chartbeat analytics into Anyclip and Bitmovin video players",
+      "Deployed dual video player architecture serving local news viewers across 4 states",
+      "Built custom ArcXP CMS templates and pages using Content API for editors, publishers, and writers",
+      "Implemented Sentry monitoring, migrated user base to Braze from Blueconic, and AWS infrastructure",
     ],
     current: true,
   },
@@ -26,8 +45,9 @@ const experiences = [
     company: "IATSE (Theatrical Stage Employees)",
     period: "2008 – 2021",
     details: [
-      "Rigged lighting & sound for live productions",
-      "Ensured safety compliance on set",
+      "Rigged lighting & sound for 1000+ shows, events, political rallies, and theatrical productions",
+      "Spotlight operator for President Obama speech and worked 3 presidential inaugurations",
+      "Maintained safety standards across complex live productions",
     ],
     current: false,
   },
@@ -36,90 +56,78 @@ const experiences = [
     company: "National Park Service",
     period: "2009 – 2019",
     details: [
-      "Managed water treatment systems in remote environments",
-      "Developed problem-solving skills under challenging conditions",
+      "Operated water treatment systems serving 50,000+ park visitors",
+      "Maintained 99.9% system uptime in remote backcountry locations",
     ],
     current: false,
   },
 ];
 
-const ExperienceSection: React.FC<ExperienceSectionProps> = ({
-  id = "experience",
-}) => {
+function ExperienceSection({ id = "experience" }: ExperienceSectionProps) {
   return (
-    <Section id={id} title="">
-      <div className="mb-12 text-center">
-        <h2 className="mb-6 bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text font-['Poppins'] text-3xl font-semibold text-transparent">
-          Work Experience
-        </h2>
-        <p className="mx-auto max-w-2xl text-lg text-gray-400">
-          A diverse background spanning tech, entertainment, and public service
-        </p>
-      </div>
-
-      <div className="mx-auto max-w-4xl space-y-8">
+    <Section id={id}>
+      <div className="space-y-content-lg mx-auto max-w-5xl">
         {experiences.map((exp, idx) => (
           <Card
             key={idx}
             className={cn(
-              "transition-all duration-300",
-              exp.current && "shadow-xl ring-2 ring-purple-500/20",
+              "mobile-hover border-subtle hover:border-accent",
+              exp.current &&
+                "ring-brand-primary/20 border-accent shadow-xl ring-2",
             )}
           >
-            <div className="mb-4 flex flex-col md:flex-row md:items-start md:justify-between">
+            <div className="mb-content flex flex-col md:flex-row md:items-start md:justify-between">
               <div className="flex-1">
                 <div className="mb-1 flex items-start gap-2">
-                  <h3 className="font-['Poppins'] text-xl font-semibold text-white">
+                  <h3 className="text-hierarchy-primary font-heading text-xl font-semibold">
                     {exp.role}
                   </h3>
                   {exp.current && (
-                    <span className="rounded-full bg-gradient-to-r from-purple-500 to-purple-600 px-2 py-1 text-xs font-medium text-white">
+                    <span className="from-brand-primary to-brand-primary-dark rounded-full bg-gradient-to-r px-2 py-1 text-xs font-medium text-white">
                       Current
                     </span>
                   )}
                 </div>
-                <p className="font-medium text-gray-400">{exp.company}</p>
+                <p className="text-hierarchy-secondary font-medium">
+                  {exp.company}
+                </p>
+                {exp.impact && (
+                  <p className="text-brand-primary xs:text-base mt-1 text-sm font-medium">
+                    {exp.impact}
+                  </p>
+                )}
               </div>
-              <span className="mt-2 text-sm font-medium text-gray-500 md:mt-0">
+              <span className="text-hierarchy-muted mt-2 text-sm font-medium md:mt-0">
                 {exp.period}
               </span>
             </div>
 
-            <ul className="space-y-2">
+            <ul className="space-y-content-sm">
               {exp.details.map((detail, i) => (
                 <li key={i} className="group flex items-start">
-                  <span
-                    className={cn(
-                      "h-1.5 w-1.5 rounded-full bg-gradient-to-r from-purple-500 to-purple-600",
-                      "mr-3 mt-2 flex-shrink-0",
-                      "transition-all duration-200",
-                      "group-hover:scale-125",
-                    )}
-                  />
-                  <span className="text-sm leading-relaxed text-gray-400 transition-colors duration-200 group-hover:text-gray-200">
+                  <span className="bg-brand-primary mr-3 mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full" />
+                  <span className="text-hierarchy-tertiary group-hover:text-hierarchy-secondary text-sm transition-colors duration-200">
                     {detail}
                   </span>
                 </li>
               ))}
             </ul>
 
-            {exp.current && (
-              <div className="mt-6 border-t border-zinc-600/50 pt-6">
-                <p className="mb-2 text-xs text-gray-500">Key Technologies:</p>
-                <div className="flex flex-wrap gap-1">
-                  {[
-                    "React",
-                    "TypeScript",
-                    "Styled Components",
-                    "Analytics",
-                    "Accessibility",
-                  ].map((tech, i) => (
-                    <span
+            {exp.current && exp.metrics && (
+              <div className="mt-content-lg border-surface-border/50 pt-content-lg border-t">
+                <div className="gap-content grid grid-cols-2 text-center">
+                  {exp.metrics.map((metric, i) => (
+                    <div
                       key={i}
-                      className="rounded border border-zinc-600 bg-zinc-800 px-2 py-1 text-xs text-gray-400"
+                      className="bg-surface-tertiary/30 rounded px-2 py-3"
                     >
-                      {tech}
-                    </span>
+                      <div className="xs:text-lg text-base font-semibold text-white">
+                        {metric.value}
+                      </div>
+                      <div className="text-hierarchy-tertiary text-xs leading-tight">
+                        {metric.label}
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -129,6 +137,6 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
       </div>
     </Section>
   );
-};
+}
 
 export { ExperienceSection };

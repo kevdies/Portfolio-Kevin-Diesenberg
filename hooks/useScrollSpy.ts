@@ -5,9 +5,9 @@ import { navItems, type NavItem } from "@/lib/navigation";
 const SECTION_IDS = navItems.map((item) => item.id);
 type SectionId = NavItem["id"];
 
-export function useScrollSpy(headerRef: RefObject<HTMLElement>) {
+export function useScrollSpy(headerRef: RefObject<HTMLElement | null>) {
   const [activeSection, setActiveSection] = useState<SectionId>("about");
-  const [headerHeight, setHeaderHeight] = useState(0);
+  const [headerHeight, setHeaderHeight] = useState(80);
 
   // Measure header height
   useEffect(() => {
@@ -54,14 +54,22 @@ export function useScrollSpy(headerRef: RefObject<HTMLElement>) {
   }, [headerHeight]);
 
   const navigateTo = useCallback((id: SectionId) => {
-    // Immediately update the active section for instant feedback
-    setActiveSection(id);
-
     const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
-  }, []);
+    if (!el) return;
+
+    // Calculate exact scroll position accounting for header
+    const elementPosition = el.offsetTop;
+    const offsetPosition = elementPosition - headerHeight;
+
+    // Smooth scroll to position
+    window.scrollTo({
+      top: Math.max(0, offsetPosition), // Ensure we don't scroll above top
+      behavior: "smooth"
+    });
+
+    // Set active section after a brief delay to avoid conflicts with IntersectionObserver
+    setTimeout(() => setActiveSection(id), 100);
+  }, [headerHeight]);
 
   return { activeSection, navigateTo, headerHeight };
 }

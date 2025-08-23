@@ -1,4 +1,3 @@
-// types/index.ts
 import { StaticImageData } from "next/image";
 
 export interface ProjectLink {
@@ -11,6 +10,8 @@ export interface Project {
   image: StaticImageData;
   alt: string;
   description: string;
+  businessImpact?: string;
+  results?: string[];
   features: string[];
   demo?: string;
   github?: string;

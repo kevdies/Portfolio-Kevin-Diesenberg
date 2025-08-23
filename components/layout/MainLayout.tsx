@@ -5,6 +5,7 @@ import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { StructuredData } from "@/components/StructuredData";
+import { ScrollToTop } from "@/components/ui/ScrollToTop";
 
 export function MainLayout({ children }: { children: React.ReactNode }) {
   const headerRef = React.useRef<HTMLElement>(null);
@@ -21,7 +22,8 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
       <main id="main-content" className="min-h-screen">
         {children}
       </main>
-      <Footer activeSection={activeSection} navigateTo={navigateTo} />
+      <Footer />
+      <ScrollToTop />
     </div>
   );
 }
