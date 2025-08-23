@@ -3,7 +3,12 @@ export function StructuredData() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Kevin Diesenberg",
-    mainEntityOfPage: "https://www.kevindiesenberg.com",
+    image: "https://www.kevindiesenberg.com/favicon.ico",
+    gender: "male",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": "https://www.kevindiesenberg.com"
+    },
     jobTitle: "Web Developer | Software Engineer",
     description:
       "Web Developer & Software Engineer specializing in enterprise media platforms and video analytics APIs. Built features serving 6 local news stations across NBC, CBS, and ABC affiliates for Graham Media Group.",
@@ -21,6 +26,7 @@ export function StructuredData() {
         "Media company operating NBC, CBS, and ABC affiliate stations across 4 states",
       url: "https://www.grahammedia.com",
     },
+    knowsLanguage: ["English"],
     knowsAbout: [
       "JavaScript",
       "TypeScript",
@@ -36,20 +42,17 @@ export function StructuredData() {
       "Bitmovin Video Platform",
       "AWS Infrastructure",
       "Sentry Monitoring",
-      "Braze CDP",
+      "Braze",
     ],
     hasOccupation: {
       "@type": "Occupation",
       name: "Web Developer",
-      description: "Software engineer specializing in enterprise media platforms, video analytics integration, and broadcast technology solutions for news organizations.",
+      description:
+        "Software engineer specializing in enterprise media platforms, video analytics integration, and broadcast technology solutions for news organizations.",
       estimatedSalary: {
-        "@type": "MonetaryAmountDistribution",
-        name: "base",
+        "@type": "MonetaryAmount",
         currency: "USD",
-        duration: "P1Y",
-        median: 85000,
-        percentile25: 75000,
-        percentile75: 95000
+        value: 85000
       },
       occupationLocation: {
         "@type": "Country",
