@@ -40,6 +40,17 @@ export function StructuredData() {
     hasOccupation: {
       "@type": "Occupation",
       name: "Web Developer",
+      description: "Software engineer specializing in enterprise media platforms, video analytics integration, and broadcast technology solutions for news organizations.",
+      mainEntityOfPage: "https://www.kevindiesenberg.com",
+      estimatedSalary: {
+        "@type": "MonetaryAmount",
+        currency: "USD",
+        value: {
+          "@type": "QuantitativeValue",
+          value: 85000,
+          unitText: "YEAR"
+        }
+      },
       occupationLocation: {
         "@type": "Country",
         name: "United States",
