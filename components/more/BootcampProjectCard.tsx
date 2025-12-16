@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 
-import type { Project } from "@/types";
+import type { Project } from "@/lib/types";
 
 export function BootcampProjectCard({ project }: { project: Project }) {
   return (
@@ -18,7 +18,7 @@ export function BootcampProjectCard({ project }: { project: Project }) {
           alt={project.alt}
           fill
           placeholder="blur"
-          sizes="(max-width: 768px) 100vw, 33vw"
+          sizes="(max-width: 375px) 100vw, (max-width: 768px) 100vw, 33vw"
           className="rounded-md object-contain p-2"
           priority={false}
         />
@@ -29,15 +29,15 @@ export function BootcampProjectCard({ project }: { project: Project }) {
       {project.name}
     </h4>
 
-    <p className="mb-4 flex-grow text-sm text-gray-400">
+    <p className="mb-4 flex-grow text-sm text-hierarchy-tertiary">
       {project.description}
     </p>
 
-    <ul className="mb-6 space-y-2 text-sm text-gray-400">
+    <ul className="mb-6 space-y-2 text-sm text-hierarchy-tertiary">
       {project.features.map((f, i) => (
         <li key={i} className="group/item flex items-start">
           <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gradient-to-r from-brand-primary to-brand-primary-dark transition-all duration-200 group-hover/item:scale-110" />
-          <span className="transition-colors duration-200 group-hover/item:text-gray-200">
+          <span className="transition-colors duration-200 group-hover/item:text-hierarchy-primary">
             {f}
           </span>
         </li>

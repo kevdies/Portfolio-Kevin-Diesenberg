@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cn } from "@/utils/utils";
+import { cn } from "@/lib/utils";
 
 import {
   RiMenuLine,
@@ -68,7 +68,7 @@ export function Icon({ name, size = "md", className }: IconProps) {
         aria-hidden="true"
         title={`Missing icon: ${name}`}
       >
-        <span className="text-xs text-gray-500">?</span>
+        <span className="text-xs text-hierarchy-muted">?</span>
       </span>
     );
   }

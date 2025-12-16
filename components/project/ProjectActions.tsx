@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
-import type { ProjectLink } from "@/types";
+import type { ProjectLink } from "@/lib/types";
 
 export function ProjectActions({
   liveUrls,

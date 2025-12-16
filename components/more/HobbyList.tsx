@@ -1,11 +1,11 @@
 import React from "react";
-import { cn } from "@/utils/utils";
+import { cn } from "@/lib/utils";
 
 export function HobbyList({ hobbies }: { hobbies: string[] }) {
   return (
-  <div className="flex flex-wrap justify-center gap-4">
+  <ul className="flex flex-wrap justify-center gap-4" role="list">
     {hobbies.map((hobby, idx) => (
-      <div
+      <li
         key={idx}
         className={cn(
           "flex items-center space-x-2 rounded-full",
@@ -15,12 +15,12 @@ export function HobbyList({ hobbies }: { hobbies: string[] }) {
           "group hover:border-surface-border-light hover:bg-surface-tertiary",
         )}
       >
-        <span className="h-2 w-2 rounded-full bg-gradient-to-r from-brand-primary to-brand-primary-dark transition-transform duration-200 group-hover:scale-110" />
-        <span className="text-gray-400 transition-colors duration-200 group-hover:text-gray-200">
+        <span className="h-2 w-2 rounded-full bg-gradient-to-r from-brand-primary to-brand-primary-dark transition-transform duration-200 group-hover:scale-110" aria-hidden="true" />
+        <span className="text-hierarchy-tertiary transition-colors duration-200 group-hover:text-hierarchy-primary">
           {hobby}
         </span>
-      </div>
+      </li>
     ))}
-  </div>
+  </ul>
   );
 }
