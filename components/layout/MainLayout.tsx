@@ -1,11 +1,10 @@
 "use client";
 
 import React from "react";
-import { useScrollSpy } from "@/hooks/useScrollSpy";
+import { useScrollSpy } from "@/lib/hooks/useScrollSpy";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { StructuredData } from "@/components/StructuredData";
-import { ScrollToTop } from "@/components/ui/ScrollToTop";
 
 export function MainLayout({ children }: { children: React.ReactNode }) {
   const headerRef = React.useRef<HTMLElement>(null);
@@ -23,7 +22,6 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
         {children}
       </main>
       <Footer />
-      <ScrollToTop />
     </div>
   );
 }

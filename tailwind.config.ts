@@ -1,4 +1,5 @@
-import type { Config } from "tailwindcss";
+import type { Config, PluginAPI } from "tailwindcss/types/config";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 const config: Config = {
   content: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],
@@ -20,7 +21,6 @@ const config: Config = {
           primary: "#a855f7", // purple-500
           "primary-dark": "#9333ea", // purple-600
           "primary-light": "#c084fc", // purple-400
-          gradient: "linear-gradient(135deg, #a855f7 0%, #9333ea 100%)",
         },
         surface: {
           primary: "#0a0a0a", // Main background
@@ -94,12 +94,8 @@ const config: Config = {
     },
   },
   plugins: [
-    require("tailwindcss-animate"),
-    function ({
-      addUtilities,
-    }: {
-      addUtilities: (utilities: Record<string, unknown>) => void;
-    }) {
+    tailwindcssAnimate,
+    function ({ addUtilities }: PluginAPI) {
       const newUtilities = {
         ".gradient-brand": {
           background: "linear-gradient(135deg, #a855f7 0%, #9333ea 100%)",
@@ -145,11 +141,11 @@ const config: Config = {
           fontWeight: "500",
         },
         ".text-hierarchy-tertiary": {
-          color: "#a1a1aa", // zinc-400
+          color: "#a8a8b3", // zinc-400 lightened for WCAG AA (~6:1)
           fontWeight: "400",
         },
         ".text-hierarchy-muted": {
-          color: "#71717a", // zinc-500
+          color: "#8c8c96", // zinc-500 lightened for WCAG AA (4.5:1)
           fontWeight: "400",
         },
         ".border-subtle": {

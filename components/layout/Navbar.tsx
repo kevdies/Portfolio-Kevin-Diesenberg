@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Icon } from "@/components/ui/Icon";
-import { cn } from "@/utils/utils";
+import { cn } from "@/lib/utils";
 import * as Dialog from "@radix-ui/react-dialog";
 
 import { navItems, type NavItem } from "@/lib/navigation";
@@ -19,7 +19,7 @@ function NavLink({ item, activeSection, isMobile, onClick }: NavLinkProps) {
   const mobileClasses = "text-3xl font-medium py-6 px-4 touch-target-lg";
 
   const activeClasses = "text-brand-primary-light";
-  const inactiveClasses = "text-gray-300 hover:text-brand-primary-light";
+  const inactiveClasses = "text-hierarchy-secondary hover:text-brand-primary-light";
 
   return (
     <button
@@ -42,7 +42,7 @@ interface MobileMenuProps {
 
 function MobileMenu({ activeSection, onLinkClick }: MobileMenuProps) {
   return (
-    <Dialog.Root>
+    <Dialog.Root modal>
       <Dialog.Trigger asChild>
         <button
           className="rounded-md p-3 hover:bg-surface-secondary focus:outline-none focus:ring-2 focus:ring-brand-primary md:hidden touch-target-lg"

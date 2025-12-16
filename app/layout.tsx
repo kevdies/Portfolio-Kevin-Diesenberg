@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { inter, poppins } from "@/app/ui/fonts";
+import { inter, poppins } from "@/lib/fonts";
 import { MainLayout } from "@/components/layout/MainLayout";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -112,7 +112,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
       </head>
-      <body className="bg-surface-primary text-gray-200 antialiased">
+      <body className="bg-surface-primary text-hierarchy-primary antialiased">
         <MainLayout>{children}</MainLayout>
         <Analytics />
         <SpeedInsights />

@@ -31,8 +31,7 @@ function SkillsSection({ id = "skills" }: SkillsSectionProps) {
           {technicalSkills.map((skill) => (
             <li
               key={skill}
-              className="group flex items-center justify-center rounded-md border border-subtle bg-surface-secondary px-3 py-3 text-sm mobile-hover hover:border-accent hover:bg-surface-tertiary hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-primary touch-target min-w-0"
-              tabIndex={0}
+              className="group flex items-center justify-center rounded-md border border-subtle bg-surface-secondary px-3 py-3 text-sm hover:border-accent hover:bg-surface-tertiary hover:shadow-sm touch-target min-w-0"
             >
               <span className="mr-2 h-2 w-2 flex-shrink-0 rounded-full bg-brand-primary" />
               <span className="text-hierarchy-tertiary transition-colors duration-300 group-hover:text-hierarchy-secondary truncate">

@@ -4,7 +4,7 @@ import React from "react";
 import Section from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
-import { RESUME_PATH } from "@/utils/share";
+import { RESUME_PATH } from "@/lib/constants";
 
 export interface ConnectSectionProps {
   id?: string;
@@ -44,7 +44,12 @@ function ConnectSection({ id = "connect" }: ConnectSectionProps) {
           </Button>
           
           <Button asChild variant="ghost" className="w-full">
-            <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer">
+            <a
+              href={RESUME_PATH}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View Kevin Diesenberg's resume (opens in new tab)"
+            >
               <Icon name="download" className="mr-2" size="sm" />
               View Resume
             </a>

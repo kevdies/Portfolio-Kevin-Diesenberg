@@ -1,10 +1,10 @@
-import type { Project } from "../types";
-import brgLeaderboard from "@/assets/images/Dark_Mode_Leaderboard_Mobile.png";
-import pinUploadModal from "@/assets/images/Pin_Upload_Success_Modal.png";
-import newsLetterSignUpCard from "@/assets/images/Newsletter_Sign_Up_Card.png";
-import awefulLogo from "@/assets/images/aweful-logo.png";
-import trailShareLogo from "@/assets/images/trail-share-logo.png";
-import HSTRYLogo from "@/assets/images/HSTRY-logo.png";
+import type { Project } from "./types";
+import brgLeaderboard from "@/images/Dark_Mode_Leaderboard_Mobile.png";
+import pinUploadModal from "@/images/Pin_Upload_Success_Modal.png";
+import newsLetterSignUpCard from "@/images/Newsletter_Sign_Up_Card.png";
+import awefulLogo from "@/images/aweful-logo.png";
+import trailShareLogo from "@/images/trail-share-logo.png";
+import HSTRYLogo from "@/images/HSTRY-logo.png";
 
 export const professionalProjects: Project[] = [
   {

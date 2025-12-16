@@ -27,7 +27,7 @@ function ProjectSection({ id = "professional-projects" }: ProjectSectionProps) {
                 src={project.image}
                 alt={project.alt}
                 placeholder="blur"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                sizes="(max-width: 375px) 100vw, (max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="h-auto w-full object-contain p-2"
                 priority={index === 0}
               />
