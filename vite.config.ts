@@ -9,6 +9,7 @@ export default defineConfig({
   plugins: [
     nitroV2Plugin({
       preset: "vercel",
+      compatibilityDate: "2025-12-31",
     }),
     viteTsConfigPaths({
       projects: ["./tsconfig.json"],
