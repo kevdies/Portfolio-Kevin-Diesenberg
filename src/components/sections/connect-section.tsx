@@ -2,11 +2,6 @@ import { ArrowUpRight, FileText, Mail } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { RESUME_PATH } from "@/lib/constants";
 
 const socialLinks = [
@@ -33,57 +28,48 @@ const socialLinks = [
 export function ConnectSection({ id = "connect" }: { id?: string }) {
   return (
     <Section id={id}>
-      <div className="mx-auto max-w-md space-y-8 text-center">
-        <div className="space-y-2">
-          <h2 className="font-heading text-xl font-semibold text-foreground">
-            Let's connect
+      <div className="mx-auto max-w-lg space-y-6 text-center">
+        <div className="space-y-3">
+          <h2 className="font-heading text-foreground text-xl font-semibold">
+            Let's build together
           </h2>
-          <p className="text-sm text-muted-foreground">
-            Open to new opportunities
+          <p className="text-muted-foreground">
+            I'm looking for a remote software engineering role with teams
+            solving interesting problems, regardless of industry.
           </p>
         </div>
-
         {/* Primary CTA */}
-        <Button asChild size="lg" className="w-full">
+        <Button asChild size="lg" className="w-full sm:w-auto">
           <a href="mailto:kdiesenb@gmail.com">
             <Mail className="mr-2 h-4 w-4" />
             kdiesenb@gmail.com
           </a>
         </Button>
-
-        {/* Social links */}
-        <div className="flex items-center justify-center gap-4">
+        {/* Social + Resume row */}
+        <div className="flex flex-wrap items-center justify-center gap-3">
           {socialLinks.map((link) => (
-            <Tooltip key={link.name}>
-              <TooltipTrigger asChild>
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card text-muted-foreground transition-colors hover:border-brand-primary hover:text-brand-primary"
-                  aria-label={link.name}
-                >
-                  {link.icon}
-                </a>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>{link.name}</p>
-              </TooltipContent>
-            </Tooltip>
+            <a
+              key={link.name}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-muted text-foreground hover:bg-muted/80 inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors"
+            >
+              {link.icon}
+              {link.name}
+            </a>
           ))}
+          <a
+            href={RESUME_PATH}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-muted text-foreground hover:bg-muted/80 inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors"
+          >
+            <FileText className="h-5 w-5" />
+            Resume
+            <ArrowUpRight className="h-3.5 w-3.5" />
+          </a>
         </div>
-
-        {/* Resume link */}
-        <a
-          href={RESUME_PATH}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <FileText className="h-4 w-4" />
-          View Resume
-          <ArrowUpRight className="h-3 w-3" />
-        </a>
       </div>
     </Section>
   );

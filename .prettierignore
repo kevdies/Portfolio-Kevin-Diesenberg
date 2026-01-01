@@ -1,0 +1,7 @@
+dist
+node_modules
+.output
+.vercel
+.vinxi
+.nitro
+pnpm-lock.yaml

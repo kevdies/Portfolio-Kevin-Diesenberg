@@ -8,6 +8,7 @@ export default tseslint.config(
       "dist/**",
       "node_modules/**",
       ".output/**",
+      ".vercel/**",
       ".vinxi/**",
       ".nitro/**",
       "*.gen.ts",
