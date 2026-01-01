@@ -1,6 +1,5 @@
-import brgLeaderboard from "@/assets/Dark_Mode_Leaderboard_Mobile.webp";
 import clickOnDetroitNav from "@/assets/clickondetroit-mobile-nav.webp";
-import newsLetterSignUpCard from "@/assets/Newsletter_Sign_Up_Card.webp";
+import brgLeaderboard from "@/assets/Dark_Mode_Leaderboard_Mobile.webp";
 import pinUploadModal from "@/assets/Pin_Upload_Success_Modal.webp";
 
 import type { Project } from "./types";
@@ -9,10 +8,11 @@ export const professionalProjects: Project[] = [
   {
     name: "Navigation Refactor",
     image: clickOnDetroitNav,
-    alt: "Click On Detroit mobile navigation menu showing accordion sections",
+    alt: "Mobile navigation menu showing accordion sections",
     description:
       "Built composable design system components wrapping Radix UI and Headless UI for accessibility. Replaced prop drilling with context-based state management using reducer pattern with typed actions.",
-    businessImpact: "Unified navigation UX across 700k+ daily users",
+    businessImpact:
+      "Accessible, modern navigation menu with live alerts and trending stories used by 700k+ daily users",
     results: [
       "Context + reducer state",
       "IntersectionObserver perf",
@@ -31,7 +31,7 @@ export const professionalProjects: Project[] = [
     ],
     liveUrls: [
       {
-        label: "Click On Detroit",
+        label: "WDIV (Detroit)",
         url: "https://www.clickondetroit.com",
       },
       {
@@ -98,28 +98,6 @@ export const professionalProjects: Project[] = [
       "Built-in retry flow",
       "Styled-components theming",
       "Smooth transitions",
-    ],
-    demo: "#",
-  },
-  {
-    name: "Newsletter Sign-Up Card",
-    image: newsLetterSignUpCard,
-    alt: "Newsletter sign-up card embedded in article",
-    description:
-      "Dynamic newsletter signup component with validation and accessibility features embedded across news articles.",
-    businessImpact:
-      "Increased newsletter subscriptions through strategic article placement",
-    results: [
-      "Email validation with regex",
-      "Accessibility standards adherence",
-      "Seamless article integration",
-    ],
-    features: [
-      "Email regex validation & timeout handling",
-      "Accessibility standards & keyboard support",
-      "Dynamic success/error messaging",
-      "Embedded in side rails & articles",
-      "Redirects to newsletter page",
     ],
     demo: "#",
   },
