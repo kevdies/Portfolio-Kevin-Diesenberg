@@ -31,7 +31,7 @@ export function ConnectSection({ id = "connect" }: { id?: string }) {
       <div className="mx-auto max-w-lg space-y-6 text-center">
         <div className="space-y-3">
           <h2 className="font-heading text-foreground text-xl font-semibold">
-            Let's build together
+            Let's Build Together
           </h2>
           <p className="text-muted-foreground">
             I'm looking for a remote software engineering role with teams

@@ -28,7 +28,7 @@ export function ProjectSection({
         {professionalProjects.map((project, index) => (
           <Card
             key={project.name}
-            className="group bg-card/50 border-border overflow-hidden"
+            className="group bg-card/50 border-border overflow-hidden py-0"
           >
             {/* Project image */}
             <button
@@ -104,10 +104,10 @@ export function ProjectSection({
           aria-describedby={undefined}
         >
           <div className="flex items-center justify-between">
-            <DialogTitle className="text-sm font-medium text-muted-foreground">
+            <DialogTitle className="text-muted-foreground text-sm font-medium">
               Project Screenshot
             </DialogTitle>
-            <DialogClose className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
+            <DialogClose className="text-muted-foreground hover:bg-muted hover:text-foreground rounded-full p-1.5 transition-colors">
               <X className="h-5 w-5" />
               <span className="sr-only">Close</span>
             </DialogClose>

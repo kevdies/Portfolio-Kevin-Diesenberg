@@ -93,6 +93,9 @@ function MobileMenu({ activeSection, onLinkClick }: MobileMenuProps) {
         >
           <X className="h-6 w-6" />
         </Button>
+        <div className="absolute bottom-4 left-4">
+          <ModeToggle />
+        </div>
       </DialogContent>
     </Dialog>
   );
@@ -113,9 +116,13 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         <div className="container mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <button
             onClick={() => navigateTo("about")}
-            className="text-lg font-bold text-foreground transition-colors hover:text-brand-primary"
+            className="transition-opacity hover:opacity-80"
           >
-            Kevin Diesenberg
+            <img
+              src="/apple-touch-icon.png"
+              alt="Kevin Diesenberg"
+              className="h-10 w-10 rounded-full"
+            />
           </button>
 
           <nav className="hidden items-center space-x-2 md:flex">
@@ -130,8 +137,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
             <ModeToggle />
           </nav>
 
-          <div className="flex items-center gap-2 md:hidden">
-            <ModeToggle />
+          <div className="md:hidden">
             <MobileMenu
               activeSection={activeSection}
               onLinkClick={navigateTo}

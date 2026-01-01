@@ -6,13 +6,13 @@ export function AboutSection({ id = "about" }: { id?: string }) {
     <Section id={id}>
       <div className="mx-auto max-w-4xl space-y-8 text-center">
         {/* Hero content */}
-        <div className="space-y-4">
-          <p className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
-            Software Engineer
-          </p>
+        <div className="space-y-2">
           <h1 className="font-heading text-foreground text-2xl font-semibold sm:text-3xl md:text-4xl">
             Kevin Diesenberg
           </h1>
+          <p className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+            Software Engineer
+          </p>
           <p className="text-muted-foreground text-base sm:text-lg">
             I build production web apps with React and TypeScript. Currently
             shipping features to millions of users across local news platforms.
