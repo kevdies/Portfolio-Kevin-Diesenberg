@@ -1,6 +1,4 @@
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer className="border-t border-border/20 bg-background py-8">
       <div className="container mx-auto max-w-7xl px-6">
@@ -9,7 +7,7 @@ export function Footer() {
             Kevin Diesenberg
           </h3>
           <p className="text-sm text-muted-foreground">
-            &copy; {currentYear} All rights reserved.
+            &copy; {new Date().getFullYear()} All rights reserved.
           </p>
         </div>
       </div>
