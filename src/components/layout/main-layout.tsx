@@ -2,7 +2,6 @@ import { useRef } from "react";
 import { useScrollSpy } from "@/lib/hooks/use-scroll-spy";
 import { Navbar } from "./navbar";
 import { Footer } from "./footer";
-import { StructuredData } from "@/components/structured-data";
 
 export function MainLayout({ children }: { children: React.ReactNode }) {
   const headerRef = useRef<HTMLElement>(null);
@@ -12,7 +11,6 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
     <div
       style={{ "--header-height": `${headerHeight}px` } as React.CSSProperties}
     >
-      <StructuredData />
       <Navbar
         ref={headerRef}
         activeSection={activeSection}

@@ -69,6 +69,7 @@ function MobileMenu({ activeSection, onLinkClick }: MobileMenuProps) {
       <DialogContent
         showCloseButton={false}
         className="flex h-dvh max-h-none w-screen max-w-none flex-col items-center justify-center border-none bg-background/95 backdrop-blur-md"
+        aria-describedby={undefined}
       >
         <DialogTitle className="sr-only">Navigation Menu</DialogTitle>
         <ul className="flex flex-col items-center space-y-6">
