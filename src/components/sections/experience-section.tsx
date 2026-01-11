@@ -27,7 +27,7 @@ export function ExperienceSection({ id = "experience" }: { id?: string }) {
                   <h3 className="text-foreground text-lg font-semibold">
                     {currentExperience.role}
                   </h3>
-                  <span className="bg-brand-primary rounded-full px-2 py-0.5 text-xs font-medium text-white">
+                  <span className="bg-brand-primary text-brand-primary-foreground rounded-full px-2 py-0.5 text-xs font-medium">
                     Current
                   </span>
                 </div>

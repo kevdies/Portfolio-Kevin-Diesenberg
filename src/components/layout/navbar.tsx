@@ -23,9 +23,8 @@ function NavLink({ item, activeSection, isMobile, onClick }: NavLinkProps) {
   const desktopClasses = "py-2 px-4 text-sm";
   const mobileClasses = "text-3xl font-medium py-6 px-4";
 
-  const activeClasses = "text-brand-primary-light";
-  const inactiveClasses =
-    "text-muted-foreground hover:text-brand-primary-light";
+  const activeClasses = "text-brand-primary";
+  const inactiveClasses = "text-muted-foreground hover:text-brand-primary";
 
   return (
     <button

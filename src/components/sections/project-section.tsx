@@ -45,8 +45,8 @@ export function ProjectSection({
                 className="h-full w-full object-cover object-top"
                 loading={index === 0 ? "eager" : "lazy"}
               />
-              <div className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all group-hover:bg-black/30 group-hover:opacity-100">
-                <Expand className="h-5 w-5 text-white" />
+              <div className="absolute inset-0 flex items-center justify-center bg-foreground/0 opacity-0 transition-all group-hover:bg-foreground/30 group-hover:opacity-100">
+                <Expand className="h-5 w-5 text-background" />
               </div>
             </button>
 
