@@ -64,9 +64,9 @@ export function ProjectSection({
                 {project.description}
               </p>
 
-              {/* Tech highlights - subtle */}
+              {/* Tech highlights */}
               {project.results && (
-                <p className="text-muted-foreground/70 text-xs">
+                <p className="text-muted-foreground text-xs">
                   {project.results.slice(0, 3).join(" · ")}
                 </p>
               )}
