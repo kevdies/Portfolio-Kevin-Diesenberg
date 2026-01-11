@@ -67,7 +67,7 @@ function MobileMenu({ activeSection, onLinkClick }: MobileMenuProps) {
       </DialogTrigger>
       <DialogContent
         showCloseButton={false}
-        className="flex h-dvh max-h-none w-screen max-w-none flex-col items-center justify-center border-none bg-background/95 backdrop-blur-md"
+        className="flex h-dvh max-h-none w-screen max-w-none flex-col items-center justify-center rounded-none border-none bg-background/95 backdrop-blur-md"
         aria-describedby={undefined}
       >
         <DialogTitle className="sr-only">Navigation Menu</DialogTitle>
@@ -110,9 +110,9 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
     return (
       <header
         ref={ref}
-        className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur-md"
+        className="sticky top-0 z-40 h-[72px] border-b border-border bg-background/80 backdrop-blur-md"
       >
-        <div className="container mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <div className="container mx-auto flex h-full max-w-7xl items-center justify-between px-6">
           <button
             onClick={() => navigateTo("about")}
             className="transition-opacity hover:opacity-80"
